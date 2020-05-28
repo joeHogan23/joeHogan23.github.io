@@ -1,4 +1,4 @@
-var root = "http://127.0.0.1:7694/";
+var root = "http://joehogan23.github.io/";
 
 setTimeout(function(){closeNav()}, 100);
 

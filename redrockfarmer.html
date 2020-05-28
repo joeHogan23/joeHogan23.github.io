@@ -139,13 +139,23 @@
                                        <li>
                                            Window forms hold all the user controls, sprite selection, imported spritesheets, etc.
                                        </li>
+                                       <li>The Tile Engine itself is what makes use of the Editor tools (it handles input), but the Map Editor Window Form takes care of setting tiles, which is sent to the Tile Engine to edit the tiles.</li>
                                        </ul>
                                    </li>
+                                  </ul>
+                                  <ul>
+                                       <li>
+                                           <b>User Settings</b> are also stored after most actions, including importing sprite sheets, adding new Code Values to mark tiles, etc.
+                                       </li>
+                                       <li>
+                                           Most of these actions, saving and loading, importing, are done through additional window forms and dialog windows.
+                                       </li>
+
                                    </ul>
                                </div>
                                                                  
                                <div class="content font-36 pad btm-5">The Tile Engine</div>
-                              <div class ="content justify pad btm-10">
+                              <div class ="content pad btm-10">
                                    <ul>
                                    <li>
                                        The Tile Engine is the bridge between the Level Construction and the Projects that use it.
@@ -163,18 +173,12 @@
                                            </ul>
                                            
                                        </li>
-                                       <li>
-                                           <b>User Settings are also stored after most actions, including importing sprite sheets, adding new Code Values to mark tiles, etc.
-                                       </li>
-                                       <li>
-                                           Most of these actions, saving and loading, importing, are done through additional window forms and dialog windows.
-                                       </li>
                                   </ul>
                                   
                                   <div class ="content justify pad btm-10">
                                   <ul>
                                    <li> 
-                                       Everything that is defined on a tile gets funneled into Tiles.
+                                       Everything that is defined in the Map Editor gets funneled into Tiles on a TileMap class.
                                        <ul><li>
                                            Through the use of overloaded SetTile( . . . ) methods, I can set update tile settings on the fly. The point of this is to change individual settings without creating an entirely <i>new</i> Tile class. Some Uses include
                                            <ul>
@@ -209,7 +213,10 @@
                                  <div class ="collapse-button-content">Gameplay Loop and Player Mechanics<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
                            <div class="collapse collapse-content" id="gameplay-collapse">
-                               <div class ="content pad vt-10"></div></div>
+                               <div class ="content pad top-10">
+                                   Most of the gameplay mechanics in this Prototype layout the entire gameplay loop. There are plenty of missing factors to be implemented to round out the experience, but at its core, it is a farming RPG. It has a defined gameplay loop: <i>Buy Seeds; Plant; Sleep; Harvest; Repeat</i>
+                               </div>
+                               </div>
                             <!--//END GAMEPLAY CONTENT-->
                                                       
                             <!--SAVE AND LOAD CONTENT-->
@@ -225,9 +232,9 @@
                                <div class="content"><img src="images/redrockfarmer-ui-1920-1080.PNG">
                                </div>
                                
-                                                              <div class = "content pad top-20 btm-5">By contrast, a square resolution. The UI is still in the same position, relative to the 1:1 screen ratio
+                                                              <div class = "content pad justify top-20 btm-5">By contrast, a square resolution. The UI is still at screen position (.5, .8), relative to the 1:1 screen ratio
                                </div>
-                               <div class="content"><img style="width: 50%;" src="images/redrockfarmer-ui-1000-1000.PNG"></div>
+                               <div class="content pad btm-20"><img style="width: 50%; margin-left: 25%;" src="images/redrockfarmer-ui-1000-1000.PNG"></div>
                                <button class="collapse-button-inner" data-toggle="collapse" href="#codemap-slot-collapse" role="button" aria-expanded="true" aria-controls="codemap-slot-collapse">
                                     <div class="collapse-button-content">
                                         Code Map: UIElement <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
@@ -235,7 +242,7 @@
                                <div class="collapse collapse-content-inner" id="codemap-slot-collapse">
                                    <div class="content pad top-10 btm-5">
                                    Slot is a custom UI element that inherits from UISprite. UISprite is the Image handling class, inheriting from the base class UIElement, which doesn't handle any drawing, but is an abstract class that manages positioning in Screen and </div>
-                                                  <div class="content pad btm-10"> 
+                                                  <div class="content pad btm-10">
                                <img src="images/redrockfarmer-slot-codemap.PNG">
                                </div>
                                </div>
