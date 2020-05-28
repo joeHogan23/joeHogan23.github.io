@@ -1,0 +1,359 @@
+/* ---COMMON STYLE--- */
+
+h2, h1,h3,h4{
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    font-size: 48px;
+    height: 100%;
+    display:block;
+    margin-top: 10px;
+}
+
+body{
+    margin:0 auto;
+    width: 100%;
+    height: 100%;
+    background-color: #262B3E;  
+}
+
+/* ---// END COMMON STYLE--- */
+
+#overlay{
+    height:3000px;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    background-color: transparent;
+    z-index: 2;
+    pointer-events:none;
+}
+
+.social-overlay-item{
+    top:50%;
+    left: 0%;
+    pointer-events: none;
+    position: fixed;
+    z-index: 4;
+    opacity: 0;
+}
+
+.social-overlay-item img{
+    width:700px;
+}
+
+button:focus {
+    outline: 0px;
+}
+
+#container {
+    background-color: #041424;
+    position: relative;
+    transition: all 0.4s;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+
+/* ---VIDEO WALL STYLE--- */
+
+.video-wall-wrapper{
+    position: relative;
+    left: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    min-height: 530px;
+    width: 100%;
+    height: 90%;
+    display: block;
+}
+
+.video-wall-inner-wrap{
+    min-height: 530px;
+}
+
+.video-wall-content{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    overflow: hidden;
+}
+
+.video-wall-content video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 535px;
+    min-width: 100% !important;
+    background-size: cover;
+}
+
+/* ---//END VIDEO WALL STYLE--- */
+
+/* ---SECTION STYLE--- */
+
+.section-header {
+    font-family: 'Raleway';
+    letter-spacing: 2px;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    background-color: #041424;
+    font-size: 56px;
+}
+
+.subsection-header {
+    font-family: 'Average Sans', sans-serif;
+    text-align: center;
+    color:#818181;
+    top:0;
+}
+
+.section {
+    background-color: #30415d;
+    justify-content: center;    
+    align-items: center;
+    padding: 100px 0px;
+    width:100%;
+    border: none;
+}
+
+#project-header {
+    margin-top: 0;
+    padding-bottom: 5px;
+}
+
+#design-header{
+    background-color: #30415d;
+}
+
+#graphic-design-section {    
+    height:500px;
+    overflow: visible;
+}
+
+#about-content {
+    color:white;
+    font-style: normal;
+    margin: 0px 10% 40px 10%;
+    display: block;    
+}
+
+#contact-header {
+    padding-top: 7px;
+    background-color: #eac67a;
+    font-size: 80px;
+    font-weight: bold;
+    color: #031424;
+}
+
+#contact-section {
+    background-color: #eac67a;   
+    color: white;
+    font-size: 20px;
+}
+
+/* ---// END SECTION STYLE--- */
+
+/* ---PROJECT SECTION STYLE--- */
+
+
+.container {
+    transition: .2s;
+}
+
+.project-section-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    overflow: hidden;
+}
+
+
+#project-section-table {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#project-section-content {
+    
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.project-item-wrapper {
+    max-width: 340px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    overflow: hidden;
+}
+
+.project-item {
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    transition: all .3 ease-in-out;
+}
+
+.project-item-cover {
+    border: 1.5px solid;
+    border-color: #2a3e87;
+    border-radius: 5px;
+    overflow: hidden;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.project-item-cover img {
+    margin-left: -50%;
+    height:100%;
+}
+
+#dewetron-button img {
+    margin-left: -52%;
+}
+
+#redrock-button img {
+    margin-left: -58%;
+}
+
+.project-item-title{
+    width: 100%;
+    top: 100%;
+    height: 80px;
+    position: absolute;
+    margin-top: -80px;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.project-item-title a{
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 30px;
+    line-height: 76px;
+}
+
+.project-item-title.light{
+    background-color:rgba(255,255,255,.1);
+}
+
+.project-item-title.dark{
+    background-color:rgba(0,0,0,.33);
+}
+
+.project-roles-wrapper{
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    height: 35px;
+    width: 100%;
+    float: left;
+}
+
+.role{                          
+    font-family: 'Baloo 2';
+    font-size: 14px;
+    border-radius: 5px;
+    height:auto;
+    width: auto;
+    margin-right: 5px;
+    padding: 5px 7px;
+    float: left;
+    color: white;
+}
+
+#cSharp{
+    background-color: #818181;
+}
+
+#unity{
+    background-color: #2a3e87;
+}
+
+#xna{
+    background-color: #14404d;
+}
+
+#ar{
+    background-color: #357a86;
+}
+
+#ik{
+    background-color: #357a86;
+}
+
+#photoshop{
+    background-color: #144064;
+}
+
+.project-description{
+    height: 300px;
+    color: white;
+    font-family: 'Baloo 2';
+    font-size: 16px;
+    overflow-x:visible;
+    text-align: left;
+}
+
+.project-desc-genre{
+    font-family: 'Raleway';
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    letter-spacing: 1.2px;
+}
+
+.project-desc-bullet img{
+    height: 14px;
+    margin-right: 8px;
+    margin-left: 10px;
+    float:left;
+    position: relative;
+    margin-top: 4px;
+}
+
+.project-desc-bullet p{
+    margin-bottom: 5px;
+}
+
+.project-desc-bullet .new-line{
+    margin-left:31px;
+    line-height: 12px;
+}
+
+.project-role-content g{
+    font-size: 16px;
+    margin-left: 40px;
+}
+
+/* ---END PROJECT SECTION STYLE--- */
+
+
+#contact-links-wrapper{
+    text-align: center;
+    padding: 40px;
+}
+
+.contact-button{
+    height: 35px;
+    width: 35px;
+    border: none;
+    z-index: 3;
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    opacity: .5;
+}

@@ -1,0 +1,196 @@
+
+.background{
+    top: 0%;
+    height: 2000px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    background-attachment: fixed;
+    background-size: cover;
+    z-index: -2;
+    position: fixed;
+}
+
+#aberrant-background{
+    background-image: url(/images/aberrant_project_page_bg.PNG);
+}
+
+#redrockfarmer-background{
+        background-image: url(/images/red-rock-farmer-portrait.PNG);
+}
+
+#container{
+    position: relative;
+    transition: .4s;
+    margin-top: 90px;
+    margin-bottom: 40px;
+}
+
+.container {
+    border-radius: 15px;
+    transition: .4s;
+    background-color: rgba(0,0,0,.7);
+}
+
+.header {
+    color: white;        
+    background-color: rgba(0,0,0,.4);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+#title {
+    font-family: 'Raleway';
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 30px;
+}
+
+.overview-wrapper tr {
+    vertical-align: middle;
+        font-size: 12px;
+}
+
+.overview-wrapper table {
+    margin: auto;
+}
+
+.overview-wrapper td {
+    font-family: 'Montserrat';
+    display: table-cell;
+    padding: 10px 15px;
+}
+
+.overview-wrapper b {
+    font-family: 'Baloo 2';
+    font-size: 14px;
+}
+
+.overview-wrapper td img {
+    width: 10px;
+    margin-right: 10px;
+}
+
+.project-content-container {
+    margin: 25px 5%;
+}
+
+.content-wrapper {
+    margin-bottom: 25px;
+}
+
+.project-description {
+    display: block;
+    color: white;
+    margin: 0 8px 20px 8px;
+}
+
+#accordion {
+    width: 102%;
+    margin-left: -1%;
+}
+
+.collapse-button, .collapse-button-inner,.collapse-button:focus, 
+.collapse-button-inner:focus {
+    transition: .5s;
+    display: block;
+    width: 100%;
+    height: 42px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 25px;
+    padding-right: 15px;
+    border-radius: 4px;
+    text-align: left;
+    font-family: 'Baloo 2';
+    outline: none;
+    background-color: #c0a160;
+    color: #18121e;
+    border: none;
+}
+
+.collapse-button:focus, 
+.collapse-button-inner:focus {
+    outline: none;
+}
+
+.collapse-button.collapsed:focus, 
+.collapse-button-inner.collapsed:focus {
+    outline: none;
+}
+
+.collapse-button.collapsed:hover, 
+.collapse-button-inner.collapsed:hover, 
+.collapse-button:active, .collapse-button-inner:active {
+    background-color: #c0a160;
+    color: 18121e;
+    outline: none;
+}
+
+.collapse-button.collapsed, .collapse-button-inner.collapsed,
+.collapse-button:hover,
+.collapse-button-inner:hover,
+.collapse-button.collapsed:active, 
+.collapse-button-inner.collapsed:active {
+    background-color: #eac67a;
+    color: #233237;
+}
+
+.collapse-button-content {
+    text-align: left;
+    margin-left: 10px;
+    font-size: 14px;
+    font-family: 'Baloo 2';
+    font-weight: 600;
+}
+
+.dropdown-icon {
+    width: 17px;
+    float: right;
+    transform: rotate(90deg);
+    transition: .2s transform;
+    opacity: .3;
+    margin-top:2px;
+}
+
+.dropdown-icon:active {
+    color: white;
+}
+
+
+.collapse-content {
+    color: white;
+    text-align:start;
+    width: 97%;
+    padding-right: 0px;
+    padding-top: 0;
+    margin-left: 3%;
+}
+
+
+.content video{
+    width: 100% !important; 
+    height: auto;
+}
+
+.content img{
+    width:100%;
+    height: auto;
+}
+
+btn:hover{
+    border: none;
+    outline: none;
+}
+
+btn:focus{
+    border: none;
+    outline: none;
+}
+
+btn:active{
+    border:none;
+    outline:none;
+}

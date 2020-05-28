@@ -1,0 +1,288 @@
+<!doctype html>
+
+<html>
+<head>
+
+<title>Joseph Sierejko - Programmer</title>
+    <link rel="stylesheet" type="text/css" href="css/shared-style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/home-style.css"/>
+    
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+
+    <!--  EXTENSION URLS -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css&amp;"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+    <!-- //EXTENSION URLS -->
+
+    <!-- GOOGLE FONT LINK -->
+    <link href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Baloo+2&family=Baloo+Chettan+2&family=Montserrat&family=Raleway&display=swap" rel="stylesheet">   <!-- //GOOGLE FONT LINK -->
+    
+    
+
+    
+    <script type="text/javascript" src="/js/shared.js"></script>
+    
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>      
+    </head>        
+            <div class = "button-container">
+
+    <nav class = "navbar-nav">                 
+                <div class = "name" id = "name"><p>Joseph Sierejko</p></div> 
+                <button id="hamburger-button" onclick="openNav()">☰</button>
+                <div id = "button-menu">
+                    <button class = "nav-item" id = "project-main-button" data-target-element ="#project-header"><img id="project-img" src="images/project_png.png"/>Projects</button>
+                    <button class = "nav-item" type = "button" id = "design-main-button" data-target-element = "#design-header"><img id="contact-img" src="images/graphic_design_png.png"/>Graphic Design</button>
+                    <button class = "nav-item" type = "button" id = "about-main-button" data-target-element ="#about-header"><img id="about-img" src="images/about_png.png"/>About</button>
+                    <button class = "nav-item" type = "button" id = "contact-main-button" data-target-element ="#contact-header" ><img id="contact-img" src="images/contact_png.png"/>Contact</button>
+                    <button class = "nav-item" type = "button" id = "resume-main-button" ><img id="about-img" src="images/resume_png.png"/>Resume</button>
+                </div>
+    </nav>
+                       </div>
+           
+    <div id="sidebar-menu" class="sidebar">                       
+        <div id="sidebar-header"></div>
+        <a href="javascript:void(0)" class="close-button" onclick="closeNav()">×</a>
+                <a href="#" type = "button" class ="sidebar-item" id = "project-dropdown-button" data-target-element ="#project-header" onclick="closeNav()">Projects</a>       
+                <a href="#" type = "button" class = "sidebar-item" id = "design-dropdown-button" data-target-element ="#design-header" onclick="closeNav()">Graphic Design</a>
+        <a href="#" type = "button" class = "sidebar-item" id = "about-dropdown-button" data-target-element ="#about-header" onclick="closeNav()">About</a>
+                               
+        <a href="#" type = "button" class = "sidebar-item" id = "contact-dropdown-button" data-target-element ="#contact-header" onclick="closeNav()">Contact</a>
+        <a href="#" type = "button" class = "sidebar-item" id = "resume-dropdown-button">Resume</a>
+    </div>     
+    
+    <body>    
+<!--        <div class="preloader-wrapper">
+
+            
+        <div class="preloader circle top-left">
+            <div class="preloader square top-left">
+                <div class="preloader-break"></div>
+            </div>
+        </div>
+
+        </div>-->
+        <div id = "container">
+            <div class = "social-overlay-wrapper">
+                <a class="social-overlay-item" id ="linkedin-overlay">
+                    <img src="images/linkedin_overlay.png"/>
+                </a>
+                
+                <a class="social-overlay-item" id ="facebook-overlay">
+                    <img src="images/facebook_overlay.png"/>
+                </a>                
+                
+                <a class="social-overlay-item" id ="github-overlay">
+                    <img src="images/github_overlay.png"/>
+                </a>                
+                
+                <a class="social-overlay-item" id ="itchio-overlay">
+                    <img src="images/itchio_overlay.png"/>
+                </a>
+            </div>
+            
+            <div class="video-wall-wrapper">
+                <div class="video-wall-inner-wrap">
+                <div class ="video-wall-content">
+                <video loop autoplay muted resizing>
+                    <source src="videos/redRockFarmer.mp4" type="video/mp4">
+                </video>
+                    </div>
+            </div>
+            </div>
+            <div class = "section-header" id = "project-header">Projects</div>
+            <div class="project-section-wrapper">
+                <h4 class = "subsection-header" id = "project-subheader">
+                    Click on Panels to be Sent To Project Page
+                </h4>
+                <div class = "container">
+
+
+                    <div id= "project-section-content">
+
+            <div class = "row">
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    <div class ="project-item-wrapper" id = "aberrant-project">
+                        <a href="aberrant.html">
+                            <div class = "project-item">
+                                <div id ="aberrant-button" class = "project-item-cover" >
+                                    
+                                    <img src="images/Aberrant_Portfolio_Asset.PNG" data-margin-end ='-60%' data-margin-start ='-50%' data-height-end='110%'/>
+                                    
+                                    <div class = "project-item-title light">
+                                        <a>Aberrant</a>
+                                    </div>                                                            
+                                </div>
+                            </div>
+                        </a>
+                        <div class = "project-roles-wrapper">                        
+                            <div class = "role" id = "cSharp">c#</div>
+                            <div class = "role" id = "unity">unity</div>
+                            <div class = "role" id = "ik">inverse kinematics</div>
+                            <div class = "role" id = "photoshop">photoshop</div>
+                        </div>
+                        <div class = "project-description">
+                            <div class ="project-desc-genre">Survival Horror Game</div>
+                                                    
+                        <div class = "project-desc-bullet" >
+                        <img src = "images/gear_bullet_png.png"/>
+                            <p>Lead Programmer</p>
+                        </div>
+                                                    <div class = "project-desc-bullet" >
+                        <img src = "images/gear_bullet_png.png"/>
+                            <p>Art Director</p>
+                        </div>
+                            <div class = "project-desc-bullet" >
+                                <img src = "images/gear_bullet_png.png"/>
+                            <p>UI Asset Designer</p>
+                        </div>
+                            
+                            <div class = "project-desc-bullet" >
+                                <img src = "images/gear_bullet_png.png"/>
+                            <p>Level Design</p>
+                        </div>
+                        </div>                        
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    <div class ="project-item-wrapper" id = "redrock-farmer-project">
+                        <a href="aberrant.html">
+                            <div class = "project-item">
+                                <div id ="dewetron-button" class = "project-item-cover" >
+                                    
+                                    <img src="images/cover-dewetron-ar.png" data-margin-end ='-62%' data-margin-start ='-52%' data-height-end='110%'/>
+                                    
+                                    <div class = "project-item-title dark">
+                                        <a>Dewetron AR</a>
+                                    </div>                                                            
+                                </div>
+                            </div>
+                        </a>
+                        <div class = "project-roles-wrapper">                        
+                            <div class = "role" id = "cSharp">c#</div>
+                            <div class = "role" id = "unity">unity</div>
+                            <div class = "role" id = "ar">ar</div>
+                            <div class = "role" id = "photoshop">photoshop</div></div>
+                        <div class = "project-description">
+                            <div class ="project-desc-genre">Mobile App (Published)</div>
+                                                    
+                        <div class = "project-desc-bullet" >
+                            <img src = "images/gear_bullet_png.png"/>
+                                <p>Independent Development</p>
+                        </div>
+                        <div class = "project-desc-bullet" >
+                            <img src = "images/gear_bullet_png.png"/>
+                            <p>2D Graphic Design</p>
+                        </div>
+                            <div class = "project-desc-bullet" >
+                                <img src = "images/gear_bullet_png.png"/>
+                                <p>Programmer</p>
+                        </div>
+                            <div class = "project-desc-bullet" >
+                                <img src = "images/gear_bullet_png.png"/>
+                            <p>Custom PDF Reader Built for Apple Devices</p>
+                        </div>
+                            <div class = "project-desc-bullet" >
+                                <img src = "images/gear_bullet_png.png"/>
+                            <p>Image Targets and AR Database via Vuforia <p class ="new-line">Service</p></p>
+                        </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-md-6 col-lg-4">
+                    <div class ="project-item-wrapper" id = "redrock-farmer-project">
+                        <a href="redrockfarmer.html">
+                            <div class = "project-item">
+                                <div id ="redrock-button" class = "project-item-cover" >
+                                    
+                                    <img src="images/red-rock-farmer-portrait.PNG" data-margin-end ='-68%' data-margin-start ='-58%' data-height-end='110%'/>
+                                    
+                                    <div class = "project-item-title dark">
+                                        <a>Red Rock Farmer</a>
+                                    </div>                                                            
+                                </div>
+                            </div>
+                        </a>
+                        <div class = "project-roles-wrapper">                        
+                            <div class = "role" id = "cSharp">c#</div>
+                            <div class = "role" id = "unity">unity</div>
+                            <div class = "role" id = "xna">xna / monogame</div>
+                            <div class = "role" id = "photoshop">photoshop</div></div>
+                        <div class = "project-description">
+                            <div class ="project-desc-genre">Role Playing Game</div>
+                                                    
+                        <div class = "project-desc-bullet" >
+                            <img src = "images/gear_bullet_png.png"/>
+                                <p>Independent Development</p>
+                        </div>
+                        <div class = "project-desc-bullet" >
+                            <img src = "images/gear_bullet_png.png"/>
+                            <p>2D Graphic Design</p>
+                        </div>
+                            <div class = "project-desc-bullet" >
+                                <img src = "images/gear_bullet_png.png"/>
+                                <p>Programmer</p>
+                        </div>
+                            <div class = "project-desc-bullet" >
+                                <img src = "images/gear_bullet_png.png"/>
+                            <p>Converted from Unity to Monogame Engine</p>
+                        </div>
+                            <div class = "project-desc-bullet" >
+                                <img src = "images/gear_bullet_png.png"/>
+                            <p>Custom 2D Engine built in Monogame</p>
+                        </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+                    </div>
+                        </div>
+                        
+                    
+                    </div>
+                    
+                    <div class = "section-header" id = "design-header">Graphic Design</div>
+                    <div class = "section" id = "graphic-design-section">
+                             
+                    </div>        
+                            
+            <div class = "section-header" id = "about-header">About</div>        
+            <span class = "section" id = "about">
+                        <p class = "content justify font-18" id ="about-content" >Lorem ipsum dolor amet everyday carry hoodie pop-up trust fund skateboard small batch deep v fashion axe cornhole. Cardigan tilde farm-to-table shabby chic meditation woke keytar pork belly hammock. Biodiesel marfa post-ironic, aesthetic occupy dreamcatcher cronut jianbing kale chips palo santo vape selvage. Fashion axe retro la croix raclette woke actually. DIY poke palo santo intelligentsia jianbing photo booth kinfolk truffaut roof party lyft williamsburg bitters leggings. Tbh 90's af cronut biodiesel tilde prism listicle seitan PBR&B kickstarter woke gluten-free literally polaroid. Pok pok tattooed forage, jean shorts polaroid authentic distillery lyft pitchfork narwhal kale chips man bun.
+
+Cornhole single-origin coffee sriracha iPhone banjo meh sustainable meggings. Disrupt twee selvage art party aesthetic, meditation drinking vinegar single-origin coffee etsy austin knausgaard kombucha butcher fanny pack prism. Tumblr blue bottle yr wayfarers cronut four loko tbh. Selfies roof party normcore keytar. Brunch paleo plaid palo santo cred.
+    </span>
+                        <div class = "section-header" id = "contact-header">Contact</div>        
+        <div id ="contact-section">
+            <div id = "contact-links-wrapper">
+                
+                <input  type = "button" class ="contact-button" id= "linkedin-button" data-target-image="#linkedin-overlay" data-overlay-color = "rgba(0, 116, 176,.8)" style="background-image: url(images/linkedin_button.png) "/>
+                
+                <input  type = "button" class ="contact-button" id= "facebook-button" data-target-image="#facebook-overlay" data-overlay-color = "rgba(59,89,152,.8)" style="background-image: url(images/facebook_link.png)"/>
+                
+                <input type = "button" class ="contact-button" id= "github-button" data-target-image="#github-overlay" data-overlay-color = "rgba(0,0,0,.5)" style="background-image: url(images/github_link.png)"/>
+                
+                <input  type = "button" class ="contact-button" id= "itchio-button" data-target-image="#itchio-overlay" data-overlay-color = "rgba(250,92,91,.8)" style="background-image: url(images/itchio_link.png)"/>
+            </div>
+            </div>
+        </div>
+
+        <a id="overlay"></a>
+
+</body>
+<footer>
+    <p>&copy; 2020 Joseph M Sierejko</p>
+    <p><i>Website Designed and Developed by Me</i></p>
+    </footer>
+</html>
