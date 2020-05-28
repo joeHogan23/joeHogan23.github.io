@@ -40,19 +40,19 @@ window.onload = function(){
 
 function bindWindowEvents()
 {
-//    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-//        
-//                
-//        $("#button-menu").children(".nav-item").each(function(){
-//              $(this).css("pointer-events","none");
-//               $(this).css("opacity", "0");
-//           });
-//           
-//        $("#hamburger-button").css('opacity', '100%');
-//        $("#hamburger-button").css('pointer-events', 'all');
-//        $("#name").css('padding-left', '30px');
-//        return;
-//    }
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+        
+                
+        $("#button-menu").children(".nav-item").each(function(){
+              $(this).css("pointer-events","none");
+               $(this).css("opacity", "0");
+           });
+           
+        $("#hamburger-button").css('opacity', '100%');
+        $("#hamburger-button").css('pointer-events', 'all');
+        $("#name").css('padding-left', '30px');
+        return;
+    }
     
     $(window).resize(function(){
         checkWindowResize($(window).width());
