@@ -1,5 +1,4 @@
 var root = "http://joehogan23.github.io/";
-
 setTimeout(function(){closeNav()}, 100);
 
 $(document).ready(function(){
