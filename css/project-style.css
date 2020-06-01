@@ -19,6 +19,10 @@
         background-image: url(/images/red-rock-farmer-portrait.PNG);
 }
 
+#dewetron-background{
+    background-image: url(/images/deewtron-project-page-bg.png);
+}
+
 #container{
     position: relative;
     transition: .4s;

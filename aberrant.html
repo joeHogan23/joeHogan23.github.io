@@ -46,20 +46,7 @@
       </head>
        
     
-    <div class = "button-container">
-
-    <nav class = "navbar-nav">                 
-                <div class = "name" id = "name"><p>Joseph Sierejko</p></div> 
-                <button id="hamburger-button" onclick="openNav()">☰</button>
-                <div id = "button-menu">
-                    <button class = "nav-item" id = "project-main-button" data-target-element ="#project-header"><img id="project-img" src="images/project_png.png"/>Projects</button>
-                    <button class = "nav-item" type = "button" id = "design-main-button" data-target-element = "#design-header"><img id="contact-img" src="images/graphic_design_png.png"/>Graphic Design</button>
-                    <button class = "nav-item" type = "button" id = "about-main-button" data-target-element ="#about-header"><img id="about-img" src="images/about_png.png"/>About</button>
-                    <button class = "nav-item" type = "button" id = "contact-main-button" data-target-element ="#contact-header" ><img id="contact-img" src="images/contact_png.png"/>Contact</button>
-                    <button class = "nav-item" type = "button" id = "resume-main-button" ><img id="about-img" src="images/resume_png.png"/>Resume</button>
-                </div>
-    </nav>
-                       </div>
+    
                           
     <div id="sidebar-menu" class="sidebar">                       
         <div id="sidebar-header"></div>
@@ -945,6 +932,28 @@ public static void UpdateCountText(Text text, int count) =>
           </div>
           </div>
           </div>
+          <div id="nav-container" style="display:block; transform: translateY(0px);">
+            <div id="nav-background"></div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="menu-item col-xs-5 col-sm-4 col-md-4 col-lg-4 col-xl-2">
+                    <div id="name">
+                        <span>Joseph Sierejko</span></div>
+                </div>
+                <div class="col-sm-8 col-md-7 col-lg-7 col-xl-8" >
+                <div id = "button-menu" style="overflow-x: hidden;">
+                    <button class = "nav-item" id = "project-main-button" data-target-element ="#project-header"><span><img id="project-img" src="images/project_png.png"/>PROJECTS</span></button>
+<!--                    <button class = "nav-item" type = "button" id = "design-main-button" data-target-element = "#design-header"><img id="contact-img" src="images/graphic_design_png.png"/>Graphic Design</button>-->
+                    <button class = "nav-item" type = "button" id = "about-main-button" data-target-element ="#about-header"><img id="about-img" src="images/about_png.png"/>ABOUT</button>
+                    <button class = "nav-item" type = "button" id = "contact-main-button" data-target-element ="#contact-header" ><img id="contact-img" src="images/contact_png.png"/>CONTACT</button>
+                    <button class = "nav-item" type = "button" id = "resume-main-button" ><img id="about-img" src="images/resume_png.png"/>RÉSUMÉ</button>
+                </div>
+                </div>
+            </div>
+            </div>
+                            <button id="hamburger-button" onclick="openNav()">☰</button>
+
+        </div>
              </body>
       <footer>
          <p>&copy; 2020 Joseph M Sierejko</p>

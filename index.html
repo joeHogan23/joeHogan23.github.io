@@ -33,28 +33,23 @@
     </head>        
             <div class = "button-container">
 
+<!--
     <nav class = "navbar-nav">                 
                 <div class = "name" id = "name"><p>Joseph Sierejko</p></div> 
-                <button id="hamburger-button" onclick="openNav()">☰</button>
-                <div id = "button-menu">
-                    <button class = "nav-item" id = "project-main-button" data-target-element ="#project-header"><img id="project-img" src="images/project_png.png"/>Projects</button>
-                    <button class = "nav-item" type = "button" id = "design-main-button" data-target-element = "#design-header"><img id="contact-img" src="images/graphic_design_png.png"/>Graphic Design</button>
-                    <button class = "nav-item" type = "button" id = "about-main-button" data-target-element ="#about-header"><img id="about-img" src="images/about_png.png"/>About</button>
-                    <button class = "nav-item" type = "button" id = "contact-main-button" data-target-element ="#contact-header" ><img id="contact-img" src="images/contact_png.png"/>Contact</button>
-                    <button class = "nav-item" type = "button" id = "resume-main-button" ><img id="about-img" src="images/resume_png.png"/>Resume</button>
-                </div>
+                
     </nav>
+-->
                        </div>
            
     <div id="sidebar-menu" class="sidebar">                       
         <div id="sidebar-header"></div>
         <a href="javascript:void(0)" class="close-button" onclick="closeNav()">×</a>
                 <a href="#" type = "button" class ="sidebar-item" id = "project-dropdown-button" data-target-element ="#project-header" onclick="closeNav()">Projects</a>       
-                <a href="#" type = "button" class = "sidebar-item" id = "design-dropdown-button" data-target-element ="#design-header" onclick="closeNav()">Graphic Design</a>
+<!--                <a href="#" type = "button" class = "sidebar-item" id = "design-dropdown-button" data-target-element ="#design-header" onclick="closeNav()">Graphic Design</a>-->
         <a href="#" type = "button" class = "sidebar-item" id = "about-dropdown-button" data-target-element ="#about-header" onclick="closeNav()">About</a>
                                
         <a href="#" type = "button" class = "sidebar-item" id = "contact-dropdown-button" data-target-element ="#contact-header" onclick="closeNav()">Contact</a>
-        <a href="#" type = "button" class = "sidebar-item" id = "resume-dropdown-button">Resume</a>
+        <a href="#" type = "button" class = "sidebar-item" id = "resume-dropdown-button">Résumé</a>
     </div>     
     
     <body>    
@@ -253,32 +248,58 @@
                     
                     </div>
                     
-                    <div class = "section-header" id = "design-header">Graphic Design</div>
-                    <div class = "section" id = "graphic-design-section">
-                             
-                    </div>        
+                           
                             
             <div class = "section-header" id = "about-header">About</div>        
-            <span class = "section" id = "about">
-                        <p class = "content justify font-18" id ="about-content" >Lorem ipsum dolor amet everyday carry hoodie pop-up trust fund skateboard small batch deep v fashion axe cornhole. Cardigan tilde farm-to-table shabby chic meditation woke keytar pork belly hammock. Biodiesel marfa post-ironic, aesthetic occupy dreamcatcher cronut jianbing kale chips palo santo vape selvage. Fashion axe retro la croix raclette woke actually. DIY poke palo santo intelligentsia jianbing photo booth kinfolk truffaut roof party lyft williamsburg bitters leggings. Tbh 90's af cronut biodiesel tilde prism listicle seitan PBR&B kickstarter woke gluten-free literally polaroid. Pok pok tattooed forage, jean shorts polaroid authentic distillery lyft pitchfork narwhal kale chips man bun.
+            <div class = "section" id = "about-section">
+                        <p class = "content justify font-20" id ="about-content" >Lorem ipsum dolor amet everyday carry hoodie pop-up trust fund skateboard small batch deep v fashion axe cornhole. Cardigan tilde farm-to-table shabby chic meditation woke keytar pork belly hammock. Biodiesel marfa post-ironic, aesthetic occupy dreamcatcher cronut jianbing kale chips palo santo vape selvage. Fashion axe retro la croix raclette woke actually. DIY poke palo santo intelligentsia jianbing photo booth kinfolk truffaut roof party lyft williamsburg bitters leggings. Tbh 90's af cronut biodiesel tilde prism listicle seitan PBR&amp;B kickstarter woke gluten-free literally polaroid. Pok pok tattooed forage, jean shorts polaroid authentic distillery lyft pitchfork narwhal kale chips man bun.
 
 Cornhole single-origin coffee sriracha iPhone banjo meh sustainable meggings. Disrupt twee selvage art party aesthetic, meditation drinking vinegar single-origin coffee etsy austin knausgaard kombucha butcher fanny pack prism. Tumblr blue bottle yr wayfarers cronut four loko tbh. Selfies roof party normcore keytar. Brunch paleo plaid palo santo cred.
-    </span>
+    </div>
                         <div class = "section-header" id = "contact-header">Contact</div>        
         <div id ="contact-section">
             <div id = "contact-links-wrapper">
+                <div class="contact-item">
+                <a href="https://www.linkedin.com/in/josephsierejko/"><input type = "button" class ="contact-button" id= "linkedin-button" data-target-image="#linkedin-overlay" data-overlay-color = "rgba(0, 116, 176,.6)" style="background-image: url(images/linkedin_button.png) "/> </a>
+                </div>
                 
-                <a href="https://www.linkedin.com/in/josephsierejko/"><input type = "button" class ="contact-button" id= "linkedin-button" data-target-image="#linkedin-overlay" data-overlay-color = "rgba(0, 116, 176,.8)" style="background-image: url(images/linkedin_button.png) "/> </a>
+                <div class="contact-item">
+                <a href="https://www.facebook.com/Joe.HoganEverlong"><input type = "button" class ="contact-button" id= "facebook-button" data-target-image="#facebook-overlay" data-overlay-color = "rgba(59,89,152,.6)" style="background-image: url(images/facebook_link.png)"/></a>
+                </div>
                 
-                <a href="https://www.facebook.com/Joe.HoganEverlong"><input type = "button" class ="contact-button" id= "facebook-button" data-target-image="#facebook-overlay" data-overlay-color = "rgba(59,89,152,.8)" style="background-image: url(images/facebook_link.png)"/></a>
-                
+                <div class="contact-item">
                 <a  href="https://github.com/joeHogan23"><input type = "button" class ="contact-button" id= "github-button" data-target-image="#github-overlay" data-overlay-color = "rgba(0,0,0,.5)" style="background-image: url(images/github_link.png)"/></a>
+                </div>
                 
-                <a href="https://js-robodojo.itch.io/"><input type = "button" class ="contact-button" id= "itchio-button" data-target-image="#itchio-overlay" data-overlay-color = "rgba(250,92,91,.8)" style="background-image: url(images/itchio_link.png)"/></a>
-            </div>
+                <div class="contact-item">
+                <a href="https://js-robodojo.itch.io/"><input type = "button" class ="contact-button" id= "itchio-button" data-target-image="#itchio-overlay" data-overlay-color = "rgba(250,92,91,.6)" style="background-image: url(images/itchio_link.png)"/></a>
+                </div>
+                </div>
             </div>
         <a id="overlay"></a>
 
+        <div id="nav-container" style="display:block; transform: translateY(0px);">
+            <div id="nav-background"></div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="menu-item col-xs-5 col-sm-4 col-md-4 col-lg-4 col-xl-2">
+                    <div id="name">
+                        <span>Joseph Sierejko</span></div>
+                </div>
+                <div class="col-sm-8 col-md-7 col-lg-7 col-xl-8" >
+                <div id = "button-menu" style="overflow-x: hidden;">
+                    <button class = "nav-item" id = "project-main-button" data-target-element ="#project-header"><span><img id="project-img" src="images/project_png.png"/>PROJECTS</span></button>
+<!--                    <button class = "nav-item" type = "button" id = "design-main-button" data-target-element = "#design-header"><img id="contact-img" src="images/graphic_design_png.png"/>Graphic Design</button>-->
+                    <button class = "nav-item" type = "button" id = "about-main-button" data-target-element ="#about-header"><img id="about-img" src="images/about_png.png"/>ABOUT</button>
+                    <button class = "nav-item" type = "button" id = "contact-main-button" data-target-element ="#contact-header" ><img id="contact-img" src="images/contact_png.png"/>CONTACT</button>
+                    <button class = "nav-item" type = "button" id = "resume-main-button" ><img id="about-img" src="images/resume_png.png"/>RÉSUMÉ</button>
+                </div>
+                </div>
+            </div>
+            </div>
+                            <button id="hamburger-button" onclick="openNav()">☰</button>
+
+        </div>
 </body>
 <footer>
     <p>&copy; 2020 Joseph M Sierejko</p>
