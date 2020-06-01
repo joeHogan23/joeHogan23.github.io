@@ -131,7 +131,7 @@ function onLoadWindow(){
 
 function onScrollToElement(el)
 {
-    $('html, body').animate({ scrollTop: el.offset().top - 50 }, 500);
+    $('html, body').animate({ scrollTop: el.offset().top - 60 }, 500);
 }
 
 function onLoadUrlScroll(){

@@ -143,11 +143,12 @@ footer p{
 }
 
 #name{
-    margin-top: 11px;
+    margin-top: 15px;
     font-family: 'Raleway';
     color: white;
-    font-size: 26px;
+    font-size: 21px;
     float: right;
+    left: 0;
 }
 
 @media screen and (max-width: 768px){
