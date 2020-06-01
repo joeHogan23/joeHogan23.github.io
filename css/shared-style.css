@@ -131,7 +131,8 @@ footer p{
 #nav-background{
     position: absolute;
     top: 0;
-    background-color: black;
+    background-color:rgba(0,0,0,.6);
+
     bottom: 0;
     left: 0;
     right: 0;
@@ -192,7 +193,7 @@ footer p{
 .nav-item{
     font-family: 'Baloo 2', sans-serif;
     font-size: 16px;
-    color:#818181;
+    color:#AAAAAA;
     background-color: transparent;
     border-radius: 0px;
     outline: none;
