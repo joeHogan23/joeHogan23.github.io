@@ -34,18 +34,22 @@
 
 /* --- COMMON --- */
 
-footer{
+.footer{
     border-top: 3px solid #02242c;
     background-color :#c5c1c0;
     padding: 10px;
+    bottom: 0%;
+    width: 100%;
+    position: absolute;
 }
 
-footer p{
+.footer p{
     font-size: 14px;
     margin-bottom: -2px;
     text-align: center;
     font-family: 'Baloo 2';
     font-weight: 600;
+    height:20px;
 }
 
 /* --- //END COMMON --- */
@@ -291,6 +295,7 @@ footer p{
     height:0;
     width:100%;
     margin: auto;
+    right: -1.5%;
 }
 
 iframe{
@@ -310,6 +315,8 @@ iframe{
 .content { font-family: 'Baloo 2'; }
 
 .content.justify{ text-align: justify; }
+
+.content.center{ text-align: center;}
 
 .content.font-12 { font-size: 12px; }
 
@@ -350,3 +357,9 @@ iframe{
 }
 
 /* ---//END CONTENT FORMATTING--- */
+
+
+.carousel-item img{
+    width:100%;
+    height: auto;
+}

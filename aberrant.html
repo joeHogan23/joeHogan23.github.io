@@ -7,9 +7,12 @@
          <meta charset="utf-8">
          <title>Joseph Sierejko - Programmer</title>
 
-          
-                              <link rel="stylesheet" type="text/css" href="/css/css/bootstrap.css"/>
-          
+        <link rel="stylesheet" type="text/css" href="css/code-style.css"/>
+          <link rel="stylesheet" type="text/css" href="css/shared-style.css"/>
+          <link rel="stylesheet" type="text/css" href="css/project-style.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+
           <!--  EXTENSION URLS -->
           <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css"></script>
           <script
@@ -34,11 +37,11 @@
           <link rel="stylesheet" type="text/css" href="css/code-style.css"/>
           <link rel="stylesheet" type="text/css" href="css/shared-style.css"/>
           <link rel="stylesheet" type="text/css" href="css/project-style.css"/>
+          <link rel="stylesheet" type="text/css" href="/css/bootstrap-xl.css"/>
 
           <!-- //STYLESHEETS -->
           
           <!-- JAVASCRIPT -->
-          <script type="text/javascript" src="collapse-jquery.js"></script>
           <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>         
           <script type="text/javascript" src="js/shared.js"></script>
           <!-- //JAVASCRIPT -->
@@ -62,7 +65,7 @@
           
          <div id="aberrant-background" class="background"></div>
          <div>
-          <div class="container"  id="container">
+          <div class="container-md"  id="container">
             <div class ="row">
                <div class ="col-xs-12 col-sm-12 col-md-12">
                   <div class = "header">
@@ -211,7 +214,7 @@
                                  </div>
                                  
                                  <!--ENEMY MANAGER CODE-->
-                                 <button class=" collapse-button-inner " data-toggle="collapse" href="#enemy-manager-collapse" role="button" aria-expanded="true" aria-controls="enemy-manager-collapse">
+                                 <button class=" collapse-button " data-toggle="collapse" href="#enemy-manager-collapse" role="button" aria-expanded="true" aria-controls="enemy-manager-collapse">
                   <div class="collapse-button-content">
                 Code: Enemy Manager <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                     </button>
@@ -316,7 +319,7 @@ namespace Entities.Enemies
           <div class ="content-block">
               
               <!--PLAYER MOVEMENT CODE BUTTON-->
-              <button class=" collapse-button-inner" data-toggle="collapse" href="#player-movement-collapse" role="button" aria-expanded="true" aria-controls="player-movement-collapse">
+              <button class=" collapse-button" data-toggle="collapse" href="#player-movement-collapse" role="button" aria-expanded="true" aria-controls="player-movement-collapse">
                   <div class="collapse-button-content">
                 Code: Movement <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
               </button>
@@ -461,7 +464,7 @@ internal void UpdateVerticalLook()
 
               <!-- //PLAYER CONTROLLER CODE SAMPLE -->
               </div>
-              <button class="collapse-button-inner" data-toggle="collapse" href="#mfd-collapse" role="button" aria-expanded="true" aria-controls="mfd-collapse">
+              <button class="collapse-button" data-toggle="collapse" href="#mfd-collapse" role="button" aria-expanded="true" aria-controls="mfd-collapse">
                                     <div class="collapse-button-content">
                                         Code: Multi-Function Display <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
           </button>
@@ -610,7 +613,7 @@ namespace MFD.Abilities
               <div class= "content pad vt-10"> In later iterations, a new interface layer was implemented in addition to the interface that was being used to trigger interactions. With the modular code, It took minutes to add new interactable objects.
               </div>
           <div class ="content-block">
-          <button class=" collapse-button-inner" data-toggle="collapse" href="#ik-code-collapse" role="button" aria-expanded="true" aria-controls="ik-code-collapse">
+          <button class=" collapse-button" data-toggle="collapse" href="#ik-code-collapse" role="button" aria-expanded="true" aria-controls="ik-code-collapse">
               <div class="collapse-button-content">
               Code: Interaction System <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
           </button>
@@ -709,7 +712,7 @@ namespace World.Interactables
                                  <div id="carouselExampleIndicators" class="carousel slide"  data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block img-fluid" src="images/aberrant_level_design1.PNG" alt="First slide">
+      <img src="images/aberrant_level_design1.PNG" alt="First slide">
         <div class="carousel-caption d-none d-md-block " >
     <h3 class="cpntent">Make-Shift Infirmary</h3>
     <p>...</p>
@@ -719,10 +722,10 @@ namespace World.Interactables
       <img class="d-block img-fluid" src="images/aberrant_level_design2.PNG" alt="First slide">
         <div class="carousel-caption d-none d-md-block" >
     <h3 class="content">Lockdown Alert</h3>
-    <p>...</p>
+    <p></p>
     </div>
       </div>
-                <div class="carousel-item">
+        <div class="carousel-item">
       <img class="d-block img-fluid" src="images/aberrant_level_design4.PNG" alt="First slide">
         <div class="carousel-caption d-none d-md-block" >
     <h3 class="content">Maid's Room</h3>
@@ -801,7 +804,7 @@ namespace World.Interactables
                               I was also in charge of designing and programming all UI. Our goal early on was immersive gameplay. For us, this required a way to convey all in-game information without a screen-space User interface. With 2 exceptions, all player information is conveyed on the MFD that the player holds. Below are some video examples of my UI work
                              </div>
                                  
-                                 <!--<button class=" collapse-button-inner " data-toggle="collapse" href="#pause-menu-ui-collapse" role="button" aria-expanded="true" aria-controls="pause-menu-ui-collapse">
+                                 <!--<button class=" collapse-button " data-toggle="collapse" href="#pause-menu-ui-collapse" role="button" aria-expanded="true" aria-controls="pause-menu-ui-collapse">
                   <div class="collapse-button-content">
                 Video-Clip: Pause Menu UI  <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                     </button>
@@ -823,7 +826,7 @@ namespace World.Interactables
               </video>
               </div>
 
-                                 <button class=" collapse-button-inner " data-toggle="collapse" href="#pause-menu-ui-collapse" role="button" aria-expanded="true" aria-controls="pause-menu-ui-collapse">
+                                 <button class=" collapse-button " data-toggle="collapse" href="#pause-menu-ui-collapse" role="button" aria-expanded="true" aria-controls="pause-menu-ui-collapse">
                   <div class="collapse-button-content">
                 Code: Generate Text String  <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                     </button>
@@ -932,15 +935,15 @@ public static void UpdateCountText(Text text, int count) =>
           </div>
           </div>
           </div>
-          <div id="nav-container" style="display:block; transform: translateY(0px);">
+<div id="nav-container" style="display:block; transform: translateY(0px);">
             <div id="nav-background"></div>
         <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="menu-item col-xs-5 col-sm-4 col-md-4 col-lg-4 col-xl-2">
+            <div class="row">
+                <div class="menu-item col-xs-5 col-sm-4 col-lg-3 col-xl-2">
                     <div id="name">
-                        <span>Joseph Sierejko</span></div>
+                        <span>Joseph <b>Sierejko</b></span></div>
                 </div>
-                <div class="col-sm-8 col-md-7 col-lg-7 col-xl-8" >
+                <div class="col-sm-8 col-md-7 col-lg-8" >
                 <div id = "button-menu" style="overflow-x: hidden;">
                     <button class = "nav-item" id = "project-main-button" data-target-element ="#project-header"><span><img id="project-img" src="images/project_png.png"/>PROJECTS</span></button>
 <!--                    <button class = "nav-item" type = "button" id = "design-main-button" data-target-element = "#design-header"><img id="contact-img" src="images/graphic_design_png.png"/>Graphic Design</button>-->
@@ -952,10 +955,9 @@ public static void UpdateCountText(Text text, int count) =>
             </div>
             </div>
                             <button id="hamburger-button" onclick="openNav()">☰</button>
-
-        </div>
+            </div>
              </body>
-      <footer>
+      <footer class="footer">
          <p>&copy; 2020 Joseph M Sierejko</p>
          <p><i>Website Designed and Developed by Me</i></p>
       </footer>

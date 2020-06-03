@@ -1,5 +1,8 @@
 var root = "http://joehogan23.github.io/";
-setTimeout(function(){closeNav()}, 100);
+var currentHeight = window.innerHeight;
+
+initialize();
+
 
 $(document).ready(function(){
     
@@ -7,6 +10,8 @@ $(document).ready(function(){
     bindMainNav();
     bindSocialNav();
     bindWindowEvents();
+    bindCollapseEvents();
+    
     $(".project-item-cover img").mouseenter(function(){
        $(this).stop().animate({height: ($(this)).data("height-end"), marginLeft: ($(this)).data("margin-end"), borderColor: 'white'},300);
        
@@ -37,9 +42,26 @@ window.onload = function(){
         onLoadUrlScroll();
     });
 }
-
+ 
 function bindWindowEvents()
 {
+    
+    setInterval(onContainerResize, 50);
+    
+    //Keeps the footer at the bottom of window. Relative to how tall the main container is
+    function onContainerResize(){
+
+        var top = $("#container").position().top;
+        var height = $("#container").height();
+        var bottom = $(window).height() - 40 - top - height;
+        
+        if(bottom > $('.footer').height() + 113){
+            $('.footer').css('position', 'absolute');
+        }
+        else
+            $('.footer').css('position', 'relative');
+    }
+    
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
         $("#button-menu").children(".nav-item").each(function(){
               $(this).css("pointer-events","none");
@@ -52,10 +74,10 @@ function bindWindowEvents()
     }
     
     $(window).resize(function(){
-        checkWindowResize($(window).width());
+        onWindowResize($(window).width());
     });
     
-    function checkWindowResize(width){
+    function onWindowResize(width){
         if(width >= 968){
            $("#button-menu").children(".nav-item").each(function(){
                $(this).css("pointer-events","all");
@@ -82,7 +104,7 @@ function bindWindowEvents()
         console.log("Window size is side bar mode");
     }
     
-   checkWindowResize($(window).width());
+   onWindowResize($(window).width());
 }
 
 function bindMainNav()
@@ -125,6 +147,18 @@ function bindSocialNav()
     }
 }
 
+function bindCollapseEvents(){
+    $(".collapse-button, .collapse-button-inner").click(function(){
+        var ddImage = $(this).find('img');
+        var ariaState = $(this).attr("aria-expanded"); 
+        
+        if(ariaState == "true"){
+            ddImage.css({'transform': 'rotate(90deg)'});
+        }else
+            ddImage.css({'transform': 'rotate(0deg)'});
+    });
+}
+
 function onLoadWindow(){
     
 }
@@ -145,6 +179,14 @@ function onLoadUrlScroll(){
     }
 }
 
+function initialize(){
+    
+    setTimeout(function(){  closeNav()}, 100);
+    setTimeout(function(){  jQuery('.collapse-button').trigger('click');}, 0);
+    setTimeout(function(){  jQuery('.collapse-button-inner').trigger('click');}, 700);
+    setTimeout(function(){  jQuery('.collapse-button-inner').trigger('click');}, 1200);
+    setTimeout(function(){  jQuery('.collapse-button').trigger('click');}, 2000);
+}
 
 function openNav() {
   document.getElementById("sidebar-menu").style.left = "60%";

@@ -7,9 +7,11 @@
          <meta charset="utf-8">
          <title>Joseph Sierejko - Programmer</title>
 
-          
-                              <link rel="stylesheet" type="text/css" href="/css/css/bootstrap.css"/>
-          
+                    <link rel="stylesheet" type="text/css" href="css/shared-style.css"/>
+          <link rel="stylesheet" type="text/css" href="css/project-style.css"/>
+          <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+          <link rel="stylesheet" type="text/css" href="/css/bootstrap-xl.css"/>
+
           <!--  EXTENSION URLS -->
           <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css"></script>
           <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -29,33 +31,17 @@
           <!-- STYLESHEETS -->
 
           <link rel="stylesheet" type="text/css" href="css/code-style.css"/>
-          <link rel="stylesheet" type="text/css" href="css/shared-style.css"/>
-          <link rel="stylesheet" type="text/css" href="css/project-style.css"/>
+
 
           <!-- //STYLESHEETS -->
           
           <!-- JAVASCRIPT -->
-          <script type="text/javascript" src="collapse-jquery.js"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>          <script type="text/javascript" src="js/shared.js"></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>          
+          <script type="text/javascript" src="js/shared.js"></script>
           <!-- //JAVASCRIPT -->
           
       </head>
-       
     
-               <div class = "button-container">
-
-    <nav class = "navbar-nav">                 
-                <div class = "name" id = "name"><p>Joseph Sierejko</p></div> 
-                <button id="hamburger-button" onclick="openNav()">☰</button>
-                <div id = "button-menu">
-                    <button class = "nav-item" id = "project-main-button" data-target-element ="#project-header"><img id="project-img" src="images/project_png.png"/>Projects</button>
-                    <button class = "nav-item" type = "button" id = "design-main-button" data-target-element = "#design-header"><img id="contact-img" src="images/graphic_design_png.png"/>Graphic Design</button>
-                    <button class = "nav-item" type = "button" id = "about-main-button" data-target-element ="#about-header"><img id="about-img" src="images/about_png.png"/>About</button>
-                    <button class = "nav-item" type = "button" id = "contact-main-button" data-target-element ="#contact-header" ><img id="contact-img" src="images/contact_png.png"/>Contact</button>
-                    <button class = "nav-item" type = "button" id = "resume-main-button" ><img id="about-img" src="images/resume_png.png"/>Resume</button>
-                </div>
-    </nav>
-                       </div>
                           
     <div id="sidebar-menu" class="sidebar">                       
         <div id="sidebar-header"></div>
@@ -68,10 +54,8 @@
         <a href="#" type = "button" class = "sidebar-item" id = "resume-dropdown-button">Resume</a>
     </div>      
       <body>
-          
-         <div id="redrockfarmer-background" class="background"></div>
-         <div>
-          <div class="container"  id="container">
+          <div>
+          <div class="container-md"  id="container">
             <div class ="row">
                <div class ="col-xs-12 col-sm-12 col-md-12">
                   <div class = "header">
@@ -154,7 +138,7 @@
                                    </ul>
                                </div>
                                                                       
-                               <button class="collapse-button-inner" data-toggle="collapse" href="#map-editor-collapse" role="button" aria-expanded="true" aria-controls="map-editor-collapse">
+                               <button class="collapse-button" data-toggle="collapse" href="#map-editor-collapse" role="button" aria-expanded="true" aria-controls="map-editor-collapse">
                                     <div class="collapse-button-content">
                                         Code: Map Editor Features<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                                </button>
@@ -354,7 +338,7 @@ private void btnImport_Click(object sender, EventArgs e)
                                   </ul>
                                       
                                </div>
-                               <button class="collapse-button-inner" data-toggle="collapse" href="#tilemap-collapse" role="button" aria-expanded="true" aria-controls="tilemap-collapse">
+                               <button class="collapse-button" data-toggle="collapse" href="#tilemap-collapse" role="button" aria-expanded="true" aria-controls="tilemap-collapse">
                                     <div class="collapse-button-content">
                                         Code: Tile Map <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                                </button>
@@ -408,13 +392,303 @@ static public void SetTileCollider(ref Tile tile, int boundX, int boundY, int wi
                             <!--GAMEPLAY CONTENT-->
                             <button class="collapse-button" id="gameplay-button" type="button" data-toggle="collapse" data-target="#gameplay-collapse"
             aria-expanded="true" aria-controls="gameplay-collapse">
-                                 <div class ="collapse-button-content">Gameplay Loop and Player Mechanics<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                                 <div class ="collapse-button-content">Gameplay Loop and Mechanics<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
                            <div class="collapse collapse-content" id="gameplay-collapse">
                                <div class ="content pad top-10">
-                                   Most of the gameplay mechanics in this Prototype layout the entire gameplay loop. There are plenty of missing factors to be implemented to round out the experience, but at its core, it is a farming RPG. It has a defined gameplay loop: <i>Buy Seeds; Plant; Sleep; Harvest; Repeat</i>
+                                   Most of the gameplay mechanics in this Prototype layout the entire gameplay loop. There are plenty of missing factors to be implemented to round out the experience, but at its core, it is a farming RPG. It has a defined gameplay loop: <i>Buy Seeds; Plant; Sleep; Harvest; Repeat</i>.
                                </div>
+                               
+
+                               <div class="content font-36 pad top-10 btm-5">Player Controller and GameObjects</div>
+
+                               <div class="content pad btm-5">
+                                   <ul>
+                                       <li> Testing for collision is based on the corners of tiles. (Moving up tests intersections of either the bottom-right or bottom-left of the 2 tiles. </li>
+                                       <li>It is predictive movement, boiled down to the movement attempt using <i><b>Current Speed and Position</b></i>
+                                       <ul><li>
+                                            A temporary rect with the next Movement coords, and if intersection occurs, the Velocity is set to 0 to the <i>applicable axis</i>.
+                                           </li></ul>
+                                       </li>
+                                       <li>The Player inherits from my own take on a GameObject class that by default has collision functions to compare to tiles <ul><li>So adding enemies (which already has an A* pathfinder class and Tile Nodes ready to implement), would require only adding an AI brain. </li></ul></li>
+                                   </ul>
                                </div>
+                               
+                                   <button class="collapse-button" id="collision-button" type="button" data-toggle="collapse" data-target="#collision-collapse"
+            aria-expanded="true" aria-controls="gameplay-collapse">
+                                 <div class ="collapse-button-content">Code: Collision<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+
+                             </button>
+                               <div class="collapse collapse-content-inner" id="collision-collapse">
+                                   <div class="content pad top-10 btm-5">
+                                       Predictive collision code in the GameObject class. The Horizontal tests the left and right corners using the corner pixels outside of the GameObject's BoxCollider
+                                   </div>
+                                   <div class="content pad font-16 vt-5"><i>GameObject.cs Snippet</i></div>
+
+                                   <pre class="prettyprint lang-cs linenums:133">Vector2 HorizontalCollisionTest(Vector2 movement)
+{
+    if (movement.X == 0) //No need to test collision on X Axis
+        return movement;
+
+    Rectangle moveTestCollider = BoxCollider;
+
+    //Get the path of next movement by offsetting the collider
+    moveTestCollider.Offset((int)movement.X, 0);
+    Vector2 topPixel, bottomPixel;
+
+    if (movement.X &lt; 0)
+    {
+        topPixel = new Vector2(moveTestCollider.Left, moveTestCollider.Top + 1);        //Gets top left corner of movement
+        bottomPixel = new Vector2(moveTestCollider.Left, moveTestCollider.Bottom - 1);  //Gets bottom left corner of movement
+    }
+    else
+    {
+        topPixel = new Vector2(moveTestCollider.Right, moveTestCollider.Top + 1);       //Gets top right corner of movement
+        bottomPixel = new Vector2(moveTestCollider.Right, moveTestCollider.Bottom - 1); //Gets bottom right corner of movement
+    }
+    //Covers the 2 tiles, taking the possibility that player is jumping or falling (Y position)
+    Vector2 topCell = TileMap.GetCellByPixel(topPixel);
+    Vector2 bottomCell = TileMap.GetCellByPixel(bottomPixel);
+
+    //Tests Cells for collision
+    if (TileMap.IsColliding(topCell) || TileMap.IsColliding(bottomCell))
+    {
+        movement.X = 0;     //Disable movement on X
+        velocity.X = 0;     //Cancel velocity for current frame
+    }
+
+    return movement;
+}</pre>
+                                   <div class="content pad vt-10">
+                                       In the TileMap, there are a number of Overloaded implementatations of Collision Testing. The Top Implementation is unimplemented, but is meant to be custom box colliders, allowing more precise collision
+                                   </div>
+                                   <div class="content pad font-16 vt-5"><i>TileMap.cs Snippet</i></div>
+                                   <pre class="prettyprint lang-cs linenums:156">static public Rectangle CellWorldCollider(int cellX, int cellY)
+{
+    Tile tile = GetTileAtCell(cellX, cellY);
+
+    if(tile != null)
+
+    return new Rectangle(
+        (cellX * TileWidth) + tile.boundX,
+        (cellY * TileHeight) + tile.boundY,
+        tile.boundWidth, tile.boundHeight);
+
+    return new Rectangle(0,0,0,0);
+}
+
+//Collider ScreenSpace Rectangle for tile
+static public Rectangle CellScreenCollider(int cellX, int cellY) =>
+    Camera.WorldToScreen(CellWorldCollider(cellX, cellY));
+
+//Given the pieces of a coordinate, return whether the Cell has active collision
+static public bool IsColliding(int cellX, int cellY)
+{
+    Tile tile = GetTileAtCell(cellX, cellY);
+
+    if (tile == null)
+        return false;
+    else
+        return tile.CollisionEnabled;
+}
+
+static public bool IsCollidingByPixel(Vector2 pixelLocation) =>
+    IsColliding(
+    GetCellByPixelX((int)pixelLocation.X),
+    GetCellByPixelY((int)pixelLocation.Y));
+
+static public bool IsColliding(Vector2 cell) => IsColliding((int)cell.X, (int)cell.Y);
+</pre>
+                                   
+                               </div>
+                               <div class="content pad btm-5">
+
+                                   <div class="content font-36 pad top-10 btm-5">Inventory Manager</div>
+                                   Inventory was one of the m ost time consuming products, both in Monogame and Unity. In its current form has a few important functions.
+                                   
+                                   <ul>
+                                       <li>Each Slot class has a stack of Item classes to store a type of item<ul><li>
+                                           The stacks have flexibility and are easily moved from slot to slot
+                                           </li>
+                                           <li>
+                                               When a stack gets an item of a type, it becomes <i>"Occupied"</i> and the available slot count is updated
+                                           </li>
+                                           <li>Everytime an item is added to slot, the inventory searches for the item by an ID.
+                                               <ul>
+                                               <li>
+                                                   If an item of type is found, the UIText in that slot updates its item count
+                                               </li>
+                                                   <li>Otherwise it places itself onto a new slot</li>
+                                                   <li>A full inventory means...just ignore everything above</li>
+                                               </ul></li>
+                                           </ul></li>
+                                       <li>There is a reorganize function that also puts all items in the earliest slots, removing empty slots between items</li>
+                                       <li>Finally, of course, there is the Add, Remove, and Drop functions, which pop or push from a slot's stack</li>
+                                   </ul>
+                                   </div>
+                               <button class="collapse-button" id="inventory-button" type="button" data-toggle="collapse" data-target="#inventory-collapse"
+            aria-expanded="true" aria-controls="inventory-collapse">
+                                 <div class ="collapse-button-content">Code: Inventory<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+
+                             </button>
+                               <div class="collapse collapse-content-inner" id="inventory-collapse">
+                                   <div class="content pad top-10 btm-5">
+                                       The inventory code below is primarily Utility functions having to do with navigation and managing slot stacks. It is some of the more important code involving core gameplay
+                                   </div>
+                                   <div class="content pad font-16 vt-5"><i>InventoryManager.cs Snippet</i></div>
+                                   <pre class="prettyprint lang-cs linenums:357">#region Selection
+                                   
+public static Slot GetSlot(int index) => Slots[index];
+
+//Takes current index and moves it by a specified amount
+static void TranslateToActiveSlot(int amount)
+{
+    SlotIndex += amount;
+    CurrentSelectedSlot = GetSlot(SlotIndex);
+    moveCurrentTime = 0f;
+}
+
+static void SetActiveSlot(int index)
+{
+    SlotIndex = index;
+    CurrentSelectedSlot = GetSlot(SlotIndex);
+    moveCurrentTime = 0f;
+}
+
+public static void HandleSlotSelection(GameTime gameTime)
+{
+    KeyboardState kState = Keyboard.GetState();
+
+    //Timer
+    moveCurrentTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+    if (moveCurrentTime &lt; moveSelectionTimer) return;
+
+    if (kState.IsKeyDown(Keys.Up) &amp; SlotIndex - ColCount &gt;= 0)
+    {
+        TranslateToActiveSlot(-ColCount);   //Move up a row
+    }
+    else if (kState.IsKeyDown(Keys.Down) &amp; (SlotIndex + ColCount &lt; Slots.Count))
+    {
+        TranslateToActiveSlot(ColCount);    //Move down a row
+    }
+    else if (kState.IsKeyDown(Keys.Left) &amp; SlotIndex &gt; 0)
+    {
+        TranslateToActiveSlot(-1);          //Move Left
+    }
+    else if (kState.IsKeyDown(Keys.Right) &amp; (SlotIndex + 1 &lt; Slots.Count))
+    {
+        TranslateToActiveSlot(1);           //Move Right
+    }
+}
+
+#endregion
+
+#region Add, Remove, and Manage Items
+
+public static void AddItem(Item item)
+{
+    if (IsFull) return;
+
+    //First loop checks for item by ID in reduced list
+    foreach(Slot slot in OccupiedSlots)
+        if (slot.CurrentItem.ID == item.ID)
+        {
+            slot.PushItem(item);
+            return;
+        }
+
+    //Second Loop finds an unoccupied slot
+    foreach (Slot slot in Slots)
+        if (!slot.IsOccupied)
+        {
+            EmptySlots--;
+            slot.PushItem(item);
+            return;
+        }
+}
+
+public static Item DropSelectedItem() => CurrentSelectedSlot.PopItem();
+
+public static void Reorganize()
+{
+    for(int i = 0; i &lt; Slots.Count - 1;)
+    {
+        if (Slots[i + 1].IsOccupied &amp; !Slots[i].IsOccupied)
+        {
+            SwapSlotItems(i, i+1);
+            if(i > 0) i--;
+            continue;
+        }
+        i++;
+    }
+}
+
+public static void SwapSlotItems(int a, int b)
+{
+    Stack&lt;Item&gt; items = Slots[a].Items;
+
+    Slots[a].Items = Slots[b].Items;
+    Slots[b].Items = items;
+
+    ChangeSprite(a);
+    ChangeSprite(b);
+}
+
+#endregion</pre>
+                                   <div class="content pad top-10 btm-5">The Slot Elements inherit from the UISprite class I built, which implements from UIElement. Some basic Utility functions control adding and removing items from the Item stack</div>
+                               
+                               <div class="content pad font-16 vt-5"><i>Slot.cs Snippet</i></div>
+                               <pre class="prettyprint lang-cs linenums:66">#region Add and Remove Items
+
+//Throws set number of stacks out
+internal void RemoveItems(int quantity)
+{
+    for(int i = 0; i &lt; quantity; i++) PopItem();
+}
+
+//Get an item from Item Stack
+internal Item PopItem()
+{
+    if (!IsOccupied)    //If stack is empty before popping, return nothing
+        return null;
+
+    Item pop = items.Pop(); //Get the next item in stack
+
+    if (!IsOccupied)    //If stack is empty after popping an item
+    {
+        ChangeSprite();    //Change UISprite back to default empty slot
+        InventoryManager.EmptySlots++;     //Give a Slot back to inventory
+    }
+    UpdateText();
+    return pop; 
+}
+
+//Add an item into item stack
+internal void PushItem(Item item)
+{
+    ChangeSprite(item.UIFrameX, item.UIFrameY);    //If slot is empty, set to item's UI Sprite
+    items.Push(item);   //Add item to slot
+    UpdateText();
+}
+#endregion
+
+#region Font Handling
+
+internal void UpdateText()
+{
+    if (Count &lt;= 1)
+        uiCount.Text = "";
+    else
+        uiCount.Text = Count.ToString();
+}
+
+#endregion
+                               </pre>
+                               </div>
+                               
+                               <div class="content pad btm-10"></div>
+                            </div>
                             <!--//END GAMEPLAY CONTENT-->
                                                       
                             <!--SAVE AND LOAD CONTENT-->
@@ -430,10 +704,10 @@ static public void SetTileCollider(ref Tile tile, int boundX, int boundY, int wi
                                <div class="content"><img src="images/redrockfarmer-ui-1920-1080.PNG">
                                </div>
                                
-                                                              <div class = "content pad justify top-20 btm-5">By contrast, a square resolution. The UI is still at screen position (.5, .8), relative to the 1:1 screen ratio
+                                                              <div class = "content pad center top-20 btm-5">By contrast, a square resolution. The UI is still at screen position (.5, .8), relative to the 1:1 screen ratio
                                </div>
                                <div class="content pad btm-20"><img style="width: 50%; margin-left: 25%;" src="images/redrockfarmer-ui-1000-1000.PNG"></div>
-                               <button class="collapse-button-inner" data-toggle="collapse" href="#codemap-slot-collapse" role="button" aria-expanded="true" aria-controls="codemap-slot-collapse">
+                               <button class="collapse-button" data-toggle="collapse" href="#codemap-slot-collapse" role="button" aria-expanded="true" aria-controls="codemap-slot-collapse">
                                     <div class="collapse-button-content">
                                         Code Map: UIElement <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
           </button>
@@ -444,7 +718,7 @@ static public void SetTileCollider(ref Tile tile, int boundX, int boundY, int wi
                                <img src="images/redrockfarmer-slot-codemap.PNG">
                                </div>
                                </div>
-                               <button class="collapse-button-inner" data-toggle="collapse" href="#inventory-collapse" role="button" aria-expanded="true" aria-controls="inventory-collapse">
+                               <button class="collapse-button" data-toggle="collapse" href="#inventory-collapse" role="button" aria-expanded="true" aria-controls="inventory-collapse">
                                     <div class="collapse-button-content">
                                         Code: Inventory UI Handling <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
           </button>
@@ -637,9 +911,34 @@ public static void SetInventoryLayout(int rows, int cols, int relativeX, int rel
               </div>
              </div>
           </div>
-             </body>
-      <footer>
+          
+          <div id="nav-container" style="display:block; transform: translateY(0px);">
+            <div id="nav-background"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="menu-item col-xs-5 col-sm-4 col-lg-3 col-xl-2">
+                    <div id="name">
+                        <span>Joseph <b>Sierejko</b></span></div>
+                </div>
+                <div class="col-sm-8 col-md-7 col-lg-8" >
+                <div id = "button-menu" style="overflow-x: hidden;">
+                    <button class = "nav-item" id = "project-main-button" data-target-element ="#project-header"><span><img id="project-img" src="images/project_png.png"/>PROJECTS</span></button>
+<!--                    <button class = "nav-item" type = "button" id = "design-main-button" data-target-element = "#design-header"><img id="contact-img" src="images/graphic_design_png.png"/>Graphic Design</button>-->
+                    <button class = "nav-item" type = "button" id = "about-main-button" data-target-element ="#about-header"><img id="about-img" src="images/about_png.png"/>ABOUT</button>
+                    <button class = "nav-item" type = "button" id = "contact-main-button" data-target-element ="#contact-header" ><img id="contact-img" src="images/contact_png.png"/>CONTACT</button>
+                    <button class = "nav-item" type = "button" id = "resume-main-button" ><img id="about-img" src="images/resume_png.png"/>RÉSUMÉ</button>
+                </div>
+                </div>
+            </div>
+            </div>
+                            <button id="hamburger-button" onclick="openNav()">☰</button>
+            </div>
+
+                   <div id="redrockfarmer-background" class="background"></div>
+                <footer class ="footer">
          <p>&copy; 2020 Joseph M Sierejko</p>
          <p><i>Website Designed and Developed by Me</i></p>
       </footer>
+             </body>
+
    </html>

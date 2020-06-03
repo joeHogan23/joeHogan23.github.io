@@ -1,7 +1,7 @@
 
 .background{
     top: 0%;
-    height: 2000px;
+    height: 100%;
     width: 100%;
     background-repeat: no-repeat;
     background-position: 50% 20%;
@@ -28,12 +28,13 @@
     transition: .4s;
     margin-top: 90px;
     margin-bottom: 40px;
-}
-
-.container {
     border-radius: 15px;
     transition: .4s;
     background-color: rgba(0,0,0,.7);
+}
+
+.content-wrapper{
+    padding-bottom: 25px;
 }
 
 .header {
@@ -96,8 +97,7 @@
     margin-left: -1%;
 }
 
-.collapse-button, .collapse-button-inner,.collapse-button:focus, 
-.collapse-button-inner:focus {
+.collapse-button, .collapse-button:focus {
     transition: .5s;
     display: block;
     width: 100%;
@@ -115,29 +115,25 @@
     border: none;
 }
 
-.collapse-button:focus, 
-.collapse-button-inner:focus {
+.collapse-button:focus {
     outline: none;
 }
 
-.collapse-button.collapsed:focus, 
-.collapse-button-inner.collapsed:focus {
+.collapse-button.collapsed:focus {
     outline: none;
 }
 
 .collapse-button.collapsed:hover, 
-.collapse-button-inner.collapsed:hover, 
-.collapse-button:active, .collapse-button-inner:active {
+.collapse-button:active {
     background-color: #c0a160;
     color: 18121e;
     outline: none;
 }
 
-.collapse-button.collapsed, .collapse-button-inner.collapsed,
+.collapse-button.collapsed,
 .collapse-button:hover,
-.collapse-button-inner:hover,
-.collapse-button.collapsed:active, 
-.collapse-button-inner.collapsed:active {
+.collapse-button.collapsed:active
+{
     background-color: #eac67a;
     color: #233237;
 }
