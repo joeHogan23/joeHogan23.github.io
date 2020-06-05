@@ -54,14 +54,14 @@ function bindWindowEvents()
         var top = $("#container").position().top;
         var height = $("#container").height();
         var bottom = $(window).height() - 40 - top - height;
-        
-        if(bottom > $('.footer').height() + 113){
-            $('.footer').css('position', 'absolute');
-        }
+        //NOTE-TO-SELF: Original added value : 113
+        if(bottom > $('.footer').height() + 93)
+            $('.footer').css('position', 'absolute');  //Keep footer at bottom of page when container is above footer
         else
-            $('.footer').css('position', 'relative');
+            $('.footer').css('position', 'relative');   //When container expands past the footer, push the footer down
     }
     
+    //If mobile device, always make navigation method sidebar
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
         $("#button-menu").children(".nav-item").each(function(){
               $(this).css("pointer-events","none");
@@ -70,7 +70,7 @@ function bindWindowEvents()
            
         $("#hamburger-button").css('opacity', '100%');
         $("#hamburger-button").css('pointer-events', 'all');
-        return;
+        return; //Don't allow responsive window functionality if mobile device
     }
     
     $(window).resize(function(){

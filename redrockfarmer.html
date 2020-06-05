@@ -46,8 +46,7 @@
     <div id="sidebar-menu" class="sidebar">                       
         <div id="sidebar-header"></div>
         <a href="javascript:void(0)" class="close-button" onclick="closeNav()">×</a>
-                <a href="#" type = "button" class ="sidebar-item" id = "project-dropdown-button" data-target-element ="#project-header" onclick="closeNav()">Projects</a>       
-                <a href="#" type = "button" class = "sidebar-item" id = "design-dropdown-button" data-target-element ="#design-header" onclick="closeNav()">Graphic Design</a>
+                <a href="#" type = "button" class ="sidebar-item" id = "project-dropdown-button" data-target-element ="#project-header" onclick="closeNav()">Projects</a>     
         <a href="#" type = "button" class = "sidebar-item" id = "about-dropdown-button" data-target-element ="#about-header" onclick="closeNav()">About</a>
                                
         <a href="#" type = "button" class = "sidebar-item" id = "contact-dropdown-button" data-target-element ="#contact-header" onclick="closeNav()">Contact</a>
@@ -77,7 +76,7 @@
                                </tr>
                                <tr class = "header-content">
                                   <td><b>languages</b></td>
-                                  <td> C# &bull; XML</td>
+                                  <td> C# &bull; Visual C#</td>
                                </tr>
                                <tr class = "header-content">
                                   <td><b>team size</b></td>
@@ -97,297 +96,6 @@
                            <iframe width="560" height src="https://www.youtube.com/embed/4R5RiLqcLrg" frameborder="0"  allowfullscreen></iframe>
                         </div>
                          <div style="padding-bottom: 15px;"></div>
-                            
-                            <!--GAME ENGINE CONTENT-->
-                            <button class="collapse-button" id="gameengine-button" type="button" data-toggle="collapse" data-target="#gameengine-collapse"
-            aria-expanded="true" aria-controls="gameengine-collapse">
-                                 <div class ="collapse-button-content"> Building a Level Editor in C# and MonoGame<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/>
-                                </div>
-                             </button>
-                           <div class="collapse collapse-content" id="gameengine-collapse">
-                               <div class ="content justify pad vt-10">I didn't originally have a goal of building a level editor in MonoGame, but after making a few iterations, using a 2D array with Enums to label tiletypes, determining collision via child Tile classes, etc, it eventually made sense to make a 2D engine using window forms. The Level Editor requires 2 VS projects; LevelEditor and TileEngine.</div>
-                               <div class = "content pad btm-5">
-                                   Here is an eagle view of the Editor's Interface:
-                               </div>
-                               <div class="content">
-                               <img src="images/red-rock-farmer-editor-breakdown.png">
-                               </div>
-                               <div class="content font-36 pad top-10 btm-5">The Level Editor</div>
-                              <div class ="content justify">
-                               <ul>
-                                   <li>
-                                       The Level Editor is the series of tools that allow using the Tile Engine to "paint" different tiles onto a Map.
-                                   </li>
-                                   <li>The interface is one part Window Form(s) and one part MonoGame executable.
-                                   <ul>
-                                       <li>
-                                           Window forms hold all the user controls, sprite selection, imported spritesheets, etc.
-                                       </li>
-                                       <li>The Tile Engine itself is what makes use of the Editor tools (it handles input), but the Map Editor Window Form takes care of setting tiles, which is sent to the Tile Engine to edit the tiles.</li>
-                                       </ul>
-                                   </li>
-                                  </ul>
-                                  <ul>
-                                       <li>
-                                           <b>User Settings</b> are also stored after most actions, including importing sprite sheets, adding new Code Values to mark tiles, etc.
-                                       </li>
-                                       <li>
-                                           Most of these actions, saving and loading, importing, are done through additional window forms and dialog windows.
-                                       </li>
-
-                                   </ul>
-                               </div>
-                                                                      
-                               <button class="collapse-button" data-toggle="collapse" href="#map-editor-collapse" role="button" aria-expanded="true" aria-controls="map-editor-collapse">
-                                    <div class="collapse-button-content">
-                                        Code: Map Editor Features<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
-                               </button>
-                               <div class="collapse collapse-content-inner" id="map-editor-collapse">
-                                   <div class="content justify pad top-10 btm-10">
-                                       Most of the Map Editor tools are in the MapEditor Window Form class. This is where I could pick which sprite to use, add spritesheets, decide whether a tile requires a CodeValue or Collision on a Tile, etc
-
-                                   </div>
-                                   <div class="content pad font-16 vt-5"><i>MapEditor.cs Snippet</i></div>
-                                   
-                                   <pre class="prettyprint lang-cs linenums:57">internal void AddSpriteSheet(string fileName, int animationFrames)
-{
-    if (!listSpriteSheet.Items.Contains(fileName))  //Sprite is not loaded in already
-    {
-        string filePath = Application.StartupPath + @"\Content\Textures\" + fileName;
-        Bitmap newSpriteSheet = new Bitmap(filePath);
-        int spriteSheetIndex = spriteSheets.Count;  //SpriteSheet number
-
-        spriteSheets.Add(newSpriteSheet);   
-        spriteFrames.Add(animationFrames);  //If SpriteSheet is an animated strip
-
-        listSpriteSheet.Items.Add(fileName);    //Add SpriteSheet to List
-
-        Settings.AddSpriteSheet(fileName, animationFrames); //Add SpriteSheet for Saving in User Settings
-    }
-}
-
-void LoadImageList()
-{
-    imgListTiles.Images.Clear();
-    listTiles.Items.Clear();
-    Bitmap loadedSpriteSheet = spriteSheets[CurrentSpriteSheet];
-
-    int tileCount = 0;
-
-    for (int i = 0; i &lt; (loadedSpriteSheet.Width / TileMap.TileWidth) / spriteFrames[CurrentSpriteSheet]; i++)
-        for (int j = 0; j &lt; loadedSpriteSheet.Height / TileMap.TileHeight; j++)
-        {
-            //Cut a tile out of larger bitmap
-            Bitmap newBitmap = loadedSpriteSheet.Clone(
-                new System.Drawing.Rectangle(
-                    i * TileMap.TileWidth, j * TileMap.TileHeight,
-                    TileMap.TileWidth, TileMap.TileHeight), System.Drawing.Imaging.PixelFormat.DontCare);
-
-            imgListTiles.Images.Add(newBitmap); //Add to list of images
-
-            string itemName = "";
-
-            if (tileCount == 0)
-                itemName = "Empty";
-
-            //Add a new listview item
-            listTiles.Items.Add(new ListViewItem(itemName, tileCount++));
-        }
-}</pre>
-                                   <div class="content justify pad vt-10">
-                                       I implemented an Auto-save function that saves when the application exits. This saves Code Values and SpriteSheets that get added. They are then loaded in a new instance in the MapEditor's constructor    
-                                   </div>
-                                   <pre class="prettyprint lang-cs linenums:153">#region Save And Load User Settings
-
-public void SaveSettings()
-{
-    BinaryFormatter formatter = new BinaryFormatter();
-    FileStream fileStream = new FileStream(Application.StartupPath + @"\Settings\Settings.txt", FileMode.OpenOrCreate);
-    formatter.Serialize(fileStream, Settings);
-    fileStream.Close();
-}
-
-public void LoadSettings()
-{
-    if (File.Exists(Application.StartupPath + @"\Settings\Settings.txt"))
-    {
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream fileStream = new FileStream(Application.StartupPath + @"\Settings\Settings.txt", FileMode.Open);
-        Settings = (Settings)formatter.Deserialize(fileStream);
-        RestoreEditorSettings();    //Add loaded settings to Editor Window Form
-        fileStream.Close();
-    }
-    else
-        AddSpriteSheet("TerrainSpriteSheet.png", 1);    //If load fails/ no file located in folder, reinitialize with default sprite sheet
-}
-
-void RestoreEditorSettings()
-{
-    //Add all the saved user code values to combo box
-    for (int i = 0; i &lt; Settings.cboCodeValues.Count; i++)
-        cboCodeValues.Items.Add(Settings.cboCodeValues[i]);
-
-    itemCodeValues.AddRange(Settings.gameCodeValues); //Make all code values available to TileEngine
-
-    //Add all loaded sprite sheets
-    for (int i = 0; i &lt; Settings.spriteSheets.Count; i++)
-        AddSpriteSheet(Settings.spriteSheets[i], Settings.spriteSheetFrames[i]);
-}
-
-public void RestoreTileMapSettings()
-{
-    if (Settings.spriteSheets.Count &gt; 0)
-        for (int i = 0; i &lt; Settings.spriteSheets.Count; i++)
-            TileMap.AddSpriteSheet(Settings.spriteSheets[i].Replace(".png", ""));
-    else
-        TileMap.AddSpriteSheet("TerrainSpriteSheet");
-}
-
-#endregion</pre>
-                                   <div class="content pad vt-10">
-                                       To import a SpriteSheet, a dialog box is opened, specifying the usable file types and adding them to the MapEditor
-                                   </div>
-                                   <div class="content font-16 pad vt-5">
-                                       <i>NewSpriteSheetForm.cs Snippet</i>
-                                   </div>
-                                   <pre class="prettyprint lang-cs linenums:43">void browseButton_Click(object sender, EventArgs e)
-{
-    using (openFileDialog)
-    {
-        openFileDialog.InitialDirectory = "c:\\";   //Starting directory
-        
-        //Acceptable File Types
-        openFileDialog.Filter = "Image Files (*.png, *.jpg) | *.jpg; *.png | All Files (*.*) | *.*";
-        openFileDialog.FilterIndex = 2;
-        openFileDialog.RestoreDirectory = true;
-
-        if(openFileDialog.ShowDialog() == DialogResult.OK)
-        {
-            //Assign found image to file
-            File = Image.FromFile(openFileDialog.FileName);
-
-            //Display in textBox
-            filePath = openFileDialog.FileName;
-            directoryPath = Path.GetDirectoryName(filePath);
-
-            Stream fileStream = openFileDialog.OpenFile();
-
-            using(StreamReader reader = new StreamReader(fileStream))
-            {
-                fileContent = reader.ReadToEnd();
-            }
-        }
-    }
-    txtBoxFilePath.Text = openFileDialog.SafeFileName;
-}
-
-private void btnImport_Click(object sender, EventArgs e)
-{
-    if(File != null &amp;&amp; openFileDialog != null)
-        File.Save(Application.StartupPath + "\\Content\\Textures\\" + openFileDialog.SafeFileName);
-
-    editor.AddSpriteSheet(txtBoxFilePath.Text, (int)cboAnimationFrames.SelectedItem);
-}</pre>
-                                   <div class="content pad btm-10"></div>
-                               </div>       
-
-                               <div class="content font-36 pad vt-5">The Tile Engine</div>
-                              <div class ="content">
-                                   <ul>
-                                   <li>
-                                       The Tile Engine is the bridge between the Level Construction and the Projects that use it.
-
-                                   </li>
-                                       <li>
-                                            The Tile Engine handles all Saving and Loading the Map Files in both the Level Editor and any Projects that use the Map that were generated.
-                                             <ul>
-                                                 <li>
-                                                     Maps are Saved as .MAP and sent to the Content folder for use.
-                                                 </li>
-                                                 <li>
-                                                     They are also are Loaded by their File names.
-                                                 </li>
-                                           </ul>
-                                           
-                                       </li>
-                                  </ul>
-                                  <ul>
-                                   <li> 
-                                       Everything that is defined in the Map Editor gets funneled into Tiles on a TileMap class.
-                                       <ul><li>
-                                           Through the use of overloaded SetTile( . . . ) methods, I can set update tile settings on the fly. The point of this is to change individual settings without creating an entirely <i>new</i> Tile class. Some Uses include
-                                           <ul>
-                                               <li>
-                                                   Update Collision settings
-                                               </li>
-                                               <li>
-                                                   Change a Sprite on a particular layer
-                                               </li>
-                                               <li>
-                                                   Set Tile Sprite from static to animated
-                                               </li>
-                                               <li>
-                                                   Tag a tile using Code Value. This is to mark tiles for purposes in the projects. This is analagous to Layers in Unity, or something similar to Collision Channels on Actors in Unreal.
-                                               </li>
-                                           </ul>
-                                           
-                                           </li>
-                                       </ul>
-                                   </li>
-
-                                  </ul>
-                                      
-                               </div>
-                               <button class="collapse-button" data-toggle="collapse" href="#tilemap-collapse" role="button" aria-expanded="true" aria-controls="tilemap-collapse">
-                                    <div class="collapse-button-content">
-                                        Code: Tile Map <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
-                               </button>
-                               <div class="collapse collapse-content-inner" id="tilemap-collapse">
-                                   <div class="content justify pad top-10 btm-10"></div>
-                               <pre class="prettyprint lang-cs linenums:235">//Set a new Tile to cell at index
-public static void SetTileAtCell(int tileX, int tileY, Tile tile)
-{
-    if (IsInMapBounds(tileX, tileY))
-        mapCells[tileX, tileY] = tile;
-}
-
-//Overload --- Updates the Current Tile at index
-static public void SetTileAtCell(int x, int y, int layer, int tileIndex, int spriteSheetIndex, string animationKey = "", string animationMode = "", float frameTimer = 0.0f)
-{
-    if (!IsInMapBounds(x, y)) return;
-
-    Tile tile = mapCells[x, y];
-
-        tile.ClearAnimation(layer);         //Remove any animations on layer
-        tile.LayerTiles[layer] = tileIndex; 
-        tile.LayerSpriteSheetIndices[layer] = spriteSheetIndex;
-        tile.AnimationKey[layer] = animationKey;    //Tagging for animation
-        tile.AnimationPlayMode[layer] = animationMode;  //How animation plays back
-        tile.FrameTimer = frameTimer;   //Frame speed
-}
-
-//Set collision for a tile by map location
-static public void SetTileCollider(int x, int y, int boundX, int boundY, int width, int height)
-{
-    if (IsInMapBounds(x, y))
-        SetTileCollider(ref mapCells[x, y], boundX, boundY, width, height);
-}
-
-//Set collision directly to Tile
-static public void SetTileCollider(ref Tile tile, int boundX, int boundY, int width, int height)
-{
-    tile.boundX = boundX;
-    tile.boundY = boundY;
-    tile.boundWidth = width;
-    tile.boundHeight = height;
-}
-</pre>
-                               </div>
-                               <div class="content pad btm-10"></div>
-                               
-                            </div>
-                            
-                            <!--// END GAME ENGINE CONTENT-->
                             
                             <!--GAMEPLAY CONTENT-->
                             <button class="collapse-button" id="gameplay-button" type="button" data-toggle="collapse" data-target="#gameplay-collapse"
@@ -610,22 +318,29 @@ public static void AddItem(Item item)
 
 public static Item DropSelectedItem() => CurrentSelectedSlot.PopItem();
 
+//Push all stacks in slots to front of list
 public static void Reorganize()
 {
     for(int i = 0; i &lt; Slots.Count - 1;)
     {
-        if (Slots[i + 1].IsOccupied &amp; !Slots[i].IsOccupied)
+        //Current slot is empty and next slot has stack, push stack back one index
+        //Keep pushing Slots back until they all Slots are pushed to front of list
+        if (!Slots[i].IsOccupied &amp; Slots[i + 1].IsOccupied)
         {
             SwapSlotItems(i, i+1);
-            if(i > 0) i--;
+            
+            //Avoid out of range
+            if(i > 0) i--; 
             continue;
         }
         i++;
     }
 }
 
+//A/B Swap Function
 public static void SwapSlotItems(int a, int b)
 {
+    //Temp stack reference
     Stack&lt;Item&gt; items = Slots[a].Items;
 
     Slots[a].Items = Slots[b].Items;
@@ -689,9 +404,8 @@ internal void UpdateText()
                                
                                <div class="content pad btm-10"></div>
                             </div>
-                            <!--//END GAMEPLAY CONTENT-->
-                                                      
-                            <!--SAVE AND LOAD CONTENT-->
+                            
+                            <!--UI CONTENT-->
                             <button class="collapse-button" id="ui-button" type="button" data-toggle="collapse" data-target="#ui-collapse"
             aria-expanded="true" aria-controls="ui-collapse">
                                  <div class ="collapse-button-content">UI Management and Components<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
@@ -807,8 +521,8 @@ public static int GetSlotRelativePositionY(int row, int relativeTo, int spaceBet
 }
 
 //Assign slot positions based on anchor points
-public static void SetSlotPosition(
-     int col, int row, float screenSpaceAnchorX = 0f, float screenSpaceAnchorY = 0f)
+public static void SetSlotPosition(int col, int row, 
+float screenSpaceAnchorX = 0f, float screenSpaceAnchorY = 0f)
 {
     Slot currentSlot = GetSlot(row * ColCount + col);   //Get slot out of list
 
@@ -819,7 +533,8 @@ public static void SetSlotPosition(
 }
 
 //Assign Slot Position using anchor point (center position)
-public static void SetSlotRelativePosition(int col, int row, int relativeX, int relativeY)
+public static void SetSlotRelativePosition(int col, int row, 
+int relativeX, int relativeY)
 {
     Slot currentSlot = GetSlot(row * ColCount + col);   //Get slot out of list
 
@@ -830,7 +545,8 @@ public static void SetSlotRelativePosition(int col, int row, int relativeX, int 
 }
 
 //Assign Slot Position relative to a Screen Space Position
-public static void SetSlotRelativePosition(int col, int row, int relativeX, int relativeY, int spaceBetweenCols, int spaceBetweenRows)
+public static void SetSlotRelativePosition(int col, int row, 
+int relativeX, int relativeY, int spaceBetweenCols, int spaceBetweenRows)
 {
     Slot currentSlot = GetSlot(row * ColCount + col);   //Get slot out of list
     int x = GetSlotRelativePositionX(col, relativeX, spaceBetweenCols);
@@ -840,7 +556,7 @@ public static void SetSlotRelativePosition(int col, int row, int relativeX, int 
 }
 
 public static void SetInventoryLayout(int rows, int cols,
-    float screenSpaceAnchorX, float screenSpaceAnchorY)
+float screenSpaceAnchorX, float screenSpaceAnchorY)
 {
     SetSlotGrid(rows, cols);
 
@@ -852,7 +568,8 @@ public static void SetInventoryLayout(int rows, int cols,
     }
 }
 
-public static void SetInventoryLayout(int rows, int cols, int relativeX, int relativeY, int spaceBetweenCols = 0, int spaceBetweenRows= 0)
+public static void SetInventoryLayout(int rows, int cols, 
+int relativeX, int relativeY, int spaceBetweenCols = 0, int spaceBetweenRows= 0)
 {
     SetSlotGrid(rows, cols);
 
@@ -868,18 +585,331 @@ public static void SetInventoryLayout(int rows, int cols, int relativeX, int rel
                   <div class="content pad btm-10"></div>
                                </div>
                                </div>
-                            <!--//END SAVE AND LOAD CONTENT-->
+                            <!--//END UI CONTENT-->
+                            
+                            <!--GAME ENGINE CONTENT-->
+                            
+                            
+                            
+                            
+                            <button class="collapse-button" id="gameengine-button" type="button" data-toggle="collapse" data-target="#gameengine-collapse"
+            aria-expanded="true" aria-controls="gameengine-collapse">
+                                 <div class ="collapse-button-content">  Custom Level Editor and TileMap Functionality<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/>
+                                </div>
+                             </button>
+                           <div class="collapse collapse-content" id="gameengine-collapse">
+                               <div class ="content justify pad vt-10">I didn't originally have a goal of building a level editor in MonoGame, but after making a few iterations, using a 2D array with Enums to label tiletypes, determining collision via child Tile classes, etc, it eventually made sense to make a 2D engine using window forms. The Level Editor requires 2 VS projects; LevelEditor and TileEngine.</div>
+                               <div class = "content pad btm-5">
+                                   Here is an eagle view of the Editor's Interface:
+                               </div>
+                               <div class="content">
+                               <img src="images/red-rock-farmer-editor-breakdown.png">
+                               </div>
+                               <div class="content font-36 pad top-10 btm-5">The Level Editor</div>
+                              <div class ="content justify">
+                               <ul>
+                                   <li>
+                                       The Level Editor is the series of tools that allow using the Tile Engine to "paint" different tiles onto a Map.
+                                   </li>
+                                   <li>The interface is one part Window Form(s) and one part MonoGame executable.
+                                   <ul>
+                                       <li>
+                                           Window forms hold all the user controls, sprite selection, imported spritesheets, etc.
+                                       </li>
+                                       <li>The Tile Engine itself is what makes use of the Editor tools (it handles input), but the Map Editor Window Form takes care of setting tiles, which is sent to the Tile Engine to edit the tiles.</li>
+                                       </ul>
+                                   </li>
+                                  </ul>
+                                  <ul>
+                                       <li>
+                                           <b>User Settings</b> are also stored after most actions, including importing sprite sheets, adding new Code Values to mark tiles, etc.
+                                       </li>
+                                       <li>
+                                           Most of these actions, saving and loading, importing, are done through additional window forms and dialog windows.
+                                       </li>
+
+                                   </ul>
+                               </div>
+                                                                      
+                               <button class="collapse-button" data-toggle="collapse" href="#map-editor-collapse" role="button" aria-expanded="true" aria-controls="map-editor-collapse">
+                                    <div class="collapse-button-content">
+                                        Code: Map Editor Features<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                               </button>
+                               <div class="collapse collapse-content-inner" id="map-editor-collapse">
+                                   <div class="content justify pad top-10 btm-10">
+                                       Most of the Map Editor tools are in the MapEditor Window Form class. This is where I could pick which sprite to use, add spritesheets, decide whether a tile requires a CodeValue or Collision on a Tile, etc
+
+                                   </div>
+                                   <div class="content pad font-16 vt-5"><i>MapEditor.cs Snippet</i></div>
+                                   
+                                   <pre class="prettyprint lang-cs linenums:57">internal void AddSpriteSheet(string fileName, int animationFrames)
+{
+    if (!listSpriteSheet.Items.Contains(fileName))  //Sprite is not loaded in already
+    {
+        string filePath = Application.StartupPath + @"\Content\Textures\" + fileName;
+        Bitmap newSpriteSheet = new Bitmap(filePath);
+        int spriteSheetIndex = spriteSheets.Count;  //SpriteSheet number
+
+        spriteSheets.Add(newSpriteSheet);   
+        spriteFrames.Add(animationFrames);  //If SpriteSheet is an animated strip
+
+        listSpriteSheet.Items.Add(fileName);    //Add SpriteSheet to List
+
+        Settings.AddSpriteSheet(fileName, animationFrames); //Add SpriteSheet for Saving in User Settings
+    }
+}
+
+void LoadImageList()
+{
+    imgListTiles.Images.Clear();
+    listTiles.Items.Clear();
+    Bitmap loadedSpriteSheet = spriteSheets[CurrentSpriteSheet];
+
+    int tileCount = 0;
+
+    for (int i = 0; i &lt; (loadedSpriteSheet.Width / TileMap.TileWidth) / spriteFrames[CurrentSpriteSheet]; i++)
+        for (int j = 0; j &lt; loadedSpriteSheet.Height / TileMap.TileHeight; j++)
+        {
+            //Cut a tile out of larger bitmap
+            Bitmap newBitmap = loadedSpriteSheet.Clone(
+                new System.Drawing.Rectangle(
+                    i * TileMap.TileWidth, j * TileMap.TileHeight,
+                    TileMap.TileWidth, TileMap.TileHeight), System.Drawing.Imaging.PixelFormat.DontCare);
+
+            imgListTiles.Images.Add(newBitmap); //Add to list of images
+
+            string itemName = "";
+
+            if (tileCount == 0)
+                itemName = "Empty";
+
+            //Add a new listview item
+            listTiles.Items.Add(new ListViewItem(itemName, tileCount++));
+        }
+}</pre>
+                                   <div class="content justify pad vt-10">
+                                       I implemented an Auto-save function that saves when the application exits. This saves Code Values and SpriteSheets that get added. They are then loaded in a new instance in the MapEditor's constructor    
+                                   </div>
+                                   <pre class="prettyprint lang-cs linenums:153">#region Save And Load User Settings
+
+public void SaveSettings()
+{
+    BinaryFormatter formatter = new BinaryFormatter();
+    FileStream fileStream = new FileStream(Application.StartupPath + @"\Settings\Settings.txt", FileMode.OpenOrCreate);
+    formatter.Serialize(fileStream, Settings);
+    fileStream.Close();
+}
+
+public void LoadSettings()
+{
+    if (File.Exists(Application.StartupPath + @"\Settings\Settings.txt"))
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream fileStream = new FileStream(Application.StartupPath + @"\Settings\Settings.txt", FileMode.Open);
+        Settings = (Settings)formatter.Deserialize(fileStream);
+        RestoreEditorSettings();    //Add loaded settings to Editor Window Form
+        fileStream.Close();
+    }
+    else
+        AddSpriteSheet("TerrainSpriteSheet.png", 1);    //If load fails/ no file located in folder, reinitialize with default sprite sheet
+}
+
+void RestoreEditorSettings()
+{
+    //Add all the saved user code values to combo box
+    for (int i = 0; i &lt; Settings.cboCodeValues.Count; i++)
+        cboCodeValues.Items.Add(Settings.cboCodeValues[i]);
+
+    itemCodeValues.AddRange(Settings.gameCodeValues); //Make all code values available to TileEngine
+
+    //Add all loaded sprite sheets
+    for (int i = 0; i &lt; Settings.spriteSheets.Count; i++)
+        AddSpriteSheet(Settings.spriteSheets[i], Settings.spriteSheetFrames[i]);
+}
+
+public void RestoreTileMapSettings()
+{
+    if (Settings.spriteSheets.Count &gt; 0)
+        for (int i = 0; i &lt; Settings.spriteSheets.Count; i++)
+            TileMap.AddSpriteSheet(Settings.spriteSheets[i].Replace(".png", ""));
+    else
+        TileMap.AddSpriteSheet("TerrainSpriteSheet");
+}
+
+#endregion</pre>
+                                   <div class="content pad vt-10">
+                                       To import a SpriteSheet, a dialog box is opened, specifying the usable file types and adding them to the MapEditor
+                                   </div>
+                                   <div class="content font-16 pad vt-5">
+                                       <i>NewSpriteSheetForm.cs Snippet</i>
+                                   </div>
+                                   <pre class="prettyprint lang-cs linenums:43">void browseButton_Click(object sender, EventArgs e)
+{
+    using (openFileDialog)
+    {
+        openFileDialog.InitialDirectory = "c:\\";   //Starting directory
+        
+        //Acceptable File Types
+        openFileDialog.Filter = "Image Files (*.png, *.jpg) | *.jpg; *.png | All Files (*.*) | *.*";
+        openFileDialog.FilterIndex = 2;
+        openFileDialog.RestoreDirectory = true;
+
+        if(openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            //Assign found image to file
+            File = Image.FromFile(openFileDialog.FileName);
+
+            //Display in textBox
+            filePath = openFileDialog.FileName;
+            directoryPath = Path.GetDirectoryName(filePath);
+
+            Stream fileStream = openFileDialog.OpenFile();
+
+            using(StreamReader reader = new StreamReader(fileStream))
+            {
+                fileContent = reader.ReadToEnd();
+            }
+        }
+    }
+    txtBoxFilePath.Text = openFileDialog.SafeFileName;
+}
+
+private void btnImport_Click(object sender, EventArgs e)
+{
+    if(File != null &amp;&amp; openFileDialog != null)
+        File.Save(Application.StartupPath + "\\Content\\Textures\\" + openFileDialog.SafeFileName);
+
+    editor.AddSpriteSheet(txtBoxFilePath.Text, (int)cboAnimationFrames.SelectedItem);
+}</pre>
+                                   <div class="content pad btm-10"></div>
+                               </div>       
+
+                               <div class="content font-36 pad vt-5">The Tile Engine</div>
+                              <div class ="content">
+                                   <ul>
+                                   <li>
+                                       The Tile Engine is the bridge between Level Construction and the Projects that use it.
+                                   </li>
+                                       <li>
+                                            The Tile Engine handles all Saving and Loading the Map Files in both the Level Editor and any Projects that use the Map that were generated.
+                                             <ul>
+                                                 <li>
+                                                     Maps are Saved as .MAP and sent to the Content folder for use.
+                                                 </li>
+                                                 <li>
+                                                     They are also are Loaded by their File names.
+                                                 </li>
+                                           </ul>
+                                           
+                                       </li>
+                                  </ul>
+                                  <ul>
+                                   <li> 
+                                       Everything that is defined in the Map Editor gets funneled into Tiles on a TileMap class.
+                                       <ul><li>
+                                           Through the use of overloaded SetTile( . . . ) methods, I can set update tile settings on the fly. The point of this is to change individual settings without creating an entirely <i>new</i> Tile class. Some Uses include
+                                           <ul>
+                                               <li>
+                                                   Update Collision settings
+                                               </li>
+                                               <li>
+                                                   Change a Sprite on a particular layer
+                                               </li>
+                                               <li>
+                                                   Set Tile Sprite from static to animated
+                                               </li>
+                                               <li>
+                                                   Tag a tile using Code Value. This is to mark tiles for purposes in the projects. This is analagous to Layers in Unity, or something similar to Collision Channels on Actors in Unreal.
+                                               </li>
+                                           </ul>
+                                           
+                                           </li>
+                                       </ul>
+                                   </li>
+
+                                  </ul>
+                                      
+                               </div>
+                               <button class="collapse-button" data-toggle="collapse" href="#tilemap-collapse" role="button" aria-expanded="true" aria-controls="tilemap-collapse">
+                                    <div class="collapse-button-content">
+                                        Code: Tile Map <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                               </button>
+                               <div class="collapse collapse-content-inner" id="tilemap-collapse">
+                                   <div class="content justify pad top-10 btm-5">
+                                       When using the TileMap for the MapEditor, the functionality it performs is primarily editing Tile Cells on a Map. The <i>MapEditor.cs</i> merely tells the TileMap what to set on a tile.
+                                   </div>
+                                                                      <div class="content font-16 pad vt-5">
+                                       <i>TileMap.cs Snippet</i>
+                                   </div>
+                               <pre class="prettyprint lang-cs linenums:235">//Set a new Tile to cell at index
+public static void SetTileAtCell(int tileX, int tileY, Tile tile)
+{
+    if (IsInMapBounds(tileX, tileY))
+        mapCells[tileX, tileY] = tile;
+}
+
+//Overload --- Updates the Current Tile at index
+static public void SetTileAtCell(int x, int y, int layer, int tileIndex,
+int spriteSheetIndex, string animationKey = "", string animationMode = "", float frameTimer = 0.0f)
+{
+    if (!IsInMapBounds(x, y)) return;
+
+    Tile tile = mapCells[x, y];
+
+        tile.ClearAnimation(layer);         //Remove any animations on layer
+        tile.LayerTiles[layer] = tileIndex; 
+        tile.LayerSpriteSheetIndices[layer] = spriteSheetIndex;
+        tile.AnimationKey[layer] = animationKey;    //Tagging for animation
+        tile.AnimationPlayMode[layer] = animationMode;  //How animation plays back
+        tile.FrameTimer = frameTimer;   //Frame speed
+}
+
+//Set collision for a tile by map location
+static public void SetTileCollider(int x, int y, int boundX, int boundY, int width, int height)
+{
+    if (IsInMapBounds(x, y))
+        SetTileCollider(ref mapCells[x, y], boundX, boundY, width, height);
+}
+
+//Set collision directly to Tile
+static public void SetTileCollider(ref Tile tile, int boundX, int boundY, int width, int height)
+{
+    tile.boundX = boundX;
+    tile.boundY = boundY;
+    tile.boundWidth = width;
+    tile.boundHeight = height;
+}
+</pre>
+                               </div>
+                               <div class="content pad btm-10"></div>
+                               
+                            </div>
+                            
+                            <!--// END GAME ENGINE CONTENT-->
+                            
+                            
+                            <!--//END GAMEPLAY CONTENT-->
+                                                      
+                            
                             
                             <!--PIXEL ART CONTENT-->
                             <button class="collapse-button" id="pixelart-button" type="button" data-toggle="collapse" data-target="#pixelart-collapse"
             aria-expanded="true" aria-controls="pixelart-collapse">
-                                 <div class ="collapse-button-content">Graphic Design and Sprite Sheets<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                                 <div class ="collapse-button-content">Graphic Design, Spritesheets, and Animation<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
                            <div class="collapse collapse-content" id="pixelart-collapse">
-                               <div class ="content pad vt-10"></div></div>
+                               <div class ="content center pad vt-10">
+                                   <div id="redrock-walk-right-animation">
+                                       <div class="redrock-walk-right-frame" id="walk-right-frame-1"></div>
+                                       <div class="redrock-walk-right-frame" id="walk-right-frame-2"></div>
+                                       <div class="redrock-walk-right-frame" id="walk-right-frame-3"></div>
+                                       <div class="redrock-walk-right-frame" id="walk-right-frame-4"></div>
+                                   </div>
+                               </div></div>
                             <!--//END PIXEL ART CONTENT-->
                             
                             <!--PORTING CONTENT-->
+<!--
                             <button class="collapse-button" id="porting-button" type="button" data-toggle="collapse" data-target="#porting-collapse"
             aria-expanded="true" aria-controls="level-design-collapse">
                                  <div class ="collapse-button-content"> Porting from Unity Engine To MonoGame<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
@@ -890,9 +920,10 @@ public static void SetInventoryLayout(int rows, int cols, int relativeX, int rel
                                 I won't go too in-depth regarding version comparisons, but there are some key differences. With the addition of my Tile Engine Editor, which was built in C# and used to construct the levels, I was able to dynamically update my map, without being tethered to a 2D array. On the flipside, without built-in components like materials, 3D lights, there are  some missing elements in the MonoGame port. For example, I have a bump map in the Unity version, which was a nice visual addition to the game. This is something that will require building in the MonoGame version. 
                                 </div><div class="content font-36 pad btm-10">Porting to Monogame</div>
                                 <div class="content justify pad btm-">
-                                    Building in Monogame, despite having to write all of your own tools, has been a much quicker environment to get a build up and running. Prior to building the Level Editor, I got my first build of the core mechanics, and the art assets, in the game. I have a UI engine that handles placing UI in world and screen space. Screen space bases off Top-Left, and percentage of total ViewPort size. I found it preferable to the Canvas system in Unity.
+                                    Building in Monogame, despite having to write all of your own tools, was quite a hassle in the short term, but has since been a vastly better  environment to get a build up and running. Prior to building the Level Editor, I got my first build of the core mechanics, and the art assets, in the game. I have a UI engine that handles placing UI in world and screen space. Screen space bases off Top-Left, and percentage of total ViewPort size. I found it preferable to the Canvas system in Unity.
                                 </div>
                             </div>
+-->
                             
                             <!--//END PORTING CONTENT-->
                             
@@ -923,7 +954,7 @@ public static void SetInventoryLayout(int rows, int cols, int relativeX, int rel
                 <div class="col-sm-8 col-md-7 col-lg-8" >
                 <div id = "button-menu" style="overflow-x: hidden;">
                     <button class = "nav-item" id = "project-main-button" data-target-element ="#project-header"><span><img id="project-img" src="images/project_png.png"/>PROJECTS</span></button>
-<!--                    <button class = "nav-item" type = "button" id = "design-main-button" data-target-element = "#design-header"><img id="contact-img" src="images/graphic_design_png.png"/>Graphic Design</button>-->
+
                     <button class = "nav-item" type = "button" id = "about-main-button" data-target-element ="#about-header"><img id="about-img" src="images/about_png.png"/>ABOUT</button>
                     <button class = "nav-item" type = "button" id = "contact-main-button" data-target-element ="#contact-header" ><img id="contact-img" src="images/contact_png.png"/>CONTACT</button>
                     <button class = "nav-item" type = "button" id = "resume-main-button" ><img id="about-img" src="images/resume_png.png"/>RÉSUMÉ</button>

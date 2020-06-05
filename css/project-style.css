@@ -1,4 +1,11 @@
 
+@keyframes walk-right {
+    0% { opacity: 1; }
+    49% { opacity: 1; }
+    50% { opacity: 0; }
+    100% {opacity: 0; }
+}
+
 .background{
     top: 0%;
     height: 100%;
@@ -34,7 +41,7 @@
 }
 
 .content-wrapper{
-    padding-bottom: 25px;
+    padding-bottom: 5px;
 }
 
 .header {
@@ -193,4 +200,39 @@ btn:focus{
 btn:active{
     border:none;
     outline:none;
+}
+
+#redrock-walk-right-animation{
+    width: 180px;
+    height: 285px;
+} 
+
+.redrock-walk-right-frame{     
+    margin-left: 30%;
+                        
+    background-size: cover;
+    width: 180px;
+    height: 285px;
+    position: absolute;
+    opacity: 0;
+}
+
+#walk-right-frame-1{
+    background-image: url(/images/redrock-walk-right-1.png);
+    animation: walk-right;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    
+}
+
+#walk-right-frame-2{
+    background-image: url(/images/redrock-walk-right-2.png);
+}
+
+#walk-right-frame-3{
+    background-image: url(/images/redrock-walk-right-1.png);
+}
+
+#walk-right-frame-4{
+    background-image: url(/images/redrock-walk-right-3.png);
 }
