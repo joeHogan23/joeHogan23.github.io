@@ -34,16 +34,17 @@
 
 /* --- COMMON --- */
 
-.footer{
+#footer{
     border-top: 3px solid #02242c;
     background-color :#c5c1c0;
     padding: 10px;
     bottom: 0%;
     width: 100%;
     position: absolute;
+    transition: .4s;
 }
 
-.footer p{
+#footer p{
     font-size: 14px;
     margin-bottom: -2px;
     text-align: center;

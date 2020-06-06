@@ -1,9 +1,24 @@
 
 @keyframes walk-right {
-    0% { opacity: 1; }
-    49% { opacity: 1; }
-    50% { opacity: 0; }
-    100% {opacity: 0; }
+    0% { background-position: 0px 0px; }
+    24.99% { background-position: 0px 0px; }
+    25% { background-position: -288px 0px; }
+    49.99% {background-position: -288px 0px;}
+    50% { background-position: 0px 0px; }
+    74.99% { background-position: 0px 0px; }
+    75% {background-position: 288px 0px; }
+    100% {background-position: 288px 0px; }
+}
+
+@keyframes walk-right-highlight{
+    0% { margin-left: 0px; }
+    24.99% { margin-left: 0px }
+    25% { margin-left: 120px; }
+    49.99% { margin-left: 120px; }
+    50% { margin-left: 240px; }
+    74.99% { margin-left: 240px; }
+    75% {margin-left: 360px; }
+    100% { margin-left: 360px; }    
 }
 
 .background{
@@ -203,36 +218,80 @@ btn:active{
 }
 
 #redrock-walk-right-animation{
-    width: 180px;
-    height: 285px;
+    height: 288px;
+    transition:0s;
+
 } 
 
 .redrock-walk-right-frame{     
-    margin-left: 30%;
-                        
+    background-image: url(/images/redrockfarmer-walk-right.png);
     background-size: cover;
-    width: 180px;
-    height: 285px;
+    background-position: 288px 0px; 
+    width: 288px;
+    height: 288px;
     position: absolute;
-    opacity: 0;
+    animation: walk-right;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    transition: .3s;
 }
 
-#walk-right-frame-1{
-    background-image: url(/images/redrock-walk-right-1.png);
-    animation: walk-right;
-    animation-duration: 3s;
+.walk-right-spritesheet{
+    width: 480px;
+    transition: .3s;
+}
+
+.walk-right-spritesheet img{
+    width: 480px;
+}
+
+#frame-highlight{
+    width: 480px;
+    margin-top: -120px;
+    transition: .3s;
+    
+}
+
+#frame-highlight img{
+    width: 120px;
+    height: 120px;
+    opacity: .7;
+    animation: walk-right-highlight;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
     
 }
 
-#walk-right-frame-2{
-    background-image: url(/images/redrock-walk-right-2.png);
+@media (max-width: 991px){
+    .redrock-walk-right-frame{
+        margin-left: 178px;
+    } 
+    .walk-right-spritesheet, #frame-highlight{
+        margin-left: 68px;
+    }
 }
 
-#walk-right-frame-3{
-    background-image: url(/images/redrock-walk-right-1.png);
+@media (max-width: 750px){
+    .redrock-walk-right-frame, .walk-right-spritesheet, #frame-highlight{
+        margin-left: 0px;
+    }
 }
 
-#walk-right-frame-4{
-    background-image: url(/images/redrock-walk-right-3.png);
+@media (min-width: 992px) {
+    .redrock-walk-right-frame{
+        margin-left: 251.33333px;
+    } 
+    .walk-right-spritesheet, #frame-highlight{
+        margin-left: 155px;
+    }
 }
+@media (min-width: 1200px) {
+    .redrock-walk-right-frame{
+        margin-left: 318px;
+    } 
+    
+    .walk-right-spritesheet, #frame-highlight{
+        margin-left: 225px;
+    }
+}
+

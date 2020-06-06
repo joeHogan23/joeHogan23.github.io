@@ -55,10 +55,10 @@ function bindWindowEvents()
         var height = $("#container").height();
         var bottom = $(window).height() - 40 - top - height;
         //NOTE-TO-SELF: Original added value : 113
-        if(bottom > $('.footer').height() + 93)
-            $('.footer').css('position', 'absolute');  //Keep footer at bottom of page when container is above footer
+        if(bottom > $('#footer').height() + 93)
+            $('#footer').css('position', 'absolute');  //Keep footer at bottom of page when container is above footer
         else
-            $('.footer').css('position', 'relative');   //When container expands past the footer, push the footer down
+            $('#footer').css('position', 'relative');   //When container expands past the footer, push the footer down
     }
     
     //If mobile device, always make navigation method sidebar
@@ -90,7 +90,6 @@ function bindWindowEvents()
            closeNav();
            return;
        }    
-        
                 $("#hamburger-button").stop(true).fadeTo(200, 1);
             $("#hamburger-button").css("pointer-events","all");
         
@@ -191,9 +190,11 @@ function initialize(){
 function openNav() {
   document.getElementById("sidebar-menu").style.left = "60%";
   document.getElementById("container").style.right = "40%";
+  document.getElementById("footer").style.right = "20%";
 }
 
 function closeNav() {
   document.getElementById("sidebar-menu").style.left = "100%";
   document.getElementById("container").style.right= "0%";
+  document.getElementById("footer").style.right= "0%";
 }

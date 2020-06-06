@@ -900,12 +900,18 @@ static public void SetTileCollider(ref Tile tile, int boundX, int boundY, int wi
                            <div class="collapse collapse-content" id="pixelart-collapse">
                                <div class ="content center pad vt-10">
                                    <div id="redrock-walk-right-animation">
-                                       <div class="redrock-walk-right-frame" id="walk-right-frame-1"></div>
-                                       <div class="redrock-walk-right-frame" id="walk-right-frame-2"></div>
-                                       <div class="redrock-walk-right-frame" id="walk-right-frame-3"></div>
-                                       <div class="redrock-walk-right-frame" id="walk-right-frame-4"></div>
+                                       <div class="redrock-walk-right-frame" id="walk-right-frame"></div>
                                    </div>
-                               </div></div>
+                                   <div class="content" id="walk-right-spacing"></div>
+                                       
+                                       
+                               </div>
+                               <div class="content"><div class="walk-right-spritesheet"><img src="images/redrockfarmer-walk-right.png"/></div>
+                                   <div id ="frame-highlight">
+                                   <img src="images/frame-highlighter.png" />
+                                   </div>
+                            </div>
+                               </div>
                             <!--//END PIXEL ART CONTENT-->
                             
                             <!--PORTING CONTENT-->
@@ -966,7 +972,7 @@ static public void SetTileCollider(ref Tile tile, int boundX, int boundY, int wi
             </div>
 
                    <div id="redrockfarmer-background" class="background"></div>
-                <footer class ="footer">
+                <footer id="footer">
          <p>&copy; 2020 Joseph M Sierejko</p>
          <p><i>Website Designed and Developed by Me</i></p>
       </footer>
