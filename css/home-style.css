@@ -229,8 +229,11 @@ button:focus {
 }
 
 .project-item-cover img {
-    margin-left: -50%;
     height:100%;
+}
+
+#aberrant-button img{
+    margin-left: -25%;
 }
 
 #dewetron-button img {

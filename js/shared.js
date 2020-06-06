@@ -73,6 +73,7 @@ function bindWindowEvents()
         return; //Don't allow responsive window functionality if mobile device
     }
     
+    
     $(window).resize(function(){
         onWindowResize($(window).width());
     });
