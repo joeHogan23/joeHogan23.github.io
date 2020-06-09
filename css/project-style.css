@@ -10,6 +10,22 @@
     100% {background-position: 288px 0px; }
 }
 
+@keyframes walk-right-current-frame{
+    0% { content: '3';}
+    24.99% { content: '0';}
+    49.99% { content: '1';}
+    74.99% { content: '2';}
+    100% { content: '3';}
+}
+
+@keyframes walk-x-animation{
+    0% { content: '0';}
+    24.99% { content: '0';}
+    49.99% { content: '96';}
+    74.99% { content: '192';}
+    100% { content: '284';}
+}
+
 @keyframes walk-right-highlight{
     0% { margin-left: 0px; }
     24.99% { margin-left: 0px }
@@ -231,67 +247,87 @@ btn:active{
     height: 288px;
     position: absolute;
     animation: walk-right;
-    animation-duration: 2s;
-    animation-iteration-count: infinite;
     transition: .3s;
 }
 
 .walk-right-spritesheet{
     width: 480px;
     transition: .3s;
+    margin-top:30px;
+    margin-bottom: 30px;
 }
 
 .walk-right-spritesheet img{
     width: 480px;
 }
 
-#frame-highlight{
+#frame-highlight-container{
     width: 480px;
-    margin-top: -120px;
-    transition: .3s;
-    
+    margin-top: -150px;
+    transition: .3s; 
+    margin-bottom: 30px;
 }
 
-#frame-highlight img{
+#frame-highlight{
     width: 120px;
     height: 120px;
-    opacity: .7;
     animation: walk-right-highlight;
-    animation-duration: 2s;
+}
+
+#walk-animation-currentframe:before{  
+    content: '3';
+    animation: walk-right-current-frame;
+}
+
+
+#walk-anim-x:before{
+    content: '284';
+    animation: walk-x-animation;
+
+}
+#walk-anim-currentframe-container{
+    text-align: center;
+}
+
+#frame-highlight, .redrock-walk-right-frame, 
+#walk-animation-currentframe:before, #walk-anim-x:before{
+    animation-duration: 5s;
     animation-iteration-count: infinite;
-    
 }
 
 @media (max-width: 991px){
     .redrock-walk-right-frame{
-        margin-left: 178px;
+        margin-left: 170px;
     } 
-    .walk-right-spritesheet, #frame-highlight{
-        margin-left: 68px;
+    .walk-right-spritesheet, #frame-highlight-container{
+        margin-left: 75px;
     }
 }
 
 @media (max-width: 750px){
-    .redrock-walk-right-frame, .walk-right-spritesheet, #frame-highlight{
+    .redrock-walk-right-frame, .walk-right-spritesheet, #frame-highlight-container {
         margin-left: 0px;
+    }
+    #walk-anim-framesize {
+        text-align: left;
     }
 }
 
 @media (min-width: 992px) {
     .redrock-walk-right-frame{
-        margin-left: 251.33333px;
+        margin-left: 275px;
     } 
-    .walk-right-spritesheet, #frame-highlight{
-        margin-left: 155px;
+    .walk-right-spritesheet, #frame-highlight-container{
+        margin-left: 170px;
     }
 }
 @media (min-width: 1200px) {
     .redrock-walk-right-frame{
-        margin-left: 318px;
+        margin-left: 357px;
     } 
     
     .walk-right-spritesheet, #frame-highlight{
-        margin-left: 225px;
+        margin-left: 258px;
     }
 }
 

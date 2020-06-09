@@ -97,13 +97,20 @@
                         </div>
                          <div style="padding-bottom: 15px;"></div>
                             
+<!--
+                            <button class="collapse-button" id="tile-engine-button" type="button" data-toggle="collapse" data-target="#tile-engine-collapse"
+            aria-expanded="true" aria-controls="tile-engine-collapse">
+                                 <div class ="collapse-button-content">Writing a Generic Tile Engine Code Base<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                             </button>
+                            <div class="collapse collapse-content" id="tile-engine-collapse"></div>
+-->
                             <!--GAMEPLAY CONTENT-->
                             <button class="collapse-button" id="gameplay-button" type="button" data-toggle="collapse" data-target="#gameplay-collapse"
             aria-expanded="true" aria-controls="gameplay-collapse">
                                  <div class ="collapse-button-content">Gameplay Loop and Mechanics<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
                            <div class="collapse collapse-content" id="gameplay-collapse">
-                               <div class ="content pad top-10">
+                               <div class ="content pad top-5">
                                    Most of the gameplay mechanics in this Prototype layout the entire gameplay loop. There are plenty of missing factors to be implemented to round out the experience, but at its core, it is a farming RPG. It has a defined gameplay loop: <i>Buy Seeds; Plant; Sleep; Harvest; Repeat</i>.
                                </div>
                                
@@ -231,7 +238,13 @@ static public bool IsColliding(Vector2 cell) => IsColliding((int)cell.X, (int)ce
                                                </ul></li>
                                            </ul></li>
                                        <li>There is a reorganize function that also puts all items in the earliest slots, removing empty slots between items</li>
-                                       <li>Finally, of course, there is the Add, Remove, and Drop functions, which pop or push from a slot's stack</li>
+                                       <li>Finally, of course, there is the Add, Remove, and Drop functions, which pop or push from a slot's stack
+                                       <ul>
+                                           <li>
+                                               This is used in conjunction with the Tile Engine's Tile class to pass an Item to the Tile
+                                           </li>
+                                           </ul>
+                                       </li>
                                    </ul>
                                    </div>
                                <button class="collapse-button" id="inventory-button" type="button" data-toggle="collapse" data-target="#inventory-collapse"
@@ -240,7 +253,7 @@ static public bool IsColliding(Vector2 cell) => IsColliding((int)cell.X, (int)ce
 
                              </button>
                                <div class="collapse collapse-content-inner" id="inventory-collapse">
-                                   <div class="content pad top-10 btm-5">
+                                   <div class="content pad vt-5">
                                        The inventory code below is primarily Utility functions having to do with navigation and managing slot stacks. It is some of the more important code involving core gameplay
                                    </div>
                                    <div class="content pad font-16 vt-5"><i>InventoryManager.cs Snippet</i></div>
@@ -256,6 +269,7 @@ static void TranslateToActiveSlot(int amount)
     moveCurrentTime = 0f;
 }
 
+//Direcly Set the Current Slot
 static void SetActiveSlot(int index)
 {
     SlotIndex = index;
@@ -267,7 +281,7 @@ public static void HandleSlotSelection(GameTime gameTime)
 {
     KeyboardState kState = Keyboard.GetState();
 
-    //Timer
+    //Timer - allows holding key down without moving every frame
     moveCurrentTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
     if (moveCurrentTime &lt; moveSelectionTimer) return;
@@ -411,14 +425,14 @@ internal void UpdateText()
                                  <div class ="collapse-button-content">UI Management and Components<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
                            <div class="collapse collapse-content" id="ui-collapse">
-                               <div class ="content pad justify vt-10">One of the main components I wanted to focus on early was developing a clean UI Handling System, that allowed a "fire and forget" approach to managing them. To start, I built a hierarchy of classes, inheriting functionality for different purposes. I further built upon the features of the code base as I iterated on the Red Rock Farmer. After the game was in a good place, I untangled UI elements scattered throughout the project with a UIManager class, which handles drawing, updating, adding, and removing elements. </div>
+                               <div class ="content pad justify top-5">One of the main components I wanted to focus on early was developing a clean UI Handling System, that allowed a "fire and forget" approach to managing them. To start, I built a hierarchy of classes, inheriting functionality for different purposes. I further built upon the features of the code base as I iterated on the Red Rock Farmer. After the game was in a good place, I untangled UI elements scattered throughout the project with a UIManager class, which handles drawing, updating, adding, and removing elements. </div>
                                
                                <div class = "content pad top-10 btm-5">This is an example of a 1920 by 1080 game, where the default inventory anchor is set to 50% on the x axis and 80% on the y. regardless of resolution, the position stays the same. 
                                </div>
                                <div class="content"><img src="images/redrockfarmer-ui-1920-1080.PNG">
                                </div>
                                
-                                                              <div class = "content pad center top-20 btm-5">By contrast, a square resolution. The UI is still at screen position (.5, .8), relative to the 1:1 screen ratio
+                                                              <div class = "content pad center top-10 btm-5">By contrast, a square resolution. The UI is still at screen position (.5, .8), relative to the 1:1 screen ratio
                                </div>
                                <div class="content pad btm-20"><img style="width: 50%; margin-left: 25%;" src="images/redrockfarmer-ui-1000-1000.PNG"></div>
                                <button class="collapse-button" data-toggle="collapse" href="#codemap-slot-collapse" role="button" aria-expanded="true" aria-controls="codemap-slot-collapse">
@@ -426,8 +440,8 @@ internal void UpdateText()
                                         Code Map: UIElement <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
           </button>
                                <div class="collapse collapse-content-inner" id="codemap-slot-collapse">
-                                   <div class="content pad top-10 btm-5">
-                                   Slot is a custom UI element that inherits from UISprite. UISprite is the Image handling class, inheriting from the base class UIElement, which doesn't handle any drawing, but is an abstract class that manages positioning in Screen and </div>
+                                   <div class="content justify pad vt-5">
+                                   Slot is a custom UI element that inherits from UISprite. UISprite is the Image handling class, inheriting from the base class UIElement, which doesn't handle any drawing, but is an abstract class that manages positioning in Screen and World Space. It allows UI to be placed in the world, or stay on screen and attached to the Camera.</div>
                                                   <div class="content pad btm-10">
                                <img src="images/redrockfarmer-slot-codemap.PNG">
                                </div>
@@ -438,15 +452,13 @@ internal void UpdateText()
           </button>
               <div class ="content pad btm-5"></div>
               <div class="collapse collapse-content-inner" id="inventory-collapse">
-                  <div class ="content inner pad top-5 btm-10">
+                  <div class ="content justify pad top-5 btm-10">
                       This is an implementation of the UI sprites within the Inventory class. There are several ways to move the Slots via their rows and cols, including setting anchors using a percent value,  positioning in pixels, and positioning in pixels relative to another object. This is still in development, this current code is going to be refactored into the UIElement class, to position any element by screen percent or relative to another object.
                   </div>
-                  
-                  <div class ="content inner pad top-5 btm-5">
-                      Here are the implementations and functions on line 238 and 251 that use them.
+                  <div class="content pad font-16 btm-5">
+                      <i>InventoryManager.cs Snippet</i>
                   </div>
-                               
-                                              <pre class="prettyprint lang-cs linenums:125">/// &lt;summary&gt;
+                  <pre class="prettyprint lang-cs linenums:125">/// &lt;summary&gt;
 /// Get individual slot X position in Screen Space
 /// &lt;/summary&gt;
 /// &lt;param name="col"&gt;col of slot in array&lt;/param&gt;
@@ -594,11 +606,11 @@ int relativeX, int relativeY, int spaceBetweenCols = 0, int spaceBetweenRows= 0)
                             
                             <button class="collapse-button" id="gameengine-button" type="button" data-toggle="collapse" data-target="#gameengine-collapse"
             aria-expanded="true" aria-controls="gameengine-collapse">
-                                 <div class ="collapse-button-content">  Custom Level Editor and TileMap Functionality<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/>
+                                 <div class ="collapse-button-content">  Custom Level Editor and Tile Engine Functionality<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/>
                                 </div>
                              </button>
                            <div class="collapse collapse-content" id="gameengine-collapse">
-                               <div class ="content justify pad vt-10">I didn't originally have a goal of building a level editor in MonoGame, but after making a few iterations, using a 2D array with Enums to label tiletypes, determining collision via child Tile classes, etc, it eventually made sense to make a 2D engine using window forms. The Level Editor requires 2 VS projects; LevelEditor and TileEngine.</div>
+                               <div class ="content justify pad top-5 btm-10">I didn't originally have a goal of building a level editor in MonoGame, but after making a few iterations, using a 2D array with Enums to label tiletypes, determining collision via child Tile classes, etc, it eventually made sense to make a 2D engine using window forms. The Level Editor requires 2 VS projects; LevelEditor and TileEngine.</div>
                                <div class = "content pad btm-5">
                                    Here is an eagle view of the Editor's Interface:
                                </div>
@@ -640,7 +652,7 @@ int relativeX, int relativeY, int spaceBetweenCols = 0, int spaceBetweenRows= 0)
                                        Most of the Map Editor tools are in the MapEditor Window Form class. This is where I could pick which sprite to use, add spritesheets, decide whether a tile requires a CodeValue or Collision on a Tile, etc
 
                                    </div>
-                                   <div class="content pad font-16 vt-5"><i>MapEditor.cs Snippet</i></div>
+                                   <div class="content pad font-16 btm-5"><i>MapEditor.cs Snippet</i></div>
                                    
                                    <pre class="prettyprint lang-cs linenums:57">internal void AddSpriteSheet(string fileName, int animationFrames)
 {
@@ -740,7 +752,7 @@ public void RestoreTileMapSettings()
                                    <div class="content pad vt-10">
                                        To import a SpriteSheet, a dialog box is opened, specifying the usable file types and adding them to the MapEditor
                                    </div>
-                                   <div class="content font-16 pad vt-5">
+                                   <div class="content font-16 pad btm-5">
                                        <i>NewSpriteSheetForm.cs Snippet</i>
                                    </div>
                                    <pre class="prettyprint lang-cs linenums:43">void browseButton_Click(object sender, EventArgs e)
@@ -835,13 +847,13 @@ private void btnImport_Click(object sender, EventArgs e)
                                         Code: Tile Map <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                                </button>
                                <div class="collapse collapse-content-inner" id="tilemap-collapse">
-                                   <div class="content justify pad top-10 btm-5">
+                                   <div class="content justify pad vt-5">
                                        When using the TileMap for the MapEditor, the functionality it performs is primarily editing Tile Cells on a Map. The <i>MapEditor.cs</i> merely tells the TileMap what to set on a tile.
                                    </div>
                                                                       <div class="content font-16 pad vt-5">
-                                       <i>TileMap.cs Snippet</i>
+                                       <i>TileMap.cs Snippets</i>
                                    </div>
-                               <pre class="prettyprint lang-cs linenums:235">//Set a new Tile to cell at index
+                                   <pre class="prettyprint lang-cs linenums:235">//Set a new Tile to cell at index
 public static void SetTileAtCell(int tileX, int tileY, Tile tile)
 {
     if (IsInMapBounds(tileX, tileY))
@@ -880,9 +892,54 @@ static public void SetTileCollider(ref Tile tile, int boundX, int boundY, int wi
     tile.boundHeight = height;
 }
 </pre>
+                                   
+                                   <div class="content pad vt-10">Saving and Loading uses FileStreaming, which in a later iteration will be swapped with XML files, for more flexible Tile Engine version transitions when updates are made in the Engine Code.
+                               </div>
+                               <pre class="prettyprint lang-cs linenums:65">//***********************************************//
+#region Saving and Loading
+
+//Serialize map to binary for saving
+public static void Save(FileStream fileStream)
+{
+    //Resets all animations to frame zero when saving!
+    foreach (Tile tile in mapCells)
+        for (int i = 0; i &lt; tile.LayerTiles.Length; i++)
+            if (tile.LayersCurrentSprite[i].Count &gt; 0)
+            {
+                tile.LayerTiles[i] = tile.LayersCurrentSprite[i][0];
+            }
+
+    BinaryFormatter formatter = new BinaryFormatter();
+    formatter.Serialize(fileStream, mapCells);
+
+
+    fileStream.Close();
+}
+
+//Deserialize map for loading
+public static bool Load(FileStream fileStream)
+{
+    try
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        mapCells = (Tile[,])formatter.Deserialize(fileStream);
+
+        fileStream.Close();
+        Console.WriteLine(fileStream.ToString());
+
+        return true;
+    }
+    catch
+    {
+        Console.WriteLine("No Map found for stream: " + fileStream.ToString());
+        fileStream.Close();
+        return false;
+    }
+}
+#endregion
+//***********************************************//</pre>
                                </div>
                                <div class="content pad btm-10"></div>
-                               
                             </div>
                             
                             <!--// END GAME ENGINE CONTENT-->
@@ -898,19 +955,262 @@ static public void SetTileCollider(ref Tile tile, int boundX, int boundY, int wi
                                  <div class ="collapse-button-content">Graphic Design, Spritesheets, and Animation<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
                            <div class="collapse collapse-content" id="pixelart-collapse">
-                               <div class ="content center pad vt-10">
-                                   <div id="redrock-walk-right-animation">
-                                       <div class="redrock-walk-right-frame" id="walk-right-frame"></div>
+                               <div class="content pad top-5">Red Rock Farmer was my first foray into Pixel Art Design. It was a lot of trial and error at first. In Photoshop, I developed a workflow of categorizing into layers: Solid Base Layer, Outline Layer, Shading, and Highlights. Not a complete distillation of my workflow, but that's been the base to start from with every sprite. Any sprite groups were packed into a single spritesheet.</div>
+                               <div class="content font-36 pad top-10">Tile SpriteSheets</div>
+                               <div class="content pad top-10 btm-5">Each Tile is 48W * 48H dimensions. A tile is located in the Tile Engine by <i> index % Cols and index / Cols </i></div>
+                               
+                               <div class="row content">
+                               
+                                   <div class="col-xs-5">
+                                       <img src="images/redrock-spritesheet-base.png"/>
                                    </div>
-                                   <div class="content" id="walk-right-spacing"></div>
+                                   <div class="col-xs-2"></div>
+                                   <div class="col-xs-5">
+                                       <img src="images/redrock-spritesheet-earth.png"/>
+                                   </div>
+                               </div>
+                               <div class="row content pad top-5">
+                                   <div class="col-xs-12 content font-20">
+                                       <div class="row">
+                                           <div class="col-xs-5 content center">Width: 288px</div>
+                                           <div class="col-xs-2"></div>
+                                           <div class="col-xs-5 content center">Height: 240px</div>       </div>
+                                       <div class="row">
+                                           <div class="col-xs-12 col-sm-12 col-md-5 content center">Row: ( i / Cols.Count ) * Width</div>
+                                           <div class="col-xs-2"></div>                                           <div class="col-xs-12 col-sm-12 col-md-5 content center">Col: ( i % Cols.Count ) * Height</div>
+                                       </div>
+                                       <div class="row content center pad top-5 btm-10">
+                                           Sprite Count: Rows * Cols = 30 Sprites
+                                       </div>
                                        
+                                   </div>
+                                   
+                               </div>
+                               <button class="collapse-button" data-toggle="collapse" href="#spritesheet-mapeditor-collapse" role="button" aria-expanded="true" aria-controls="spritesheet-mapeditor-collapse">
+                                    <div class="collapse-button-content">
+                                        Code: Tile Engine and Map Editor Sprite Slicing <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+          </button>
+              <div class ="content pad btm-5"></div>
+              <div class="collapse collapse-content-inner" id="spritesheet-mapeditor-collapse">
+                  <div class="content pad vt-5">
+                                       Functionality for Spritesheets used with Tile Engine. Cutting frames is based on the Tile Dimensions. Base class Item is also a part of the Tile Engine class, which can be inherited in any project.
+                                   </div>
+                                   <pre class="prettyprint lang-cs linenums:65">//***********************************************//
+#region Tile Sheet Methods
+
+public static void AddSpriteSheet(string fileName)
+{
+    if (!tileSheets.Contains(Content.Load&lt;Texture2D&gt;(@"Textures\" + fileName)))
+        tileSheets.Add(Content.Load&lt;Texture2D&gt;(@"Textures\" + fileName));
+}
+
+//Number of Tiles in a Row of the tileSheet
+public static int TilesPerCol(int spriteSheetIndex) => 
+    tileSheets[spriteSheetIndex].Height / TileHeight;
+
+//Get a tile from the tilesheet based on the index
+public static Rectangle TileSourceRectangle(int tileIndex, int spriteSheetIndex)
+{
+    //Uses 2D-to-1D conversion to get a tile from the tileSheet
+    return new Rectangle(
+        (tileIndex / TilesPerCol(spriteSheetIndex)) * TileWidth,
+        (tileIndex % TilesPerCol(spriteSheetIndex)) * TileHeight,
+        TileWidth, TileHeight);
+}
+//Gets the items Sprite Sheet Location
+public static Rectangle ItemSourceRectangle(Item item)
+{
+    return new Rectangle(
+        item.FrameX * TileWidth, item.FrameY * TileHeight,
+        item.FrameWidth, item.FrameHeight);
+}
+#endregion
+//***********************************************//</pre>
+                  <div class="content pad top-10 btm-5">TODO: Explain LoadImageList</div>
+                  <pre class="prettyprint lang-cs linenums:65">void LoadImageList()
+{
+    imgListTiles.Images.Clear();
+    listTiles.Items.Clear();
+    Bitmap loadedSpriteSheet = spriteSheets[CurrentSpriteSheet];
+ 
+    int tileCount = 0;
+ 
+    for (int i = 0; i &lt; (loadedSpriteSheet.Width / TileMap.TileWidth) / spriteFrames[CurrentSpriteSheet]; i++)
+        for (int j = 0; j &lt;= loadedSpriteSheet.Height / TileMap.TileHeight; j++)
+        {
+            //Cut a tile out of larger bitmap
+            Bitmap newBitmap = loadedSpriteSheet.Clone(
+                new System.Drawing.Rectangle(
+                    i * TileMap.TileWidth, j * TileMap.TileHeight,
+                    TileMap.TileWidth, TileMap.TileHeight), System.Drawing.Imaging.PixelFormat.DontCare);
+ 
+            imgListTiles.Images.Add(newBitmap); //Add to list of images
+ 
+            string itemName = "";
+ 
+            if (tileCount == 0)
+                itemName = "Empty";
+ 
+            //Add a new listview item
+            listTiles.Items.Add(new ListViewItem(itemName, tileCount++));
+        }
+}</pre>
+                               </div>
+                               <div class="content font-36 pad top-10">Animated SpriteSheets</div>
+                               <div class="content pad top-10 btm-5">Animating the spritesheet is a similar practice to cutting sprites out of a spritesheet. The only difference is adding a timer and calculating the frame count to determine an animation's end. It works like this
+                                   <ul>
+                                       <li>
+                                           A timer ticks every frame and asks if the animation should be updated.
+                                       </li>
+                                       <li>
+                                           Increment the Current Frame and check if it is at the end of animation.
+                                           <ul>
+                                               <li>
+                                                   If it is a looping animation, start back at frame 0.
+                                               </li>
+                                               <li>
+                                                   Else make sure the Current Frame ends on the last frame (FrameCount - 1) and stop playing.
+                                               </li>
+                                           </ul>
+                                       </li>
+                                       <li>
+                                           The FrameCount is a property that calculates <b>Spritesheet Width / Frame Width.</b>
+                                       </li>
+                                       <li>The Current Frame is used to slice a rectangle frame in another Animation property.
+                                           
+                                           <ul>
+                                               <li>
+                                               An example of the frame rectangle is demonstrated below
+                                               </li>
+                                           </ul>
+                                       </li>
+                                   </ul>
+                               
+                               </div>
+                               <div class ="content center pad vt-10">
+                                   <div id="redrock-walk-right-animation"><div class="content left font-20" style="position: absolute; left: 65%"><div id="walk-anim-width">FrameWidth: 96px</div>
+                                       <div id="walk-anim-height">
+                                       FrameHeight: 96px</div>
+                                       <div>X : FrameWidth * <span id="walk-animation-currentframe"></span> = <span id="walk-anim-x"></span></div>
+                                           <div>
+                                               Y : 0
+                                           </div>
+                                       </div>
+
+                                       
+                                       <div class="redrock-walk-right-frame" id="walk-right-frame"> 
+                                      
+                                           
+                                       </div>
+                                   </div>
+                                   
                                        
                                </div>
-                               <div class="content"><div class="walk-right-spritesheet"><img src="images/redrockfarmer-walk-right.png"/></div>
-                                   <div id ="frame-highlight">
-                                   <img src="images/frame-highlighter.png" />
+                               <div class="content pad top-5 font-26" id="walk-anim-currentframe-container">Current Frame: <span id="walk-animation-currentframe"></span></div>
+                               <div class="content"><div class="walk-right-spritesheet">
+                                   <img src="images/redrockfarmer-walk-right.png"/></div>
+                                   <div id ="frame-highlight-container">
+                                   
+                                       <div id="frame-highlight">
+                                           
+                                           <div style="position: absolute; margin-top:-20px;">Y:0</div>
+                                           
+                                           <div style="margin-left: -35px; position: absolute;">
+                                                   X:<span id="walk-anim-x"></span></div>
+                                           <img src="images/Walk-Right-Frame-Highlight.png" />
+                                               
+                                       <div style="margin-left: 100px; position: absolute;">96H</div>
+                                       <div style="margin-left: 125px; margin-top: -15px; position: absolute;">96W</div></div>
                                    </div>
                             </div>
+                               <button class="collapse-button" data-toggle="collapse" href="#animation-collapse" role="button" aria-expanded="true" aria-controls="animation-collapse">
+                                    <div class="collapse-button-content">
+                                        Code: Animations<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                               </button>
+                               <div class="collapse collapse-content-inner" id="animation-collapse">
+                                   <div class="content justify pad top-5 btm-10">
+                                      The snippet of code that runs an animation is essentially the code implementation of the above illustration.
+                                   </div>
+                                   <div class="content pad font-16 btm-5"><i>Animation.cs Snippet</i></div>
+                                   
+                                       <pre class="prettyprint lang-cs linenums:75">internal int FrameCount => texture.Width / frameWidth;
+//Get current frame of animation
+internal Rectangle FrameRectangle =>
+    new Rectangle(
+        CurrentFrame * frameWidth, 0, 
+        frameWidth, frameHeight);
+
+#region Constructor
+public Animation(Texture2D texture, int frameWidth, string
+ name)
+{
+    this.texture = texture;
+    this.frameWidth = frameWidth;
+    this.frameHeight = texture.Height;
+    this.name = name;
+}
+#endregion
+
+#region Methods
+internal void BeginPlay()
+{
+    CurrentFrame = 0;
+    isPlaying = true;
+}
+
+//Called when isPlaying
+internal void Play(GameTime gameTime)
+{
+    frameTick += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+    if (frameTick &lt; frameDelay) return;
+
+    frameTick = 0f;
+    CurrentFrame++;
+
+    //End of animation
+    if (CurrentFrame >= FrameCount)
+    {
+        if(loopingAnimation)
+            CurrentFrame = 0;   //Reset Animation
+        else
+        {
+            CurrentFrame = FrameCount - 1;  //End of Animation
+            isPlaying = false; //Stop playing animation
+        }
+    }
+}
+#endregion</pre>
+                                   <div class="content justify pad vt-10">
+                                      Sprite Objects have animation functionality at the GameObject class level. A dictionary holds multiple animations and are played by look-ups. If needed, there is a linked-list that attaches a Next Animation to play when the current animation is complete.
+                                   </div>
+                                   <div class="content pad font-16 btm-5"><i>GameObject.cs Snippet</i></div>
+                                   <pre class="prettyprint lang-cs linenums:104">//Checks Current Animation Status and Updates if Required
+void UpdateAnimation(GameTime gameTime)
+{
+    if (animations.ContainsKey(currentAnimation))   //Check in LookUpTable for anim
+        //Check if animation status is finished
+        if (!animations[currentAnimation].IsPlaying)
+        {
+            //Get next animation if applicable
+            PlayAnimation(animations[currentAnimation].NextAnimation);
+        }
+        else
+            animations[currentAnimation].Play(gameTime);  //Continue playing Animation
+}
+
+//Checks if animation exists in Lookup Table and Plays if found
+internal void PlayAnimation(string name)
+{
+    if (name != null &amp;&amp; animations.ContainsKey(name))
+    {
+        currentAnimation = name;
+        animations[name].BeginPlay();
+    }
+}
+</pre>
+                               </div>
+                               <div class="content pad btm-10"></div>
                                </div>
                             <!--//END PIXEL ART CONTENT-->
                             
@@ -934,12 +1234,14 @@ static public void SetTileCollider(ref Tile tile, int boundX, int boundY, int wi
                             <!--//END PORTING CONTENT-->
                             
                             <!--FUTURE CONTENT CONTENT-->
+<!--
                             <button class="collapse-button" id="future-button" type="button" data-toggle="collapse" data-target="#future-collapse"
             aria-expanded="true" aria-controls="future-collapse">
                                  <div class ="collapse-button-content">Content in the Future<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
                            <div class="collapse collapse-content" id="future-collapse">
                                <div class ="content pad vt-10"></div></div>
+-->
                             <!--//END FUTURE CONTENT CONTENT-->
                          </div>
                       </div>         

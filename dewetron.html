@@ -95,35 +95,96 @@
                   </div>
                   <div class ="project-content-container">
                      <div class ="col">
-                        <div class = "row content-wrapper project-description"><div class="content justify pad btm-20"><b>Dewetron AR</b> was a small 40 hour freelance contract where I developed a prototype Augmented Reality app as a companion to their Product Guides. Specifically, they wanted it to be done by their next event to present. The App features camera-based AR targeting and a custom PDF Reader, to give the app more appeal when users wanted to look at products directly through the app. I used Vuforia to create a target database, and implemented it into a Unity based AR project. I developed the PDF reader to user Zoom and Swipe controls. Please enjoy the video below to view all of the app's features. </div>
+                        <div class = "row content-wrapper project-description"><div class="content justify pad btm-20"><b>Dewetron AR</b> was a small 40 hour freelance contract where I developed a prototype <i>Augmented Reality</i> app as a companion to their Product Guidez. Specifically, they wanted it to be done by their next event to present. The App features camera-based AR targeting and a custom PDF Reader, to give the app more appeal when users wanted to look at products directly through the app. I used Vuforia to create a target database, and implemented it into a Unity based AR project. I developed the PDF reader to user Zoom and Swipe controls. Please enjoy the video below to view all of the app's features. </div>
                          <div class="row video-container">
                            <iframe width="560" height src="https://www.youtube.com/embed/Ljk7ozBUbFQ" frameborder="0"  allowfullscreen></iframe>
                         </div>
-                         <div style="padding-bottom: 15px;"></div>
-                         <!-- ABERRANT ACCORDION -->
-                         
-                         <div class="accordion" id="project-accordion">
-                          
-                             
-                             <!-- ---VUFORIA CONTENT--- -->
-                             <button class="collapse-button" id="vuforia-button" type="button" data-toggle="collapse" data-target="#vuforia-collapse"
-            aria-expanded="true" aria-controls="vuforia-collapse">
-                                 <div class ="collapse-button-content"> Developing in AR with Vuforia <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
-                             </button>
-                             <div class="collapse collapse-content" id="vuforia-collapse">
-                             </div>
-                             <!-- ---//END VUFORIA CONTENT--- -->
+                         <div style="margin-bottom: 15px;"></div>
+                            
+                         <div class="content font-36 pad btm-10">
+                            The AR Target Database
+                            </div>
+                            <div class="content pad btm-10">
+                                I used Vuforia as an AR database based on what the specifications for the project were. It turns out Vuforia is a relatively streamlined project. I added the appropriate targets the client wanted from their Product Guide. There was some Photoshop work involved, due to fact that the AR targeting doesn't play well without a variety of contrasting imagery. Stylistically, the Guide is primarily white, with just a small amount of contrasting greys.
+                            </div>
+                            <div class="content pad btm-5">
+                                It was my first experience in an AR environment, and an interesting learning experience using Vuforia as a starting place
+                                                            </div>
 
-                             <!-- ---VUFORIA CONTENT--- -->
-                             <button class="collapse-button" id="vuforia-button" type="button" data-toggle="collapse" data-target="#vuforia-collapse"
-            aria-expanded="true" aria-controls="vuforia-collapse">
-                                 <div class ="collapse-button-content"> Developing in AR with Vuforia <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                                <div class = "content pad btm-20">
+            <video muted autoplay loop>
+                <source src="videos/dewetron-register-target.mp4" type="video/mp4"/>
+            </video>
+                 </div>
+                            <button class="collapse-button" id="implementation-button" type="button" data-toggle="collapse" data-target="#implementation-collapse"
+            aria-expanded="true" aria-controls="implementation-collapse">
+                                 <div class ="collapse-button-content">Implementing AR Targets in Unity Engine<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
-                             <div class="collapse collapse-content" id="vuforia-collapse">
-                             </div>
-                             <!-- ---//END VUFORIA CONTENT--- -->
-                             
-                     </div>
+                           <div class="collapse collapse-content" id="implementation-collapse">
+                               <div class ="content justify pad top-5 btm-10">
+                                   There's a bit of setup that needed to go into Vuforia AR. It requires a bunch of Vuforia-specific components in the Scene. In addition, it needs your Database's License Key to gain access to the AR Targets.
+                               </div>
+                               
+                               <div class="content pad btm-5">
+                               The VuforiaConfiguration is just a Configuration Asset in the Project Folder where you enter in some information about how to interact with AR Targets. It is also where you paste the License Key to access the Database</div>
+                               <div class="content">
+                                   <img src="images/dewetron-vuforia-configuration.PNG"/>
+                               </div>
+                               <div class="content font-36 pad top-5 btm-10">
+                                   Vuforia Components
+                            </div>
+                               <div class="content">
+                                   A deep-dive into the Documentation explained a bit about the requirements with AR Image Targeting. You build an AR Target with a few Components.
+                                   <ul><li>The Image Target Behaviour Component accesses the Database and where you choose a target to detect</li>
+                                   <li>
+                                       Default Trackable Event Handler Is the script that performs the intended video to begin playing on a game object.
+                                       </li><ul><li>This Event Handler was one of the components that needed to be edited to have player reset when tracking is lost, per client's request </li></ul>
+                                       <li>Note that when adding a target to the database, a weight needs to be assigned (in video above). This correlates to the intended width the object will be in units (Meters in Unity).
+                                           <ul>
+                                               <li>
+                                                   You need to make sure you set the height of an Image Target relative to the unit width and the target dimensions ratio
+                                               </li>
+                                               <li>
+                                                   If Unit width = 1 and image scale = 1920 x 800, the unit ratio = <b>1 x 0.41667</b>
+                                               </li>
+                                           </ul>
+                                       </li>
+                                   </ul>
+                                   
+                               </div>
+                               <div class="content pad btm-5">
+                                   The General Setup in a target Image Gameobject
+                               </div>
+                               <div class="content">
+                                   <img src="images/dewetron-target-components.PNG"/>
+                               </div>
+                               <div class="content justify pad vt-10">
+                                   The GameObject that has the Video Component needs to be placed in the desired position, relative to where the image target is. I parented the GameObject to the Image target and set its local position to zero.
+                               </div>
+                               <div class="content pad btm-5">
+                                   The Quad with the video player is invisible until the Event Handler tells it to play
+                               </div>
+                               <div class="content">
+                                <video muted autoplay loop>
+                <source src="videos/dewetron-quad-placement.mp4" type="video/mp4"/>
+                                   </video>
+                               </div>
+                               <div class="content pad vt-10">
+                                   <i>This setup is the same for every AR GameObject</i>
+                               </div>
+                            </div>
+                            <button class="collapse-button" id="pdf-button" type="button" data-toggle="collapse" data-target="#pdf-collapse"
+            aria-expanded="true" aria-controls="pdf-collapse">
+                                 <div class ="collapse-button-content">Custom PDF Reader for Mobile<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                             </button>
+                           <div class="collapse collapse-content" id="pdf-collapse">
+                               <div class ="content pad top-5">
+                                   The PDF Reader was a MUST HAVE for the clients to provide more value to the application. After some research, it became apparent that Apple Devices don't work well with the PDF reader plugins that are available for Android Devices. Creating the PDF reader took a good chunk of the agreed paid hours. 
+                               </div>
+                               <div class="content pad top-10 btm-5">
+                                   The time was spent writing a pinch to zoom, swipe-to change page, and ensuring that both horizontal and vertical page swipes would be measured exact so the new page is loaded at the correct zoom scale, regardless of the image's size ratio and screen ratio.
+                               </div>
+                            </div>
                   </div>
                </div>
             </div>

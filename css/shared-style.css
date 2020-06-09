@@ -314,32 +314,21 @@ iframe{
 /* ---CONTENT STANDARDIZATION--- */
 
 .content { font-family: 'Baloo 2'; }
-
-.content.justify{ text-align: justify; }
-
-.content.center{ text-align: center;}
-
+.content.justify { text-align: justify; }
+.content.center { text-align: center;}
 .content.font-12 { font-size: 12px; }
-
-.content.font-16{ font-size: 16px; }
-
-.content.font-18{ font-size: 18px; }
-
-.content.font-20{ font-size: 20px; }
-
-
-.content.font-36{ font-size: 36px; }
-
+.content.font-16 { font-size: 16px; }
+.content.font-18 { font-size: 18px; }
+.content.font-20 { font-size: 20px; }
+.content.font-22 { font-size: 22px; }
+.content.font-24 { font-size: 24px; }
+.content.font-26 { font-size: 26px; }
+.content.font-36 { font-size: 36px; }
 .content.pad.top-5 { padding-top: 5px; }
-
 .content.pad.top-10 { padding-top: 10px; }
-
 .content.pad.top-20 { padding-top: 20px; }
-
 .content.pad.btm-5 { padding-bottom: 5px; }
-
 .content.pad.btm-10 { padding-bottom: 10px; }
-
 .content.pad.btm-20 { padding-bottom: 20px; }
 
 .content.pad.vt-5 {
@@ -355,6 +344,14 @@ iframe{
 .content.pad.vt-20 {
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.content.right{
+    text-align: right;
+}
+
+.content.left{
+    text-align: left;
 }
 
 /* ---//END CONTENT FORMATTING--- */
