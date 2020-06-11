@@ -169,22 +169,472 @@
                 <source src="videos/dewetron-quad-placement.mp4" type="video/mp4"/>
                                    </video>
                                </div>
-                               <div class="content pad vt-10">
-                                   <i>This setup is the same for every AR GameObject</i>
+                               <div class="content pad top-10 btm-5">
+                                   The final result shows the video is positioned precisely on top of the target image
                                </div>
+                               <div class="content">
+                               <video muted autoplay loop>
+                                   <source src="videos/dewetron-klaus-result.mp4" type="video/mp4"/>
+                                   </video>
+                                   <div class="content pad btm-10"></div>
+                                   </div>
                             </div>
                             <button class="collapse-button" id="pdf-button" type="button" data-toggle="collapse" data-target="#pdf-collapse"
             aria-expanded="true" aria-controls="pdf-collapse">
                                  <div class ="collapse-button-content">Custom PDF Reader for Mobile<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
                            <div class="collapse collapse-content" id="pdf-collapse">
-                               <div class ="content pad top-5">
-                                   The PDF Reader was a MUST HAVE for the clients to provide more value to the application. After some research, it became apparent that Apple Devices don't work well with the PDF reader plugins that are available for Android Devices. Creating the PDF reader took a good chunk of the agreed paid hours. 
+                               <div class ="content justify pad top-5">
+                                    After some research, it became apparent that Apple Devices don't have a variety of PDF reader plugins like Android Devices. So I created my own. Programming the PDF Reader took a good chunk of the agreed paid hours, but works as intended and was designed to be easy to use if the application is expanded on. 
                                </div>
                                <div class="content pad top-10 btm-5">
-                                   The time was spent writing a pinch to zoom, swipe-to change page, and ensuring that both horizontal and vertical page swipes would be measured exact so the new page is loaded at the correct zoom scale, regardless of the image's size ratio and screen ratio.
+                                   Some of the features
+                                   <ul>
+                                       <li>
+                                           Horizontal and Vertical Viewing Modes, with auto-scaling pages
+                                       </li>
+                                       <li>
+                                       Pinch-To-Zoom
+                                       </li>
+                                       <li>
+                                           Swipe to turn a page
+                                       </li>
+                                   </ul>
+                                   
+                                   <div class="content pad btm-5">
+                                       The PDF Controller is built to take images as a List to traverse through. <b>There are no dependencies</b> , so it could be used in any project that requires PDF Readers
+                                   </div>
+                                   
+                                   <div class="content pad btm-5">
+                                       <img src="images/dewetron-pdf-controller.PNG"/>
+                                   </div>
+                                   
+                                   <div class="content font-36 pad top-5 btm-10">
+                                   Auto Scaling Images
+                                   </div> 
+                                   <div class="content pad btm-5">
+                                       Properly scaling the pdf pages to fit perfectly on screen took a bit of work. For 2 reasons:
+                                   </div>
+                                   <ol>
+                                       <li>
+                                           The First and Last Pages only display a single page, while the rest are 2 pages. 
+                                           <ul>
+                                           <li>
+                                               This means comparing width and height to see which is greater.
+                                               </li>
+                                           </ul>
+                                       </li>
+                                       <li>Adjust the width or height to fit to the edge of that screen's width or height
+                                       
+                                       <ul>
+                                           <li>
+                                               If Adjusting Width, set it to fit the screen width, regardless of size.
+                                           </li>
+                                           <li>
+                                               With the width set, compare the image and screen height
+                                               <ul>
+                                                   <li>
+                                                       If the image height is greater than the screen height, size the image to fit by height.
+                                                   </li>
+                                                   <li>Resizing the image is done by subtracting the the image's current scale and the <i>difference in percent</i> between the screen height and image rect height </li>
+                                               </ul>
+                                               
+                                           </li>
+                                           </ul>
+                                       </li>
+                                   </ol>
+                                   
+                                   <div class="content justify pad btm-5">
+                                       Notice that changing orientation resizes the image to fit the screen ratio. Without rescaling, The first page's height would start outside of the screen's height 
+                                   </div>
+                                   <div class = "content">
+                                       <video muted autoplay loop>
+                                           <source src="videos/dewetron-pdf-vertical-to-horizontal.mp4" type="video/mp4"/>
+                                       </video>
+                                   </div>
+                                   
+                                   
                                </div>
+                               
+                               <!--SCALING CODE BUTTON-->
+                              <button class=" collapse-button" data-toggle="collapse" href="#scale-to-fit-collapse" role="button" aria-expanded="true" aria-controls="scale-to-fit-collapse">
+                                  <div class="collapse-button-content">
+                                Code: Scale To Fit <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                              </button>
+
+                              <!--// END SCALING CODE BUTTON-->
+                               
+                               <!--SCALING CODE COLLAPSE-->
+                               <div class="collapse collapse-content-inner" id="scale-to-fit-collapse">
+                                   <div class ="content inner pad top-10 btm-5">
+                                       The implementation of Scale to Fit. It is called when orientation changes and the Swipe() function
+                                   </div>
+                                   <pre class="content-block prettyprint lang-cs linenums:134">void Swipe()
+{
+    //Move forward if swiping left and not at end of PDF
+    if (previousPosition.x &lt; startPosition.x &amp; currentPage &lt; pageList.Count)
+            image.sprite = pageList[++currentPage];
+
+    //Move Backward if swiping right and not at beginning of PDF
+    else if (previousPosition.x > startPosition.x &amp; currentPage > 0)
+            image.sprite = pageList[--currentPage];
+
+    //Move image to center position
+    currentRect.localPosition = Vector3.zero;
+
+    //Fit image within screenspace
+    ScaleToFit();
+}
+
+void ScaleToFit()
+{
+    //image.SetNativeSize();  //Reset scale
+
+    //Check PFD Ratio for the bigger ratio
+    if (currentRect.rect.width > currentRect.rect.height)
+    {
+        //Adjust the scale relative to the difference between the rect's width and screen width
+        currentRect.localScale = Vector3.one * (Screen.width / currentRect.rect.width);
+
+        //The image's top and bottom are outside of the screen height
+        if(currentRect.rect.height * currentRect.localScale.y > Screen.height)
+        {
+            //Set the adjusted height percentage
+            float scaleHeight = Screen.height / currentRect.rect.height;
+
+            currentRect.localScale -= Vector3.one * (currentRect.localScale.y - scaleHeight);
+        }
+    }
+    else
+    {
+        currentRect.localScale = Vector3.one * (Screen.height / currentRect.rect.height);
+
+        if (currentRect.rect.width * currentRect.localScale.x > Screen.width)
+        {
+            float scaleWidth = Screen.width / currentRect.rect.width;
+
+            currentRect.localScale -= Vector3.one * (currentRect.localScale.x - scaleWidth);
+        }
+    }
+}
+
+//Changed screen orientation
+void CheckForNewOrientation()
+{
+    if(Screen.orientation != orientation)   //Current Orientation has updated
+    {
+        ScaleToFit();
+        orientation = Screen.orientation;
+    }
+}</pre>
+                               </div>
+                               <!--//END SCALING CODE COLLAPSE-->
+                               
+                               <div class="content font-36 pad top-5 btm-10">
+                                   Pinch To Zoom
+                               </div> 
+                               <div class="content pad btm-10">
+                                   By contrast of calculating the auto-scaling, pinch to zoom is much simpler, just taking the differences in dual finger movement every frame
+                                   <ul>
+                                       <li>
+                                           Get each fingers movement difference from last frame
+                                       </li>
+                                       <li>
+                                           Both finger values are converted to magnitude 
+                                       </li>
+                                       <li>
+                                           The difference in magnitudes is added to the current image's scale, by a factor of the zoom's speed
+                                           <ul>
+                                               <li>
+                                                   If both fingers move closer together, the movement is negative and zooming out
+                                               </li>
+                                               <li>
+                                                   Else movement is positive and zooming in
+                                               </li>
+                                           </ul>
+                                       </li>
+                                   </ul>
+                                   
+                               </div>
+                               <div class="content pad btm-5">
+                                   <video muted autoplay loop>
+                                       <source src="videos/dewetron-pdf-zoom.mp4" type="video/mp4"/>
+                                   </video>
+                               </div>
+
+                               <!--PINCH ZOOM BUTTON-->
+                              <button class=" collapse-button" data-toggle="collapse" href="#zoom-collapse" role="button" aria-expanded="true" aria-controls="zoom-collapse">
+                                  <div class="collapse-button-content">
+                                Code: Pinch Zooming <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                              </button>
+
+                              <!--// END PINCH ZOOM BUTTON-->
+                               
+                               <!--PINCH ZOOM COLLAPSE-->
+                               <div class="collapse collapse-content-inner" id="zoom-collapse">
+                                   <div class ="content inner pad vt-5"></div>
+                                   <pre class="content-block prettyprint lang-cs linenums:92">//When one of the bounds is at its end, stop moving in that axis
+Vector2 GetBoundedMovement(Vector2 direction)
+{
+    if (StopMovementOnXAxis(direction.x))
+        direction = new Vector2(0, direction.y);
+
+    if (StopMovementOnYAxis(direction.y))
+        direction = new Vector2(direction.x, 0);
+
+    return direction;
+}
+
+//Pinch Zoom Scaling
+void Zoom()
+{
+    Touch first = Input.GetTouch(0);
+    Touch second = Input.GetTouch(1);   
+
+    Vector2 firstPrev = first.position - first.deltaPosition;       //Last position of first finger
+    Vector2 secondPrev = second.position - second.deltaPosition;    //Last position of second finger
+
+    //The comparers in the amount of movement in magnitude
+    float currentTouchMagnitude = (first.position - second.position).magnitude;
+    float previousTouchMagnitude = (firstPrev - secondPrev).magnitude;
+
+    //Get the movement magnidude's difference
+    float difference = currentTouchMagnitude - previousTouchMagnitude;
+
+    //Scale up/down image
+    currentRect.localScale += (Vector3.one * difference) * zoomSpeed;
+
+    //Maximum Scale
+    if (currentRect.localScale.x > 2)
+        currentRect.localScale = Vector3.one * 2;
+
+    //Scale to ensure that scaling stays at least the size of screen
+    if (currentRect.localScale.x * currentRect.rect.width &lt; Screen.width &amp; 
+        currentRect.localScale.y * currentRect.rect.height &lt; Screen.height)
+        ScaleToFit();
+}
+                                   </pre>
+                               </div>
+                               <div class="content pad btm-10"></div>
                             </div>
+                            <!--UI FOR MOBILE BUTTON-->
+                            <button class=" collapse-button" data-toggle="collapse" href="#ui-collapse" role="button" aria-expanded="true" aria-controls="ui-collapse">
+                                  <div class="collapse-button-content">
+                                User Interface for Mobile<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                              </button>
+
+                              <!--//END UI FOR MOBILE BUTTON-->
+                               
+                               <!--UI FOR MOBILE COLLAPSE-->
+                            <div class="collapse collapse-content" id="ui-collapse">
+                                <div class="content pad top-5 btm-10 font-36">
+                                    Main Menu and  The Canvas
+                                </div>
+                                <div class="content pad vt-5">
+                                    UI for Mobile was another first for me. There's a lot to consider with such varying UI screen spaces. And stylistically, anchoring the UI to a specific place didn't make sense. In vertical view, The UI Buttons are placed in the middle. To lock the anchor positions in the same place would have led to extremely wide and unappealing buttons when in horizontal orientation.</div> <div class="content pad btm-10">My solution was creating 2 versions of the Main Menu as separate Canvases; Quicker to code and design on a deadline, and the resource requirements were negligable.
+                                </div>
+                                
+                                <div class="content pad btm-5 font-18">
+                                <i>Captured on iPhone X</i>
+                                </div>
+                                
+                                <div class="content pad btm-5">
+                                    <img src="images/dewetron-ui-menu-vertical.PNG" style=" width: 17.2%; margin-right: 10px"/>
+                                    <img src="images/dewetron-ui-menu-horizontal.PNG" style="display: inline-block; width: 80.4%;"/>
+                                </div>
+                                <div class="content center pad btm-10 font-16">
+                                    <div style=" width: 17.2%; margin-right: 10px; display: inline-block;">
+                                    <p>Portrait</p></div>
+                                    <div style=" width: 80.4%; display: inline-block;">
+                                    <p>LandScape</p></div>                                
+                                </div>
+                                <div class="content" style="background-color: white; height:1px;">
+                                </div>
+                                
+                                <div class="content justify pad vt-10 font-20">
+                                    <i>The Code is a matter of toggling both canvases when the orientation changes</i>
+                                </div>
+                                <div class="content" style="background-color: white; height:1px;">
+                                </div>
+<!--
+                                <button class=" collapse-button" data-toggle="collapse" href="#menu-orientation-collapse" role="button" aria-expanded="true" aria-controls="menu-orientation-collapse">
+                                  <div class="collapse-button-content">
+                                Code: Menu UI Toggling <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                              </button>
+                                
+                                <div class="collapse collapse-content-inner" id="menu-orientation-collapse">
+                                    
+                                </div>
+-->
+                                
+                                <div class="content pad top-20 btm-5 font-36">
+                                    Hamburger Menu
+                                </div>
+                                
+                                <div class="content pad btm-10">
+                                    A version of the Hamburger UI is nested in the Horizontal and Vertical Canvases On click, It slides into view and ends at a percent of the orientation width. Closing brings it back to its original position. Each Button performs similar functions to the Main Menu items.
+                                </div>
+                                <div class="content">
+                                    <video muted autoplay loop>
+                                        <source src="videos/dewetron-hamburger.mp4" type="video/mp4"/>
+                                    </video>
+                                </div>
+                                
+                                <button class=" collapse-button" data-toggle="collapse" href="#hamburger-collapse" role="button" aria-expanded="true" aria-controls="hamburger-collapse">
+                                  <div class="collapse-button-content">
+                                Code: Open and Close Hamburger <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                              </button>
+
+                              <!--// END SCALING CODE BUTTON-->
+                               
+                               <!--SCALING CODE COLLAPSE-->
+                                <div class="collapse collapse-content-inner" id="hamburger-collapse">
+                                    <div class="content justify pad top-10 btm-5">
+                                        Implementation of the Open and close position. Whenever Orientation changes, the TrackOrientation method updates the open and close positions. Open and Close methods run as separate threads.
+                                    </div>
+                                        <pre class="content-block prettyprint lang-cs linenums:40">void TrackOrientation()
+{
+    //Set new  Starting Position
+    closedPosition = Screen.width;  
+
+    //Set New End Position
+    openedPosition = (closedPosition + ((buttonRect.rect.width * buttonRect.localScale.x) * 2)) - Screen.width;
+
+    menu.transform.position = new Vector3(closedPosition, 
+    menu.transform.position.y, 0);
+    
+    orientation = Screen.orientation;
+}
+
+public void OpenCloseHamburger()
+{
+    if (hamburgerIsOpen)
+        StartCoroutine(closeHamburger);
+    else
+        StartCoroutine(openHamburger);
+}
+
+IEnumerator OpenHamburger()
+{
+    StopCoroutine(closeHamburger);  //So Open and close threads don't overlap
+    closeHamburger = CloseHamburger();  //Set new routine for new function call
+
+    RectTransform menuRect = menu.GetComponent&lt;RectTransform&gt;();
+    
+    //Set Destination to End Position
+    Vector2 destination = new Vector2(openedPosition, menuRect.position.y);
+
+    while (Vector2.Distance(menuRect.position, destination) > 1)
+    {
+        yield return new WaitForEndOfFrame();
+        
+        //Move towards destination
+        menuRect.position = Vector2.Lerp(menuRect.position, destination, Time.deltaTime * 10f);
+    }
+    
+    menuRect.position = destination;    //Set to destination
+    hamburgerIsOpen = true;
+
+}
+
+IEnumerator CloseHamburger()
+{
+    StopCoroutine(openHamburger);   //So Open and close threads don't overlap
+    openHamburger = OpenHamburger();    //Set new routine for new function call
+
+    RectTransform menuRect = menu.GetComponent&lt;RectTransform&gt;();
+
+    //Set Destination to Default Position
+    Vector2 destination = new Vector2(closedPosition, menuRect.position.y);
+
+    while (Vector2.Distance(menuRect.position, destination) > 1)
+    {
+        yield return new WaitForEndOfFrame();
+        
+        //Move towards destination
+        menuRect.position = Vector2.Lerp(menuRect.position, destination, Time.deltaTime * 10f);
+    }
+    
+    menuRect.position = destination;    //Set to destination
+    hamburgerIsOpen = false;
+}</pre>
+                                </div>
+                                <div class="content pad btm-10"></div>
+                            </div>
+                            <!--//END UI FOR MOBILE COLLAPSE-->
+                            
+                            <!--CLICK EVENTS BUTTON-->
+                            <button class=" collapse-button" data-toggle="collapse" href="#click-events-collapse" role="button" aria-expanded="true" aria-controls="click-events-collapse">
+                                  <div class="collapse-button-content">
+                                Additional Features and Web Links<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                              </button>
+
+                              <!--//END CLICK EVENTS BUTTON-->
+                               
+                           <!--CLICK EVENTS COLLAPSE-->
+                            <div class="collapse collapse-content" id="click-events-collapse">
+                                <div class="content font-36 pad top-5 btm-10">
+                                   Product Links
+                                </div> 
+                                <div class="content pad btm-10">
+                                    Part of the UI involved allowing users to access web urls from the App. With the links provided, I had a click event for each of the buttons to open url with a string. It's a tiny piece of code, called from the Click Event  
+                                </div>
+                                
+                                <div class="content pad btm-5">
+                                The Parameter in the Unity editor is a string, and it should be the URL to a webpage
+                                </div>
+                                <div class="content pad btm-10">
+                                    <img src="images/dewetron-onclick-url.PNG"/>
+                                </div>
+                                
+                                <div class="content pad btm-5">
+                                    The Method used is just using the OpenUrl method.
+                                </div>
+                                
+                                <pre class="content-block prettyprint lang-cs linenums:50">public void OpenURL(string url) { Application.OpenURL(url); }</pre>
+                                
+                                <div class="content pad vt-10">
+                                    <video muted autoplay loop>
+                                        <source src="videos/dewetron-openurl.mp4" type="video/mp4"/>
+                                    </video>
+                                </div>
+                                <div class="content font-36 pad top-5 btm-10">
+                                   Contact Dewetron
+                                </div> 
+                                <div class="content pad btm-10">
+                                    Contact also uses the OpenUrl(string) method, however, the email infomation is hardcoded into the MenuManager class. In the On Click () button event, The Email() method is called. The email function includes the address, subject, and body
+                                </div>
+                                <pre class="content-block prettyprint lang-cs linenums:52">void InitializeEmailURL()
+{
+    string emailAddress = EscapeURL("ContactMe@dewetron.com");
+    string emailSubject = EscapeURL("AR Connection");
+    string emailBody =  EscapeURL(
+        "I would like to know more about DEWETRON products! \n\n" + 
+        "Please contact me using the email address identified in this response.\n\n" +
+        "You may also contact me using the following phone number:\n\n" +
+        "With this response, I am giving you permission to contact me about DEWETRON products and services.\n\n" +
+        "Thanks\n\n");
+
+    emailUrl = "mailto:" + emailAddress + "?subject=" + emailSubject + "&amp;body=" + emailBody;
+}
+
+public void Email() { OpenURL(emailUrl); }
+
+string EscapeURL(string url)
+{
+    return WWW.EscapeURL(url).Replace("+", "%20");
+}</pre>
+                                <div class="content pad vt-10">
+                                    <video muted autoplay loop>
+                                        <source src="videos/dewetron-email.mp4" type="video/mp4"/>
+                                    </video>
+                                </div>
+                                
+                                
+                            </div>
+                            <!--CLICK EVENTS COLLAPSE-->
+
+                            
                   </div>
                </div>
             </div>

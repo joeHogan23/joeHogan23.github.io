@@ -361,3 +361,20 @@ iframe{
     width:100%;
     height: auto;
 }
+
+
+.fade.transition-up {
+    margin-top: 100px;
+    transition: all .45s;}
+}
+
+transition-speed-01{
+    transition: all 1s;
+}
+
+.fade{
+  -webkit-transition: all 12s;
+       -o-transition: all 12s;
+          transition: all 2s;
+
+}

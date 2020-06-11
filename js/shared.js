@@ -45,8 +45,28 @@ window.onload = function(){
  
 function bindWindowEvents()
 {
+
+$.fn.isAboveViewportBottom = function() {
+    var elementTop = $(this).offset().top;
+    var viewportBottom = $(window).scrollTop() + $(window).height() - 100;
+    return elementTop < viewportBottom;
+};
     
     setInterval(onContainerResize, 50);
+    
+    setInterval(onScroll, 30);
+    
+    function onScroll(){
+
+        $('.fade').each(function(){
+            if($(this).isAboveViewportBottom()){
+            $(this).addClass('in');
+                $(this).css('margin-top', '0');
+            }
+        });
+
+    };
+
     
     //Keeps the footer at the bottom of window. Relative to how tall the main container is
     function onContainerResize(){
