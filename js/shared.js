@@ -7,6 +7,39 @@ initialize();
 $(document).ready(function(){
     
     
+    $('html, body').animate({ scrollTop: - 60 }, 1);
+    
+    $.ajax({
+  xhr: function()
+  {
+    var xhr = new window.XMLHttpRequest();
+    //Upload progress
+    xhr.upload.addEventListener("progress", function(evt){
+      if (evt.lengthComputable) {
+        var percentComplete = evt.loaded / evt.total;
+        //Do something with upload progress
+        console.log(percentComplete);
+      }
+    }, false);
+    //Download progress
+    xhr.addEventListener("progress", function(evt){
+      if (evt.lengthComputable) {
+        var percentComplete = evt.loaded / evt.total;
+        //Do something with download progress
+        console.log(percentComplete);
+      }
+    }, false);
+    return xhr;
+  },
+  type: 'POST',
+  url: "/",
+  data: {},
+  success: function(data){
+    //Do something success-ish
+  }
+});
+    
+    
     bindMainNav();
     bindSocialNav();
     bindWindowEvents();
@@ -38,30 +71,39 @@ $(document).ready(function(){
 
 window.onload = function(){
     "use strict";
+
     setTimeout(function(){
         onLoadUrlScroll();
     });
+    
+    setTimeout(function(){
+        $('.preloader-wrapper').css('opacity','0');
+    }, 2000);
 }
  
 function bindWindowEvents()
 {
 
-$.fn.isAboveViewportBottom = function() {
-    var elementTop = $(this).offset().top;
-    var viewportBottom = $(window).scrollTop() + $(window).height() - 100;
-    return elementTop < viewportBottom;
-};
+    $.fn.isAboveViewportBottom = function() {
+        var elementTop = $(this).offset().top;
+        var viewportBottom = $(window).scrollTop() + $(window).height() - 100;
+        return elementTop < viewportBottom;
+    };
     
     setInterval(onContainerResize, 50);
     
-    setInterval(onScroll, 30);
+    
+    
+    $(window).scroll(function(){        
+        onScroll()
+    });
     
     function onScroll(){
 
         $('.fade').each(function(){
             if($(this).isAboveViewportBottom()){
             $(this).addClass('in');
-                $(this).css('margin-top', '0');
+                $(this).css('padding-top', '0');
             }
         });
 
@@ -185,7 +227,7 @@ function onLoadWindow(){
 
 function onScrollToElement(el)
 {
-    $('html, body').animate({ scrollTop: el.offset().top - 60 }, 500);
+    $('html, body').animate({ scrollTop: el.offset().top - 60 }, 1000);
 }
 
 function onLoadUrlScroll(){

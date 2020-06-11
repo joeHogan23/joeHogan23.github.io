@@ -124,11 +124,6 @@ button:focus {
     border: none;
 }
 
-#project-header {
-    margin-top: 0;
-    padding-bottom: 5px;
-}
-
 /*
 #design-header{
     background-color: #30415d;
@@ -140,38 +135,6 @@ button:focus {
 }
 */
 
-#about-header{
-    background-color: #30415d;
-}
-
-#about-section-wrapper{
-    background-color: #30415d;
-    width:100%;
-    height: 100%;
-    padding-top: 20px;
-}
-
-#about-content {
-    color:white;
-    font-style: normal;
-    margin: 0px 10% 0 10%;
-    display: block;    
-}
-
-#contact-header {
-    padding-top: 7px;
-    background-color: #eac67a;
-    font-size: 80px;
-    font-weight: bold;
-    color: #031424;
-}
-
-#contact-section-wrapper {
-    background-color: #eac67a;   
-    color: white;
-    font-size: 20px;
-}
-
 /* ---// END SECTION STYLE--- */
 
 /* ---PROJECT SECTION STYLE--- */
@@ -181,13 +144,19 @@ button:focus {
     transition: .2s;
 }
 
-.project-section-wrapper {
+
+
+#project-section-wrapper {
     margin-left: auto;
     margin-right: auto;
     display: block;
     overflow: hidden;
 }
 
+#project-header {
+    margin-top: 0;
+    padding-bottom: 5px;
+}
 
 #project-section-table {
     margin-right: auto;
@@ -363,10 +332,51 @@ button:focus {
 
 /* ---END PROJECT SECTION STYLE--- */
 
+/* --- ABOUT SECTION STYLE--- */
+
+#about-header{
+    background-color: #30415d;
+}
+
+#about-section-wrapper{
+    background-color: #30415d;
+    width:100%;
+    height: 100%;
+    padding-top: 20px;
+}
+
+#about-content {
+    color:white;
+    font-style: normal;
+    margin: 0px 10% 0 10%;
+    display: block;     
+}
+
+/* ---END ABOUT SECTION STYLE--- */
+
+
+/* --- CONTACT SECTION STYLE--- */
+
+
+#contact-section-wrapper {
+    background-color: #eac67a;
+    color: white;
+    font-size: 20px;
+}
+
+#contact-header {
+    padding-top: 7px;
+    background-color: #eac67a;
+    font-size: 80px;
+    font-weight: bold;
+    color: #031424;
+}
 
 #contact-links-wrapper{
     text-align: center;
     padding: 40px;
+        background-color: #eac67a;
++
 }
 
 .contact-item{
@@ -385,3 +395,5 @@ button:focus {
     position: relative;
     opacity: .5;
 }
+
+/* --- END CONTACT SECTION STYLE--- */
