@@ -9,7 +9,7 @@ $(document).ready(function(){
     
     $('html, body').animate({ scrollTop: - 60 }, 1);
     
-    $.ajax({
+$.ajax({
   xhr: function()
   {
     var xhr = new window.XMLHttpRequest();
@@ -76,9 +76,11 @@ window.onload = function(){
         onLoadUrlScroll();
     });
     
-    setTimeout(function(){
-        $('.preloader-wrapper').css('opacity','0');
-    }, 2000);
+//    setTimeout(function(){
+//        $('.preloader-wrapper').css('opacity','0');
+//    }, 2000);//    setTimeout(function(){
+//        $('.preloader-wrapper').css('opacity','0');
+//    }, 2000);
 }
  
 function bindWindowEvents()
