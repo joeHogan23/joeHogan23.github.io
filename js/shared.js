@@ -3,75 +3,16 @@ var currentHeight = window.innerHeight;
 
 initialize();
 
-
-var progress, date, interval;
-
-// wait until DOM has been loaded to perform DOM Manipulations
-document.addEventListener('DOMContentLoaded', function() {
-  date = Date.now(); //current timestamp since UNIX epoch
-
-  //get a reference to the progress element using its id attribute
-  progress = document.getElementById('load-bar');
-  interval = setInterval(updateProgress, 1000);
-});
-
-function updateProgress() {
-    console.log(progress.value);
-//    msg.innerHTML = 'begin updateProgress() - progress.value = '+progress.value + "<br>" + msg.innerHTML;
-    if (progress.value >= 100) {
-      //stop running this function after value reaches 100 (percent)
-      clearInterval(interval);
-        
-        onPreloaderComplete();
-        $(".preloader-wrapper").fadeOut(1200);
-    }
-    var newDate = Date.now();
-    var milliseconds = newDate - date;
-
-    var seconds = Math.floor(milliseconds / 1000);
-    progress.value += seconds;
-  }
 $(document).ready(function(){
-    
+    bindMainNav();
+    bindSocialNav();
+    bindCollapseEvents();
     $('html, body').animate({ scrollTop:0  }, 1);
     $('body').css('overflow', 'hidden');
     
     $(window).on('beforeunload', function(){
-        $('html, body').animate({ scrollTop:0  }, 1);
-
         $(".preloader-wrapper").fadeIn(200);
     })
-    
-    
-//$.ajax({
-//  xhr: function()
-//  {
-//    var xhr = new window.XMLHttpRequest();
-//    //Upload progress
-//    xhr.upload.addEventListener("progress", function(evt){
-//      if (evt.lengthComputable) {
-//        var percentComplete = evt.loaded / evt.total;
-//        //Do something with upload progress
-//        console.log(percentComplete);
-//      }
-//    }, false);
-//    //Download progress
-//    xhr.addEventListener("progress", function(evt){
-//      if (evt.lengthComputable) {
-//        var percentComplete = evt.loaded / evt.total;
-//        //Do something with download progress
-//        console.log(percentComplete);
-//      }
-//    }, false);
-//    return xhr;
-//  },
-//  type: 'POST',
-//  url: "/",
-//  data: {},
-//  success: function(data){
-//  }
-//});
-//    
     
     $(".project-item-cover img").mouseenter(function(){
        $(this).stop().animate({height: ($(this)).data("height-end"), marginLeft: ($(this)).data("margin-end"), borderColor: 'white'},300);
@@ -97,9 +38,7 @@ $(document).ready(function(){
    });
 });
 
-window.onload = function(){
-    "use strict";
-    
+window.onload = function(){    
 var myplugin
 if(!myplugin){
 	  myplugin = $('#load-bar').cprogress({
@@ -134,10 +73,6 @@ function onPreloaderComplete(){
     }, 1300);
     
     onLoadUrlScroll();
-    bindMainNav();
-    bindSocialNav();
-    
-    bindCollapseEvents();
     
     setTimeout(function(){
         $('body').css('overflow', 'auto');
@@ -232,11 +167,11 @@ function bindWindowEvents()
 function bindMainNav()
 {
     $(".nav-item, .sidebar-item").click(function(){
-        onPressedNavItem();
+        onPressedNavItem(this);
     });
 
-    function onPressedNavItem(){
-        var targetElement = ($(this)).data("target-element");
+    function onPressedNavItem(nav){
+        var targetElement = ($(nav)).data("target-element");
         
         //Doesn't have a target-element
         if(targetElement == undefined)
