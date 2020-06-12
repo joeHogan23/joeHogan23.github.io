@@ -74,69 +74,34 @@
 .preloader-wrapper {
     z-index: 99;
     top:0;
-    bottom: 0;
     left: 0;
     right: 0;
-    background-color: white;
+    height:100vh;
+    background-color: black;
     position: fixed;
-    transition: opacity 1s;
 }
 
-.preloader {
-    margin-top: -100px;
-    box-shadow: 0 0 0 15px;
-    border: 100px solid transparent;
-}
-
-.preloader.circle {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    background-color: white;
-    left: 50%;
-    top: 50%;
+.preloader-inner-wrapper{
+    width: 100%;
+    margin-top: 50vh;
+    font-size: 36px;
     text-align: center;
-    border-radius: 100px;
 }
 
-.preloader.square {
-    width: 40px;
-    height: 40px;
-    margin-left: -100px;
+.preloader-loading{
+    margin-top:-40px;
 }
 
-.preloader.circle.top-left{
-    margin-left: -40%;
-    margin-top: -30%;
-    animation: preload-circle-top-left 5s infinite linear;
-}
-
-.preloader.circle.top-right{
-    margin-left: 20%;
-    margin-top: -30%;
-    animation: preload-circle-top-left 5s infinite linear;
-    animation-direction: reverse;
-}
-
-.preloader-ball{
-    border-radius: 100px;
+.percent-container{
+    width: 100%;
     position: absolute;
-    width:50px;
-    height: 50px;
-    background-color:black;
-    left: 50%;
-    top:50%;
-    margin-left: -25px;
-    margin-top: -25px;
-    animation: ball-animation 5s infinite;
 }
 
-.preloader-break{
-    height: 300px;
-    width: 70px;
-    background-color: white;
-    margin-left: -35px;
-    margin-top: -250px;
+.percent {
+    font-family: 'baloo 2';
+    text-align: center;
+    margin-top:30px;
+    margin-left: 2px;
 }
 
 /* ---//END PRELOADER--- */
