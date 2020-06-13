@@ -42,11 +42,11 @@ window.onload = function(){
 var myplugin
 if(!myplugin){
 	  myplugin = $('#load-bar').cprogress({
-	       percent: 10, // starting position
-	       img1: '/images/v1.png', // background
-	       img2: '/images/v2.png', // foreground
+	       percent: 0, // starting position
+	       img1: '/images/preloader-background.png', // background
+	       img2: '/images/preloader-value.png', // foreground
 	       speed: parseInt($('.preloader-wrapper').data("target-speed")), // speed (timeout)
-	       PIStep : 0.12, // every step foreground area is bigger about this val
+	       PIStep : 0.09, // every step foreground area is bigger about this val
 	       limit: 100, // end value
 	       loop : false, //if true, no matter if limit is set, progressbar will be running
 	       showPercent : true, //show hide percent
