@@ -39,9 +39,9 @@ $(document).ready(function(){
 });
 
 window.onload = function(){    
-var myplugin
-if(!myplugin){
-	  myplugin = $('#load-bar').cprogress({
+var loadbar;
+if(!loadbar){
+	  loadbar = $('#load-bar').cprogress({
 	       percent: 0, // starting position
 	       img1: '/images/preloader-background.png', // background
 	       img2: '/images/preloader-value.png', // foreground
@@ -83,7 +83,7 @@ function bindWindowEvents()
 {
     $.fn.isAboveViewportBottom = function() {
         var elementTop = $(this).offset().top;
-        var viewportBottom = $(window).scrollTop() + $(window).height() - 100;
+        var viewportBottom = $(window).scrollTop() + $(window).height();
         return elementTop < viewportBottom;
     };
     
@@ -105,6 +105,7 @@ function bindWindowEvents()
     };
 
     onScroll();
+    
     //Keeps the footer at the bottom of window. Relative to how tall the main container is
     function onContainerResize(){
 
