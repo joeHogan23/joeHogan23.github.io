@@ -261,6 +261,10 @@ function closeNav() {
   document.getElementById("footer").style.right= "0%";
 }
 
+function openResume(){
+    window.open("images/Web-Resume-3.pdf", 'blank');
+}
+
 (function ( $ ) {
  	if (!$.ns) {
  		$.ns = {};
