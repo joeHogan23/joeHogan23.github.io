@@ -84,31 +84,41 @@ function bindWindowEvents()
     $.fn.isAboveViewportBottom = function() {
         var elementTop = $(this).offset().top;
         var viewportBottom = $(window).scrollTop() + $(window).height();
-        return elementTop < viewportBottom;
+        return elementTop <= viewportBottom;
     };
     
-    setInterval(onContainerResize, 50);
+    $.fn.isBelowViewportTop = function() {
+        var elementBottom = $(this).offset().top + $(this).height;
+        var viewportTop = $(window).scrollTop();
+        return elementBottom > viewportTop;
+    };
     
-    $(window).scroll(function(){        
-        onScroll();
-    });
+    $.fn.isVisible = function() {
+        return $(this).isAboveViewportBottom() && $(this).isBelowViewportTop();
+    };
     
-    function onScroll(){
-
+        //General Visibility setter. Sets elements that are visible within window. Used for initializing page only
+    function onSetElementsVisible(){
+         $('.fade').each(function(){
+             if($(this).isVisible){
+                $(this).addClass('in');
+                $(this).css('padding-top', '0');
+            }
+         });
+    };
+    
+    function onSetElementsVisibleFromBottom(){
         $('.fade').each(function(){
             if($(this).isAboveViewportBottom()){
             $(this).addClass('in');
                 $(this).css('padding-top', '0');
             }
         });
-
     };
-
-    onScroll();
     
     //Keeps the footer at the bottom of window. Relative to how tall the main container is
     function onContainerResize(){
-
+        
         var top = $("#container").position().top;
         var height = $("#container").height();
         var bottom = $(window).height() - 40 - top - height;
@@ -118,6 +128,19 @@ function bindWindowEvents()
         else
             $('#footer').css('position', 'relative');   //When container expands past the footer, push the footer down
     }
+    
+    setInterval(onContainerResize, 50);
+    
+    $(window).resize(function(){
+        onSetElementsVisibleFromBottom();
+    });
+    
+    $(window).scroll(function(){        
+        onSetElementsVisibleFromBottom();
+    });
+    
+    onSetElementsVisibleFromBottom();
+    setTimeout(onSetElementsVisibleFromBottom, 1200);
     
     //If mobile device, always make navigation method sidebar
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
@@ -282,8 +305,6 @@ function openResume(){
 
 	  base.methods = {
 	  	init: function () {
-
-
 			//Images
 			base.img1 = new Image();
 			base.img1.src = base.options.img1;
