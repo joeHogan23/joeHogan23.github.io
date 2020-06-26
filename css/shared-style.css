@@ -41,7 +41,7 @@
     left: 0;
     right: 0;
     height:100vh;
-    background-color: transparent;
+    background-color: #031424;
     position: fixed;
 }
 
@@ -74,8 +74,6 @@
 /* ---//END PRELOADER--- */
 
 /* ---NAVIGATION MENU--- */
-
-
 
 
 #nav-container{

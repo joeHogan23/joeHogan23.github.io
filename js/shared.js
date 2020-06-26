@@ -11,8 +11,8 @@ $(document).ready(function(){
     $('body').css('overflow', 'hidden');
     
     $(window).on('beforeunload', function(){
-        $(".preloader-wrapper").fadeIn(200);
-    })
+        
+    });
     
     $(".project-item-cover img").mouseenter(function(){
        $(this).stop().animate({height: ($(this)).data("height-end"), marginLeft: ($(this)).data("margin-end"), borderColor: 'white'},300);
@@ -191,6 +191,7 @@ function bindWindowEvents()
 function bindMainNav()
 {
     $(".nav-item, .sidebar-item").click(function(){
+        
         onPressedNavItem(this);
     });
 
@@ -208,10 +209,16 @@ function bindMainNav()
             onScrollToElement(el)
             return;
         }
-        
+        $(".preloader-wrapper").fadeIn(200);
         window.location.href = root + "index.html" + targetElement;
     }
 }
+//
+//function onOpenWebPage(el){
+//    $($((el)).data("target-webpage")){
+//        
+//    }
+//}
 
 function bindSocialNav()
 {    
