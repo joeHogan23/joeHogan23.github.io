@@ -71,8 +71,7 @@ function onPreloaderComplete(){
     setTimeout(function(){
         bindWindowEvents();
     }, 1300);
-    
-    onLoadUrlScroll();
+    setTimeout(onLoadUrlScroll(), 400);
     
     setTimeout(function(){
         $('body').css('overflow', 'auto');
