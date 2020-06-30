@@ -6,6 +6,8 @@ var currentHeight = window.innerHeight;
 
 initialize();
 
+console.log(window.location.hostname);
+
 $(document).ready(function(){
     bindMainNav();
     bindSocialNav();
@@ -58,6 +60,7 @@ if(!loadbar){
 	       onComplete: function(p){ onPreloaderComplete();}
 	  });
      }
+
 
 //    setTimeout(function(){
 //        $('.preloader-wrapper').css('opacity','0');
@@ -274,7 +277,6 @@ function onLoadUrlScroll(){
 }
 
 function initialize(){
-    
     setTimeout(function(){  closeNav()}, 100);
     setTimeout(function(){  jQuery('.collapse-button').trigger('click');}, 0);
     setTimeout(function(){  jQuery('.collapse-button-inner').trigger('click');}, 700);
