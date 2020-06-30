@@ -1,14 +1,33 @@
 var livePreview = false;
 
-var root = "http://joehogan23.github.io/";
-
+var root = window.location.hostname == 'localhost' ? '' : 'http://joehogan23.github.io/';
+var loadbar;
 var currentHeight = window.innerHeight;
 
 initialize();
+console.log();
 
-console.log(window.location.hostname);
 
 $(document).ready(function(){
+    if(!loadbar){
+	  loadbar = $('#load-bar').cprogress({
+	       percent: 0, // starting position
+	       img1: '/images/preloader-background.png', // background
+	       img2: '/images/preloader-value.png', // foreground
+	       speed: 300, // speed (timeout)
+	       PIStep : 0.09, // every step foreground area is bigger about this val
+	       limit: 100, // end value
+	       loop : false, //if true, no matter if limit is set, progressbar will be running
+	       showPercent : true, //show hide percent
+	       onInit: function(){console.log('onInit');},
+	       onProgress: function(p){console.log('onProgress',p);}, //p=current percent
+	       onComplete: function(p){ onPreloaderComplete();}
+	  });
+     }
+    
+    $("#nav-container").fadeOut(100);
+    $(".footer").fadeOut(100);
+
     bindMainNav();
     bindSocialNav();
     bindCollapseEvents();
@@ -16,7 +35,7 @@ $(document).ready(function(){
     $('body').css('overflow', 'hidden');
     
     $(window).on('beforeunload', function(){
-        
+
     });
     
     $(".project-item-cover img").mouseenter(function(){
@@ -44,23 +63,17 @@ $(document).ready(function(){
 });
 
 window.onload = function(){    
-var loadbar;
-if(!loadbar){
-	  loadbar = $('#load-bar').cprogress({
-	       percent: 0, // starting position
-	       img1: '/images/preloader-background.png', // background
-	       img2: '/images/preloader-value.png', // foreground
-	       speed: parseInt($('.preloader-wrapper').data("target-speed")), // speed (timeout)
-	       PIStep : 0.09, // every step foreground area is bigger about this val
-	       limit: 100, // end value
-	       loop : false, //if true, no matter if limit is set, progressbar will be running
-	       showPercent : true, //show hide percent
-	       onInit: function(){console.log('onInit');},
-	       onProgress: function(p){console.log('onProgress',p);}, //p=current percent
-	       onComplete: function(p){ onPreloaderComplete();}
-	  });
-     }
-
+    loadbar.options({speed: parseInt($('.preloader-wrapper').data("target-speed"))});
+    
+    if($('#overlay')[0]){
+        $('html, body').animate({ scrollTop:0  }, 1);
+    
+        bindWindowEvents(0);
+    
+        setTimeout(function(){
+            onLoadUrlScroll();
+        },500);
+    }
 
 //    setTimeout(function(){
 //        $('.preloader-wrapper').css('opacity','0');
@@ -70,21 +83,27 @@ if(!loadbar){
 }
 
 function onPreloaderComplete(){
-    $('html, body').animate({ scrollTop:0  }, 1);
+
+    if($('.background')[0]){
+        $('html, body').animate({ scrollTop:0  }, 1);
+        bindWindowEvents(1000);
+    }
 
     $('.preloader-wrapper').fadeOut(1200);
-    
+       
     setTimeout(function(){
-        bindWindowEvents();
-    }, 1300);
-    setTimeout(onLoadUrlScroll(), 400);
+
+        $('#nav-container').fadeIn(600);
+        $('.footer').fadeIn(600);
+
+    }, 1400);
     
     setTimeout(function(){
         $('body').css('overflow', 'auto');
-    }, 900);
+    }, 1250);
 }
 
-function bindWindowEvents()
+function bindWindowEvents(initDelay)
 {
     $.fn.isAboveViewportBottom = function() {
         var elementTop = $(this).offset().top;
@@ -143,9 +162,11 @@ function bindWindowEvents()
     $(window).scroll(function(){        
         onSetElementsVisibleFromBottom();
     });
-    
-    onSetElementsVisibleFromBottom();
-    setTimeout(onSetElementsVisibleFromBottom, 1200);
+    setTimeout(function(){
+       onSetElementsVisibleFromBottom();
+
+               }, initDelay);
+    setTimeout(onSetElementsVisibleFromBottom, initDelay + 1200);
     
     //If mobile device, always make navigation method sidebar
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
