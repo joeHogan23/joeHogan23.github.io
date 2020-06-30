@@ -86,7 +86,7 @@ function onPreloaderComplete(){
 
     if($('.background')[0]){
         $('html, body').animate({ scrollTop:0  }, 1);
-        bindWindowEvents(1000);
+        bindWindowEvents(1400);
     }
 
     $('.preloader-wrapper').fadeOut(1200);
@@ -155,18 +155,22 @@ function bindWindowEvents(initDelay)
     
     setInterval(onContainerResize, 50);
     
-    $(window).resize(function(){
+    setTimeout(function(){
+       onSetElementsVisibleFromBottom();
+
+               }, initDelay);
+    setTimeout(function(){
+            $(window).resize(function(){
         onSetElementsVisibleFromBottom();
     });
     
     $(window).scroll(function(){        
         onSetElementsVisibleFromBottom();
     });
-    setTimeout(function(){
-       onSetElementsVisibleFromBottom();
-
-               }, initDelay);
-    setTimeout(onSetElementsVisibleFromBottom, initDelay + 1200);
+        onSetElementsVisibleFromBottom();
+    
+    
+    }, initDelay + 1200);
     
     //If mobile device, always make navigation method sidebar
     if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
