@@ -1,4 +1,7 @@
+var livePreview = false;
+
 var root = "http://joehogan23.github.io/";
+
 var currentHeight = window.innerHeight;
 
 initialize();
@@ -238,6 +241,7 @@ function bindSocialNav()
 }
 
 function bindCollapseEvents(){
+    
     $(".collapse-button, .collapse-button-inner").click(function(){
         var ddImage = $(this).find('img');
         var ariaState = $(this).attr("aria-expanded"); 
