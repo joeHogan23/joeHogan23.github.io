@@ -1,6 +1,6 @@
 var root = window.location.hostname == 'localhost' ? '' : 'http://joehogan23.github.io/';
 var loadbar;
-var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent);
+
 var currentHeight = window.innerHeight;
 
 initialize();
@@ -288,6 +288,11 @@ function bindCollapseEvents(){
 
 function onLoadWindow(){
     
+}
+
+function isMobileDevice()
+{
+    return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent));
 }
 
 function onScrollToElement(el)
