@@ -1,7 +1,6 @@
-var livePreview = false;
-
 var root = window.location.hostname == 'localhost' ? '' : 'http://joehogan23.github.io/';
 var loadbar;
+
 var currentHeight = window.innerHeight;
 
 initialize();
@@ -9,6 +8,12 @@ console.log();
 
 
 $(document).ready(function(){
+    if(isMobileDevice){
+          $('.project-badge').each(function(){
+               $(this).removeClass('col-sm-6 col-md-6 col-lg-4')
+               .addClass('col-xs-12');
+          });
+    }
     if(!loadbar){
 	  loadbar = $('#load-bar').cprogress({
 	       percent: 0, // starting position
@@ -173,7 +178,7 @@ function bindWindowEvents(initDelay)
     }, initDelay + 1200);
     
     //If mobile device, always make navigation method sidebar
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+    if(isMobileDevice) {
         $("#button-menu").children(".nav-item").each(function(){
               $(this).css("pointer-events","none");
                $(this).css("opacity", "0");
@@ -283,6 +288,11 @@ function bindCollapseEvents(){
 
 function onLoadWindow(){
     
+}
+
+function isMobileDevice()
+{
+    return (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent));
 }
 
 function onScrollToElement(el)
