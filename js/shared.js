@@ -8,12 +8,12 @@ console.log();
 
 
 $(document).ready(function(){
-    if(isMobileDevice){
-          $('.project-badge').each(function(){
-               $(this).removeClass('col-sm-6 col-md-6 col-lg-4')
-               .addClass('col-xs-12');
-          });
-    }
+//    if(isMobileDevice){
+//          $('.project-badge').each(function(){
+//               $(this).removeClass('col-sm-6 col-md-6 col-lg-4')
+//               .addClass('col-xs-12');
+//          });
+//    }
     if(!loadbar){
 	  loadbar = $('#load-bar').cprogress({
 	       percent: 0, // starting position
