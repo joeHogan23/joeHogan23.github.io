@@ -178,7 +178,7 @@ function bindWindowEvents(initDelay)
     }, initDelay + 1200);
     
     //If mobile device, always make navigation method sidebar
-    if(isMobileDevice) {
+    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
         $("#button-menu").children(".nav-item").each(function(){
               $(this).css("pointer-events","none");
                $(this).css("opacity", "0");
@@ -332,7 +332,7 @@ function closeNav() {
 }
 
 function openResume(){
-    window.open("images/Web-Resume-3.pdf", 'blank');
+    window.open("Sierejko-Resume.pdf", 'blank');
 }
 
 (function ( $ ) {
