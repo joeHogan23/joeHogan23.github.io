@@ -6,6 +6,11 @@ window.onload = function(){
         document.getElementById("add-block-message").style.opacity = "1";
     }, 1000);
 }
+
+window.onunload = function(){
+    root = root + "#PrinterFriendlyLinkAtBottom";
+}
+
 </script>
     </head>
     <div id="add-block-message" style="margin: auto; font-size: 40px; opacity: 0; transition: 1s all;">
