@@ -68,6 +68,10 @@ $(document).ready(function(){
 });
 
 window.onload = function(){    
+    if(window.location.pathname == "Sierejko-Resume.pdf"){
+        console.log(window.location.pathname);
+    }
+    
     loadbar.options({speed: parseInt($('.preloader-wrapper').data("target-speed"))});
     
     if($('#overlay')[0]){

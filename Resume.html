@@ -1,0 +1,21 @@
+<html><head>
+    <script type = "text/javascript">
+window.onload = function(){
+    window.open("Sierejko-Resume.pdf","_self");    
+    setTimeout(function(){
+        document.getElementById("add-block-message").style.opacity = "1";
+    }, 1000);
+}
+
+window.onunload = function(){
+    root = root + "#PrinterFriendlyLinkAtBottom";
+}
+
+</script>
+    </head>
+    <div id="add-block-message" style="margin: auto; font-size: 40px; opacity: 0; transition: 1s all;">
+        Hey! Looks like you're add blocker was too good for my Resume. Please check your add-block settings and try again!
+    </div>
+    <body>
+    </body>
+</html>
