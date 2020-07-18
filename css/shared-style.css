@@ -1,3 +1,10 @@
+/*colors:
+#262B3E
+#EAC67A
+#c5c1c0
+#031424
+*/
+
 @import "bootstrap.css";
 
 /* ---@KEYFRAMES--- */
@@ -41,15 +48,87 @@
     left: 0;
     right: 0;
     height:100vh;
-    background-color: #031424;
+    background-color: #1f2436;
     position: fixed;
+}
+
+.header-container{
+    background-color: #1f2436;
+
+    color: #000f1b;
+    font-family: 'teko';
+    color: #000f1b;
+    font-weight: 800;    
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-shadow: 1px 2px 0 #262B3E;
+    letter-spacing: 10px;
+    text-align: center;
+
+
+}
+
+.preloader-namecard{
+    font-size: 115px;
+    margin-top: 20px;
+    margin-bottom: 0;
+
+}
+
+.preloader-title {
+    font-size:19px;
+    margin-top: -35px;
+}
+
+
+@media screen and (max-width: 730px){
+    .preloader-namecard{
+        font-size: 95px;
+    }
+    
+    .preloader-title{
+        font-size: 18px;
+    }
 }
 
 .preloader-inner-wrapper{
     width: 100%;
-    margin-top: 50vh;
     font-size: 36px;
     text-align: center;
+    
+}
+
+.preloader-positioner{
+    height: 100px;
+}
+
+.load-bar-container{
+    margin: auto;
+    border-radius: 100%;
+    background: black;
+    width: 320px;
+    text-align: center;
+    position: relative;
+    padding-top: 10px;
+    background-color: #000f1b;
+   // box-shadow: 0px 2px 0 #262B3E;
+
+}
+
+.load-bar-dash{
+    height: 100px;
+    position: relative;
+    margin-top:-170px;
+    z-index: -1;
+    background-color: #000f1b;
+    box-shadow: 0px 2px 0 #262B3E;
+
+}
+
+.preloader-bottom{
+    background-color:#000f1b;
+    height:50vh;
+    
 }
 
 .preloader-loading{
@@ -59,6 +138,7 @@
 .percent-container{
     width: 100%;
     position: absolute;
+    
 }
 
 .percent {
