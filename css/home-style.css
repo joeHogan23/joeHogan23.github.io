@@ -308,6 +308,16 @@ button:focus {
     background-color: #144064;
 }
 
+#unreal{
+    color: white;
+    background-color: #dc143c;
+}
+
+#full-stack {
+    color: white;
+    background-color: #008b8b;
+}
+
 .project-description{
     height: 300px;
     color: white;
