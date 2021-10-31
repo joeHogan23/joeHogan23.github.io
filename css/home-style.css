@@ -223,6 +223,11 @@ button:focus {
     margin-left: 0%;
 }
 
+#fct-button img{
+    margin-left: -55%;
+}
+
+
 .project-item-title{
     width: 100%;
     top: 100%;
@@ -311,6 +316,16 @@ button:focus {
 #unreal{
     color: white;
     background-color: #dc143c;
+}
+
+#json{
+        color: white;
+    background-color: #e4634d;
+}
+
+#blueprint {
+    color: white;
+    background-color: #30415d;
 }
 
 #full-stack {
