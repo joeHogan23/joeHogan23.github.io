@@ -65,6 +65,11 @@
     background-image: url(/images/attollo-wallpaper.jpg);
 }
 
+#fct-background{
+    background-image: url(/images/FirstClassTroubleBG.JPG);
+}
+
+
 #container{
     position: relative;
     transition: .4s;
