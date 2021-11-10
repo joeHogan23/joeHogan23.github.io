@@ -330,18 +330,212 @@ struct FVruumbaParticlesCustomizationItemTableRow : public FVruumbaCustomization
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UParticleSystem* ParticleSystem;
-};</pre> 
+};</pre>
+</div>  
+
                                                                       <div class="content font-36 pad top-10">Creating Public Cloud Saves</div>
                                                <div class="content pad top-5">
                                  One of the major components I developed for Customization was an easy-to-use set of Data Tables in C++ and Blueprint. This allowed for anyone to easily add new items to the Customization Menu. Each item includes variables like Mesh, Materials, Entitlement Code, Achievement Code, level requirement, and Quality.
+                                 </div>                                                 
+                                 <div class="content pad top-5">
+                                    Using Cloud Saves, I am able to store both male and female customization settings into CustomizationGender structs, which are components of a larger CustomizationPayload struct. The Payload also contains which gender the player currently has equipped. Also stored is the Vruumba customization. These settings are recieved by sending Async requests to the Cloud Service.
                                  </div>
-                                     </div>  
+
                              <!--//DATA TABLE ROW CODE-->
-                             <div class="content pad btm-10">
-                                     </div> 
+                                 
+                                                                  <!--DATA TABLE ROW CODE-->
+                                 <button class=" collapse-button " data-toggle="collapse" href="#customization-cloud-save-collapse" role="button" aria-expanded="true" aria-controls="customization-cloud-save-collapse">
+                  <div class="collapse-button-content">
+                Code: Schema and Implementation <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                    </button>
+                                                                  <div class="collapse collapse-content-inner" id="customization-cloud-save-collapse">
+
+                             <div class="content pad vt-10 font-20">Cloud Save Schema</div>
+                                <div class="content">
+                                    Each gender is saved in separate objects, allowing both genders to be stored and swapped on the fly.                                      
+                                </div>
+                                 <pre class="content-block prettyprint lang-json code-snippet ">{
+    "female": {
+        "appearance_preset_selected": string,
+        "body": string,
+        "eye_color_selected": string,
+        "feet": string,
+        "hair_color": string,
+        "head": string,
+        "legs": string,
+        "skin_tone_selected": string
+    },
+    "male": {
+        "appearance_preset_selected": string,
+        "body": string,
+        "eye_color_selected": string,
+        "feet": string,
+        "hair_color": string,
+        "head": string,
+        "legs": string,
+        "skin_tone_selected": string
+    },
+    "male_selected": bool,
+    "version": double,
+    "vruumba": {
+        "antenna": string,
+        "body":string,
+        "particles":string
+    }
+}</pre>
+                              <div class="content pad vt-10 font-20">Struct Implementation</div>
+                                <div class="content">
+                                    Each gender is saved in separate objects, allowing both genders to be stored and swapped on the fly.                                      
+                                </div>
+                                 <pre class="content-block prettyprint lang-cc linenums:523 code-snippet ">USTRUCT(BlueprintType)
+struct FFCTCloudCustomizationGender
+{
+	GENERATED_USTRUCT_BODY()
+
+		static FFCTCloudCustomizationGender Get() { return FFCTCloudCustomizationGender(); }
+
+	FFCTCloudCustomizationGender FromJSonObject(FJsonObject& RecordObject)
+	{
+		return {
+
+			RecordObject.GetStringField("skin_tone_selected"),
+			RecordObject.GetStringField("eye_color_selected"),
+			RecordObject.GetStringField("appearance_preset_selected"),
+			RecordObject.GetStringField("head"),
+			RecordObject.GetStringField("body"),
+			RecordObject.GetStringField("legs"),
+			RecordObject.GetStringField("feet"),
+			RecordObject.GetStringField("hair_color"),
+			RecordObject.GetStringField("facial_hair"),
+			RecordObject.GetStringField("accessory"),
+			RecordObject.GetStringField("eyewear")
+		};
+	};
+
+	UPROPERTY(BlueprintReadWrite)
+	FString skin_tone_selected;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString eye_color_selected;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString appearance_preset_selected;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString head;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString body;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString legs;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString feet;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString hair_color;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString facial_hair;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString accessory;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString eyewear;
+
+};
+
+USTRUCT(BlueprintType)
+struct FFCTCloudCustomizationVruumba {
+	GENERATED_BODY()
+
+public:
+	static FFCTCloudCustomizationVruumba Get() { return FFCTCloudCustomizationVruumba(); }
+
+	TSharedPtr&lt;FJsonObject&gt; ToJSonObject()
+	{
+		return FJsonObjectConverter::UStructToJsonObject&lt;FFCTCloudCustomizationVruumba&gt;(*this);
+	}
+
+	FFCTCloudCustomizationVruumba FromJSonObject(const FJsonObject& RecordObject) 
+	{
+		FString Body, Antenna, Particles;
+
+		if (false == RecordObject.TryGetStringField("body", Body) || Body == "")
+			Body = "default";
+
+		if (false == RecordObject.TryGetStringField("antenna", Antenna) || Antenna == "")
+			Antenna = "nothing";
+
+		if (false == RecordObject.TryGetStringField("particles", Particles) || Particles == "")
+			Particles = "default";
+
+		return
+		{
+			Body,
+			Antenna,
+			Particles
+		};
+	}
+
+	UPROPERTY(BlueprintReadWrite)
+	FString body;
+
+	UPROPERTY(BlueprintReadWrite)
+	FString antenna;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString particles;
+};
+
+USTRUCT(BlueprintType)
+struct FFCTCloudCustomizationPayload
+{
+	GENERATED_USTRUCT_BODY()
+
+	static FFCTCloudCustomizationPayload Get() { return FFCTCloudCustomizationPayload(); }
+
+	TSharedPtr&lt;FJsonObject&gt; ToJSonObject()
+	{
+		return FJsonObjectConverter::UStructToJsonObject&lt;FFCTCloudCustomizationPayload&gt;(*this);
+	}
+
+	FFCTCloudCustomizationPayload FromJSonObject(const FJsonObject& RecordObject)
+	{
+		TArray&lt;TSharedPtr&lt;FJsonValue&gt;&gt; JsonTrophies = RecordObject.GetArrayField("trophy_info");
+        
+		for (TSharedPtr&lt;FJsonValue&gt; Value : JsonTrophies) {
+			trophies.Add(Value-&lt;AsNumber());
+		}
+
+		return
+		{
+			FFCTCloudCustomizationGender::Get().FromJSonObject(*RecordObject.GetObjectField("male")),
+			FFCTCloudCustomizationGender::Get().FromJSonObject(*RecordObject.GetObjectField("female")),
+			FFCTCloudCustomizationVruumba::Get().FromJSonObject(*RecordObject.GetObjectField("vruumba")),
+			RecordObject.GetBoolField("male_selected")
+		};
+	};
+
+
+	UPROPERTY(BlueprintReadWrite)
+	FFCTCloudCustomizationGender male;
+
+	UPROPERTY(BlueprintReadWrite)
+	FFCTCloudCustomizationGender female;
+
+	UPROPERTY(BlueprintReadWrite)
+	FFCTCloudCustomizationVruumba vruumba;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool male_selected;
+
+};</pre>
                              </div>                
-                              
-                             <!-- FRIENDS AND PARTY BUTTON -->
+                             </div>
+                                 <!-- FRIENDS AND PARTY BUTTON -->
                              <button class="collapse-button" id="friends-party-button" type="button" data-toggle="collapse" data-target="#friends-party"
             aria-expanded="true" aria-controls="friends-party">
                                  <div class ="collapse-button-content">Cross-Platform Friends And Party Functionality <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
