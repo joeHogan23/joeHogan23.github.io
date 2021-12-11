@@ -360,6 +360,13 @@ iframe{
 .content.pad.btm-5 { padding-bottom: 5px; }
 .content.pad.btm-10 { padding-bottom: 10px; }
 .content.pad.btm-20 { padding-bottom: 20px; }
+.content.pad.lft-5 { padding-left: 5px; }
+.content.pad.lft-10 { padding-left: 10px; }
+.content.pad.lft-20 { padding-left: 20px; }
+.content.pad.rgt-5 { padding-right: 5px; }
+.content.pad.rgt-10 { padding-right: 10px; }
+.content.pad.rgt-20 { padding-right: 20px; }
+
 
 .content.pad.vt-5 {
     padding-top: 5px;
@@ -375,6 +382,23 @@ iframe{
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+.content.pad.hz-5 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.content.pad.hz-10 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.content.pad.hz-20 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
 
 .content.right{
     text-align: right;

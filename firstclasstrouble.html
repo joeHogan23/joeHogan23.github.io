@@ -98,17 +98,17 @@
                             <tbody>
                                <tr class = "header-content">
                                   <td><b>roles</b></td>
-                                  <td> C++ Programmer &bull; Account Services Admin &bull; UI Designer </td>
+                                  <td> C++ Programmer &bull; UI/UX Designer &bull; Account Services Management</td>
                                </tr>
                                <tr>
                                   <td><b>software</b></td>
                                   <td> Unreal Engine 4 &bull; Adobe Photoshop &bull; 
-                                     Visual Studio 2019 &bull; Perforce &bull; JIRA
+                                     Visual Studio 2019 &bull; Perforce &bull; JIRA &bull; Sentry
                                   </td>
                                </tr>
                                <tr class = "header-content">
                                   <td><b>languages</b></td>
-                                  <td> C++ &bull; C# &bull; JSON &bull; XML</td>
+                                  <td> C++ &bull; C# &bull; JSON &bull; XML &bull; UE4 Blueprints</td>
                                </tr>
                                <tr class = "header-content">
                                   <td><b>team size</b></td>
@@ -137,55 +137,7 @@
                          
                          <div class="accordion" id="project-accordion">
                          
-                             <!-- PROFILE AND ACCOUNT SERVICES BUTTON -->
-
-                             <button class="collapse-button" id="cloud-saves-button" type="button" data-toggle="collapse" data-target="#cloud-saves" aria-expanded="true" aria-controls="cloud-saves">
-                                 <div class ="collapse-button-content">Cloud Saves and JSon Conversions
-                                     <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
-                             </button>
-                             <!-- //PROFILE AND ACCOUNT SERVICES BUTTON BUTTON -->         
                              
-                             <!-- PROFILE AND ACCOUNT SERVICES BUTTON CONTENT -->
-                             
-                             <div class="collapse collapse-content" id="cloud-saves">
-                                 <div class="content pad vt-5">
-                                    Aside from benefits that cloud storage provides, like data that moves with the Account, Cloud Saving has been one of the most valuable tools when it comes to getting remote player data without needing a dedicated server.
-                                                                      </div>
-
-                                 <div class="content">
-                                        With Cloud Saves, we are able to store:
-                                     <ul>
-                                         <li>
-                                            Player Profile Info        
-                                         </li>
-                                         <li>
-                                            Avatar Customization Info
-                                             <ul>
-                                                 <li>
-                                                    Male and Female Outfit, including currently selected Gender
-                                                 </li>
-                                                 <li>
-                                                    Vruumba Configuration ("Ghost Avatar")
-                                                 </li>
-                                             </ul>
-                                         </li>
-                                         <li>
-                                            Current Platform Info
-                                             <ul>
-                                                <li>
-                                                    Last Used Platform
-                                                </li>
-                                                <li>
-                                                    Platform User Id
-                                                </li>
-                                             </ul>
-                                         </li>
-                                     </ul>
-                                 </div>
-                             </div>
-                             
-                             
-                             <!-- //PROFILE AND ACCOUNT SERVICES BUTTON CONTENT -->
 
                              
                              <!-- CHARACTER CUSTOMIZATION BUTTON -->                             
@@ -197,11 +149,31 @@
                              <!-- //AI BUTTON -->                         
                              <!-- AI CONTENT -->
                              <div class="collapse collapse-content" id="character-customization">
+                              <div class="content font-36 pad top-10">Design and Implementation</div>
+                                 <div class="content pad top-5">
+                                 Customization, above anything else, is one of the most complex constructs in the game. I was first tasked with creating customization when starting at Invisible Walls, and it has undergone a few refactors over the last year. I am proud of the final product, having complete ownership over the entire feature, and independently developed and programmed it, top-to-bottom.                                  
+                                 </div>
+                                 <div class="content pad top-10">
+
+                                        <ul>
+                                            <li>Designed UI elements in Photoshop to import into game</li>
+                                            <li>Developed blueprints for UI functionality, with a shared base class for Gamepad highlight states</li>
+                                            <li>Created a polymorphic set of classes for Male, Female and Vruumba Customization options</li>
+                                            <li>Monitoring Profiler to ensure optimized performance, and only cache asseets when they are needed</li>
+                                            <li>Assigned assets to Character Blueprints, in Main Menu and in Game</li>
+                                            <li>Data Table driven functionality, designed to be used by non-technical consumers, like our Designers</li>
+                                            <li>Utilizes Cloud Saves to record Player loadouts</li>
+                                        </ul></div>
+                                <div class = "content">
+                                             <video muted autoplay loop>
+                <source src="videos/FCT_Customization.mp4" type="video/mp4"/>
+            </video>
+                                 </div>
                                  <div class="content font-36 pad top-5">Utilizing Data Tables</div>
                                                <div class="content pad top-5">
                                  One of the major components I developed for Customization was an easy-to-use set of Data Tables in C++ and Blueprint. This allowed for anyone to easily add new items to the Customization Menu. Each item includes variables like Mesh, Materials, Entitlement Code, Achievement Code, level requirement, and Quality.
                                  </div>
-                                 <div class="content pad top-10">
+                                 <div class="content pad top-10 btm-5">
                                                  <ul>
                                                  <li>Mesh and Materials are assigned to a Skeletal Mesh on the Preview Character, and In-Game Character</li>
                                                   <li>Codes and level requirement determines whether the item is usable
@@ -218,7 +190,7 @@
                   <div class="collapse-button-content">
                 Code: Data Table Row <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                     </button>
-                                 <div class="collapse collapse-content-inner" id="enemy-manager-collapse">
+                                 <div class="collapse collapse-content-inner content pad lft-20" id="enemy-manager-collapse">
                     
                                      <div class="content pad vt-10">
                                          This is the Data used to construct an ItemCard used to select an Item in the Blueprint Menu
@@ -334,21 +306,26 @@ public:
 </div>  
 
                                                                       <div class="content font-36 pad top-10">Creating Public Cloud Saves</div>
-                                               <div class="content pad top-5">
+                                               <div class="content pad btm-10">
                                  One of the major components I developed for Customization was an easy-to-use set of Data Tables in C++ and Blueprint. This allowed for anyone to easily add new items to the Customization Menu. Each item includes variables like Mesh, Materials, Entitlement Code, Achievement Code, level requirement, and Quality.
                                  </div>                                                 
-                                 <div class="content pad top-5">
-                                    Using Cloud Saves, I am able to store both male and female customization settings into CustomizationGender structs, which are components of a larger CustomizationPayload struct. The Payload also contains which gender the player currently has equipped. Also stored is the Vruumba customization. These settings are recieved by sending Async requests to the Cloud Service.
+                                 <div class="content">
+                                     <ul>
+                                    <li>Using Cloud Saves, I am able to store both male and female customization settings into CustomizationGender structs, which are components of a larger CustomizationPayload struct.</li>
+                                    <li>The Payload contains which gender the player currently has equipped. </li>
+                                    <li>Also stored is the Vruumba Customization. These settings are recieved by sending Async requests to the Cloud Service.</li>
+                                         </ul>
                                  </div>
 
                              <!--//DATA TABLE ROW CODE-->
-                                 
+
+
                                                                   <!--DATA TABLE ROW CODE-->
                                  <button class=" collapse-button " data-toggle="collapse" href="#customization-cloud-save-collapse" role="button" aria-expanded="true" aria-controls="customization-cloud-save-collapse">
                   <div class="collapse-button-content">
-                Code: Schema and Implementation <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                Code: Schema, Implementation, and JSon to Struct Conversion <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                     </button>
-                                                                  <div class="collapse collapse-content-inner" id="customization-cloud-save-collapse">
+                                                                  <div class="collapse collapse-content-inner content pad btm-10" id="customization-cloud-save-collapse">
 
                              <div class="content pad vt-10 font-20">Cloud Save Schema</div>
                                 <div class="content">
@@ -385,7 +362,7 @@ public:
 }</pre>
                               <div class="content pad vt-10 font-20">Struct Implementation</div>
                                 <div class="content">
-                                    Each gender is saved in separate objects, allowing both genders to be stored and swapped on the fly.                                      
+                                    Each gender is saved in separate objects, allowing both genders to be stored and swapped on the fly. Vruumba is also stored here.                             
                                 </div>
                                  <pre class="content-block prettyprint lang-cc linenums:523 code-snippet ">USTRUCT(BlueprintType)
 struct FFCTCloudCustomizationGender
@@ -533,24 +510,40 @@ struct FFCTCloudCustomizationPayload
 	bool male_selected;
 
 };</pre>
-                             </div>                
-                             </div>
-                                 <!-- FRIENDS AND PARTY BUTTON -->
-                             <button class="collapse-button" id="friends-party-button" type="button" data-toggle="collapse" data-target="#friends-party"
-            aria-expanded="true" aria-controls="friends-party">
-                                 <div class ="collapse-button-content">Cross-Platform Friends And Party Functionality <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
-                             </button>
-                             <!-- //FRIENDS AND PARTY BUTTON -->         
-                             
-                             <!-- FRIENDS AND PARTY CONTENT -->
-                             <div class="collapse collapse-content" id="friends-party">
-                                 <div class="content font-36 pad top-5">Friends List Overlay</div>
- 
-                             </div>
-                             <!-- //FRIENDS AND PARTY CONTENT -->
+                             </div>       
+                                                                  <button class=" collapse-button " data-toggle="collapse" href="#blueprint-customization-cloud-save-collapse" role="button" aria-expanded="true" aria-controls="blueprint-customization-cloud-save-collapse">
+                  <div class="collapse-button-content">
+                Blueprint: Remote Player Implementation <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/>
+                                     
+                                     </div>
+                    </button>
+                 <div class="collapse collapse-content-inner content pad btm-10" id="blueprint-customization-cloud-save-collapse">
+                                                  <div class="content pad top-10 font-24">Replicating Customization to Players</div>
+                                <div class="content pad vt-10">
+                                    When a player joins the backfill map (pre-game lobby), they assign their UserId in the Character,  and Replicates its the Id to the other users.                                      
+                                </div>
+                     <div class="content">
+                                    The Character Pawn uses this info and setsup the character appearance by utilizing the Data Table Structures
+                        <li>
+                            Is Male updates the Mesh, Rig, and Skin Materials of the root Skeletal Mesh
+                        </li>
+                        <li>
+                            Appearance Features for Eye Color, Hair Color, and Skin Tone
+                        </li>
+                        <li>
+                            Wardrobe loadout: Headwear, Eyewear, Facial Hair, Accessory, Top, Pants, and Feet    
+                        </li>
+                        <li>
+                            Similar Process exists on Vruumba Character when a player dies
+                         </li>
+                                </div>
+                     <div class="content pad top-10 rgt-5"><img src="images/FCT_Blueprint_GetPlayerCustomizationInMatch.PNG"/></div>
 
+                 </div>
+                                 <div class="content pad btm-10"></div>
+                             </div>
                              
-                            <!-- PROFILE AND ACCOUNT SERVICES BUTTON -->
+                                                         <!-- PROFILE AND ACCOUNT SERVICES BUTTON -->
 
                              <button class="collapse-button" id="profile-button" type="button" data-toggle="collapse" data-target="#profile"
             aria-expanded="true" aria-controls="profile">
@@ -561,28 +554,453 @@ struct FFCTCloudCustomizationPayload
                              <!-- PROFILE AND ACCOUNT SERVICES CONTENT -->
                              
                              <div class="collapse collapse-content" id="profile">
-                                 <div class="content font-36 pad top-5">Player Recording through Cloud Saves</div>
+                                 <div class="content pad top-5">
+                                 During my Tenure, I worked on Account Services, Social Features, and Platform-Specific utility functions with different Plugins. As we worked on Steam Early Access release, I started with the Steamworks SDK, and soon migrated over to the platform-agnostic plugin, OnlineSubsystem. Currently we are now using AccelByte, due to it's cross-platform functionality.
+                                 </div>
+                                 <div class="content">I still setup OnlineSubSystem to login the user, and get an auth token, which would then be passed into the AccelByte Login request to authenticate with the services. I have had success making all of the Account related features through their Endpoints</div>
+                                 <div class="content pad top-10">
+
+                                        <ul>
+                                            <li>Cloud Records for Individual users and global files for the game<ul><li>With Cloud Records, I was able to store the Player Profile, Platform Info, and Customization Info</li></ul></li>
+                                            <li>Lobby and Social Features
+                                            <ul><li>Cross-platform Friendslists</li>
+                                                <li>Party Lobbies</li>
+                                                </ul></li>
+                                            <li>Matchmaking</li>
+                                            <li>Analytics, by creating events and sending meta-data</li>
+                                        </ul></div>
                              </div>
                              
                              <!-- //PROFILE AND ACCOUNT SERVICES CONTENT -->
+                                 <!-- FRIENDS AND PARTY BUTTON -->
+                             <button class="collapse-button" id="friends-button" type="button" data-toggle="collapse" data-target="#friends"
+            aria-expanded="true" aria-controls="friends">
+                                 <div class ="collapse-button-content">Cross-Platform Friendslists<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                             </button>
+                             <!-- //FRIENDS AND PARTY BUTTON -->         
+                             
+                             <!-- FRIENDS AND PARTY CONTENT -->
+                             
+                             
+                             <div class="collapse collapse-content" id="friends">
+ <div class="content pad top-5">
+                                 Like Customization, the Friendslist has had multiple iterations, UI overhauls, and a few different SDK updates requiring changes to the functionality. 
+     <ul><li>It uses a tab-menu I wrote for our submenus, and has a few tabs for both friend and party related lists</li>
+         <li>Each user is setup with a #XXXX code to allow users on various platforms to retain their original Platform name, while making a unique identifier.</li>
+     <li>Uses Presence to get online/offline status, and a URL-encoded method to store Platform Info<ul><li>If No Presence data is available, Cloud Saves are used to get Plaform Info</li></ul></li></ul>
+                                                                              <video muted autoplay loop>
+                <source src="videos/FCT_Friendslist.mp4" type="video/mp4"/>
+            </video>
+                                 </div>
+                                                                  <button class=" collapse-button " data-toggle="collapse" href="#friend-code-collapse" role="button" aria-expanded="true" aria-controls="friend-code-collapse">
+                  <div class="collapse-button-content">
+                Code: Blueprint-Ready Async Class and Optimization through Request Batching<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                    </button>
+                                                                  <div class="collapse collapse-content-inner content pad btm-10" id="friend-code-collapse">
 
+                            
+                                 <pre class="content-block prettyprint lang-cc linenums:106 code-snippet ">
+                                 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FFriendsListDelegate, FFCTFriendsList, FriendsList, FString, Message);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FFriendErrorDelegate, FString, Message);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FFriendManagementDelegate, FString, FriendId, FString, Message);
+
+UCLASS(BlueprintType)
+class SCT_API UFCTGetFriendsListAsyncProxy : public UBlueprintAsyncActionBase
+{
+	GENERATED_BODY()
+
+public:
+	//Blueprint Trigger Functions, returns OnSuccess or OnError events
+	UFUNCTION(BlueprintCallable, Category = "FCT AccelByte | Friends", meta = (BlueprintInternalUseOnly))
+	static UFCTGetFriendsListAsyncProxy* GetOnlineUsersRequest();
+
+	UFUNCTION(BlueprintCallable, Category = "FCT AccelByte | Friends", meta = (BlueprintInternalUseOnly))
+	static UFCTGetFriendsListAsyncProxy* GetFriendsList();
+
+	UFUNCTION(BlueprintCallable, Category = "FCT AccelByte | Friends", meta = (BlueprintInternalUseOnly))
+	static UFCTGetFriendsListAsyncProxy* GetIncomingList();
+
+	UFUNCTION(BlueprintCallable, Category = "FCT AccelByte | Friends", meta = (BlueprintInternalUseOnly))
+	static UFCTGetFriendsListAsyncProxy* GetOutgoingList();
+
+	UFUNCTION(BlueprintCallable, Category = "FCT AccelByte | Friends", meta = (BlueprintInternalUseOnly))
+	static UFCTGetFriendsListAsyncProxy* SearchForUser(const FString& Username);
+
+	//Get The RecentlyPlayedWith list from Cloud Save
+	UFUNCTION(BlueprintCallable, Category = "FCT AccelByte | Friends", meta = (BlueprintInternalUseOnly))
+	static UFCTGetFriendsListAsyncProxy* GetRecentList();
+
+	//Create A list of Arrays to pass into Bulk Requests
+	TSharedPtr&lt;FFCTFriendBatchNode&gt; CreateLinkedList(TArray&lt;FString> InFriendIds);
+
+	UPROPERTY(BlueprintAssignable)
+	FFriendsListDelegate OnSuccess;
+
+	UPROPERTY(BlueprintAssignable)
+	FFriendErrorDelegate OnError;
+
+private:
+
+	//Starts making sequential requests to add to FriendsList
+	//When finished and all players are in list, create a new linked list and begin fetching their presence
+	void AddCurrentLLNodeToFriendsList(TWeakObjectPtr&lt;UFCTGetFriendsListAsyncProxy&gt; ThisPtr, TSharedPtr&lt;FFCTFriendBatchNode&gt; InCurrentBatch);
+
+	//Occurs After AddCurrentLLNodeToFriendsList, adds presence to uses
+	void AddBulkPresenceToFriendsListFromCurrentNode(TWeakObjectPtr&lt;UFCTGetFriendsListAsyncProxy&gt; ThisPtr, TSharedPtr&lt;FFCTFriendBatchNode&gt; InCurrentBatch);
+
+	//Checks if Endpoint fails to return all users
+	bool BatchResponseHasMissingUser(TWeakObjectPtr&lt;UFCTGetFriendsListAsyncProxy&gt; ThisPtr, TSharedPtr&lt;FFCTFriendBatchNode&gt; InCurrentBatch, int32 ResponseCount);
+	
+	//Add individual User to friendlist if Response has missing user
+	void GetUserByUserId(TWeakObjectPtr&lt;UFCTGetFriendsListAsyncProxy&gt; ThisPtr, FString UserId);
+	
+	//Gets Cloud Save if Presence is unavailable for a user
+	void GetStatusByCloudSave(TWeakObjectPtr&lt;UFCTGetFriendsListAsyncProxy&gt; ThisPtr, FString UserId);
+
+	//HTTP Request triggers
+	void Send();
+	void SendIncoming();
+	void SendOutgoing();
+	void SendRecentlyPlayedWith();
+
+	//Store RecentlyPlayedWith in AccelByteGIS class when launching game
+	void CacheGetRecentlyPlayedWith(FFCTRecentlyPlayedWithPayload Payload);
+
+	//Find User by Username, with #XXXX friend code
+	void SearchUser(const FString& Username);
+
+
+	//Get an individual User and add to list - Relationship determines which set of button widgets will appear
+	void AddToIncomingList(FString& FriendId);
+	void AddToOutgoingList(FString& FriendId);
+	void AddToSearchList(FString FriendId, ERelationshipStatusCode Relationship);
+	void AddToRecentlyPlayedWithList(FFCTRecentlyPlayedWithUser User, ERelationshipStatusCode Relationship);
+
+	//Sort Methods
+	void SortAlphabetically(FFCTFriendsList& List);
+	void SortByLastPlayedWith(FFCTFriendsList& List);
+	static bool SortAlphabeticalPredicate(const FFCTFriendProfile& ProfileA, const FFCTFriendProfile& ProfileB);
+	static bool SortByLastPlayedWithTimespanPredicate(const FFCTFriendProfile& ProfileA, const FFCTFriendProfile& ProfileB);
+	static bool SortByLastPlayedWithDateTimePredicate(const FFCTRecentlyPlayedWithUser& UserA, const FFCTRecentlyPlayedWithUser& UserB);
+	
+	//Specific Timestamp sorting with RecentlyPlayedWith
+	void SortByLastPlayedWith(FFCTRecentlyPlayedWithPayload& List);
+
+	//Set when beginning a new batch HTTP Request for populating a List, and gathering Bulk User Presence 
+	TSharedPtr&lt;FFCTFriendBatchNode> CurrentLLNode;
+
+	UPROPERTY()
+	TArray&lt;FString> FriendIds;
+
+	UPROPERTY()
+	int32 Count = 0;
+
+	//Keeps track of current position in list of UserIds while creating LinkedList. Needed for recursion, to know where to start.
+	UPROPERTY()
+	int32 PresenceCapturePosition = 0;
+
+	//How big a batch of users can be in LinkedList
+	UPROPERTY()
+	int32 PresenceCaptureGroupSize = 20;
+
+	//Keeps the OnSuccess from triggering while Users with No Presence gets the PlatformInfo Cloud File
+	UPROPERTY()
+	int32 OutstandingProfilePresenceCount = 0;
+
+	UPROPERTY()
+	FFCTFriendsList OnlineUserList;
+
+	//Sent in OnSuccess when request is complete
+	UPROPERTY()
+	FFCTFriendsList List;
+
+	UPROPERTY()
+	FFCTFriendsList RecentList;
+
+	//Custom Structure for Recently Played with, includes timestamps, list limit
+	UPROPERTY()
+	FFCTRecentlyPlayedWithPayload RecentlyPlayedWithCloudPayload;
+};</pre>
+               <div class="content pad top-10">The LinkedList was an important recent addition to vastly reduce and optimize traffic to our service provider. Originally, we only had the ability to get individual users, using a list of UserId's. When a Bulk request endpoint was added for FriendProfiles and UserPresence, I needed to make a way to request in batches due to the character limit of 2048 in an HTTP request. This way, we can gate how many users are in a request at a time, and avoid an Error response. Although it is called a LinkedList in the source, I am using it like a Queue, as it is only a Singly Linked List, and I am proceeding through the list sequentially, as each Async Response returns.</div>                
+                                                                  <pre class="content-block prettyprint lang-cc linenums:80 code-snippet ">/// &lt;summary>
+/// Groups Friends into sequential lists, to be used 
+/// &lt;/summary>
+/// &lt;param name="InFriendIds"> - Full list of Friend UserIds&lt;/param>
+/// &lt;returns>Starting Node in LinkedList - Head->Next retrieves next item in line&lt;/returns>
+TSharedPtr&lt;FFCTFriendBatchNode> UFCTGetFriendsListAsyncProxy::CreateLinkedList(TArray&lt;FString> InFriendIds)
+{
+	//No need to run rest of function
+	if(InFriendIds.Num() &lt;= PresenceCaptureGroupSize)
+	{
+		return MakeShared&lt;FFCTFriendBatchNode>(InFriendIds, nullptr);
+	}
+
+	//Driver, Current value gets pushed back whenever a new list is added to 
+	TSharedPtr&lt;FFCTFriendBatchNode> Head = nullptr;
+
+	//*********************************************************************************************************//
+	//** Works backwards, StopPos acts like a stopping point for adding friends to a batch
+	//** StartPos is the Last StopPos, starting at one index ahead to avoid duplicating the last added user
+	//** Init StartPos to FriendCount because the StopPos is set mid-loop - This sets up first iteration range
+	//*********************************************************************************************************//
+	for (int32 StopPos = InFriendIds.Num(), StartPos = InFriendIds.Num(); StopPos > 0; StartPos = StopPos - 1)
+	{
+                //Sets starting position for next loop iteration, and nested loop range below
+		//If StopPos is less than or equal to the group size, setting to 0 and will end the loop
+                //Else it will setup the range for Batching loop, and next iteration
+		StopPos = StopPos > PresenceCaptureGroupSize ? 
+		StopPos - PresenceCaptureGroupSize : 0;
+		
+		TArray&lt;FString> UserBatch;
+		
+		//Uses the calculated StopPos to create the loop range for current Batch
+		for(int CurrPos = StartPos; CurrPos >= StopPos; --CurrPos)
+		{
+			UserBatch.Add(InFriendIds[CurrPos]);
+		}
+
+		//Push Back for new Head Node
+		Head = MakeShared&lt;FFCTFriendBatchNode>(UserBatch, Head);
+	}
+    //Loaded up for Sequential Bulk Requests
+	return Head;
+}
+</pre>
+         <div class="content pad top-10">FFCFriendslistBatch Structure</div>                
+<pre class="content-block prettyprint lang-cc linenums: code-snippet ">//Singly Linked List
+USTRUCT()
+struct FFCTFriendBatchNode
+{
+	GENERATED_BODY()
+
+	FFCTFriendBatchNode(){};
+	FFCTFriendBatchNode(TArray&lt;FString> InUserIds, TSharedPtr&lt;FFCTFriendBatchNode> InNext) : 
+        UserIds(InUserIds), Next(InNext){};
+
+	UPROPERTY()
+	TArray&lt;FString> UserIds;
+
+public:
+	TSharedPtr&lt;FFCTFriendBatchNode> Next;
+};</pre>
+                             </div>     
+                                 <div class="content pad top-5"> 
+                                 
+                                 
+                                 
+                                 I have a series of Notifiers and Responses in blueprint to update the Friendslist in Real-time. </div>                      <div class="content pad top-10 rgt-5"><img src="images/FCT_Blueprint_FriendsUpdateNotifs.PNG"/></div>
+ <div class="content pad top-10"> 
+                                 </div>
+                             </div>
+                             <!-- //FRIENDS AND PARTY CONTENT -->
+
+                                                              <!-- FRIENDS AND PARTY BUTTON -->
+                             <button class="collapse-button" id="party-button" type="button" data-toggle="collapse" data-target="#party"
+            aria-expanded="true" aria-controls="party">
+                                 <div class ="collapse-button-content">Grouping Up With Party Lobbies<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                             </button>
+                             <!-- //FRIENDS AND PARTY BUTTON -->         
+                             
+                             <!-- FRIENDS AND PARTY CONTENT -->
+                             
+                             
+                             <div class="collapse collapse-content" id="party">
+ <div class="content pad top-5">
+                                 The Party system is a companion to Friendslist, and as you recieve friend requests through an in-game popup, you are teleported to their lobby, and using notifiers on the invitee, and an accept response on all members in the party, the UI is updated, and the party members are now linked when searching for a game. There is a bunch of Characters in the Main Menu that are enabled, and assigned Customization loadout via Cloud Saves. The Party List is also updated. Aside from the Playstation Specific logic for system-level parties, I had complete ownership over the design and implementation.
+                                                                              <video muted autoplay loop>
+                <source src="videos/FCT_PartyInMenu.mp4" type="video/mp4"/>
+            </video>
+                                 </div>
+                                 <div class="content"> 
+                                 
+                                 
+                                 
+                                 I have a series of Notifiers and Responses In blueprint to update the Friendslist in Real-time.</div>                      <div class="content pad top-10 rgt-5"><img src="images/FCT_Blueprint_FriendsUpdateNotifs.PNG"/></div>
+ <div class="content pad top-10"> 
+                                 </div>
+                             </div>
+                             <!-- //FRIENDS AND PARTY CONTENT -->
+
+                             
                             <!-- IN-GAME DLC BUTTON -->
 
                              <button class="collapse-button" id="dlc-button" type="button" data-toggle="collapse" data-target="#dlc"
             aria-expanded="true" aria-controls="dlc">
-                                 <div class ="collapse-button-content">Updating In-Game DLC Menu Layout using Cloud Game Records<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                                 <div class ="collapse-button-content">Updating UI Dynamically with Cloud Records<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
                              <!-- //IN-GAME DLC BUTTON -->         
                              
                              <!-- IN-GAME DLC CONTENT -->
                              
                              <div class="collapse collapse-content" id="dlc">
-                                 <div class="content font-36 pad top-5">Player Recording through Cloud Saves</div>
+                                 <div class="content font-36 pad top-5">Server-Driven UI, Without a Patch</div>
+                                 <div class="content">
+                                    One of my favorite Features that I got to implement was using Cloud Files to instantly Update UI. This allowed us to add/remove leaderboards, prep DLC for release, and have dynamic service Messages, all without disrupting users and requiring them to update the game.
+                        <ul><li>
+                            Structures are put in a JSon format and reformatted into structs that will control how UI is displayed
+                        </li>
+                        <li>
+                            A Language object is in the JSon to provide a way to localize text.
+                        </li></ul>
+
+<div class="content pad vt-10 font-24">Downloadable Content Implementation</div>
+                                                                     <div class="content pad btm-10">
+                                                                         The DLC UI is my favorite use-case for Server-Driven UI. It is also the most useful. It allows us to prepare for a newly released Pack, and just enable as needed.</div>
+                                                                                  <video muted autoplay loop>
+                <source src="videos/FCT_DLC_DynamicUI.mp4" type="video/mp4"/>
+            </video>
+<div class="content pad top-10 font-20">Global JSon Schema</div>
+
+<div class="content">
+                                    <ul class="content pad vt-10">
+                                    <li>
+                                        <i>bDoubleSpan</i> allows us to determine width in grid
+                                        </li>
+                                        <li><i>discount</i> is straightforward, input the percent off the item is, and a UI will popup with discount value</li>
+                                        <li><i>enabled</i> is to hide item until ready for release</li>
+                                        <li><i>lang</i> is for localization, and is used in a very server-driven UI schemas.
+                                        <ul><li>lang has a unique <i>FExternalLocalizationData</i> struct that takes Unreal's CurrentLanguage, compares to the 2 character Culture Code, and finds which language to use in-game</li></ul> </li>
+                                        <li><i>loadOrder</i> sorts elements on the client by this value</li>
+                                        <li>The Id variables are just store AppId's for each platform, determined and assigned by the client</li>
+                                        <li>The Thumbnail Urls are stored on our storage server, and I wrote a conversion function to request an image via URL, convert it from raw image data and into a usable UTexture2D</li>
+                                    </ul>
+                                </div>
+                                 <pre class="content-block prettyprint lang-json code-snippet ">{
+    "packs": [
+        {
+            "bDoubleSpan": boolean,
+            "description": string,
+            "discount": float,
+            "enabled": boolean,
+            "lang": {
+                "ar": string,
+                "de": string,
+                "en": string,
+                "es": string,
+                "fr": string,
+                "ja": string,
+                "ko": string,
+                "pt": string,
+                "ru": string,
+                "th": string,
+                "yi": string,
+                "zh": string
+            },
+            "loadOrder": integer,
+            "ps4Id": string,
+            "ps5Id": string,
+            "steamId": string,
+            "thumbnailUrlDoubleSpan": string,
+            "thumbnailUrlSingleSpan": string
+        }
+    ]
+}</pre>                                </div>
+<div class="content pad btm-10"></div>
                              </div>
                              
                              <!-- //IN-GAME DLCCONTENT -->
-
+<button class="collapse-button" id="universal-ui-class-button" type="button" data-toggle="collapse" data-target="#universal-ui-class-button"
+            aria-expanded="true" aria-controls="universal-ui-class-button">
+                                 <div class ="collapse-button-content">Mouse and Gamepad Button State Widgets<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                             </button>
+                             <!-- //IN-GAME DLC BUTTON -->         
                              
+                             <!-- IN-GAME DLC CONTENT -->
+                             
+                             <div class="collapse collapse-content" id="universal-ui-class-button"></div>
+                             <!-- PROFILE AND ACCOUNT SERVICES BUTTON -->
+
+                             <button class="collapse-button" id="http-requests-button" type="button" data-toggle="collapse" data-target="#http-requests" aria-expanded="true" aria-controls="http-requests">
+                                 <div class ="collapse-button-content">Moderation and Custom HTTP Requests
+                                     <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                             </button>
+                             <!-- //PROFILE AND ACCOUNT SERVICES BUTTON BUTTON -->         
+                             
+                             <!-- PROFILE AND ACCOUNT SERVICES BUTTON CONTENT -->
+                             
+                             <div class="collapse collapse-content" id="http-requests">
+                                 <div class="content pad vt-5">
+                                     
+                                 </div>
+
+                                 <div class="content">
+                                        With Cloud Saves, we are able to store:
+                                     <ul>
+                                         <li>
+                                            Player Profile Info        
+                                         </li>
+                                         <li>
+                                            Avatar Customization Info
+                                             <ul>
+                                                 <li>
+                                                    Male and Female Outfit, including currently selected Gender
+                                                 </li>
+                                                 <li>
+                                                    Vruumba Configuration ("Ghost Avatar")
+                                                 </li>
+                                             </ul>
+                                         </li>
+                                         <li>
+                                            Current Platform Info
+                                             <ul>
+                                                <li>
+                                                    Last Used Platform
+                                                </li>
+                                                <li>
+                                                    Platform User Id
+                                                </li>
+                                             </ul>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                             <button class="collapse-button" id="analytics-button" type="button" data-toggle="collapse" data-target="#analytics" aria-expanded="true" aria-controls="analytics">
+                                 <div class ="collapse-button-content">Posting Telemetry Data for Analytics
+                                     <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                             </button>
+                             <!-- //PROFILE AND ACCOUNT SERVICES BUTTON BUTTON -->         
+                             
+                             <!-- PROFILE AND ACCOUNT SERVICES BUTTON CONTENT -->
+                             
+                             <div class="collapse collapse-content" id="analytics">
+                                 <div class="content pad vt-5">
+                                     
+                                 </div>
+
+                                 <div class="content">
+                                        With Cloud Saves, we are able to store:
+                                     <ul>
+                                         <li>
+                                            Player Profile Info        
+                                         </li>
+                                         <li>
+                                            Avatar Customization Info
+                                             <ul>
+                                                 <li>
+                                                    Male and Female Outfit, including currently selected Gender
+                                                 </li>
+                                                 <li>
+                                                    Vruumba Configuration ("Ghost Avatar")
+                                                 </li>
+                                             </ul>
+                                         </li>
+                                         <li>
+                                            Current Platform Info
+                                             <ul>
+                                                <li>
+                                                    Last Used Platform
+                                                </li>
+                                                <li>
+                                                    Platform User Id
+                                                </li>
+                                             </ul>
+                                         </li>
+                                     </ul>
+                                 </div>
+                             </div>
+                             
+                             <!-- //PROFILE AND ACCOUNT SERVICES BUTTON CONTENT -->
                      </div>
                   </div>
                </div>
@@ -614,7 +1032,7 @@ struct FFCTCloudCustomizationPayload
             </div>
              </body>
       <footer class="footer" id="footer">
-         <p>&copy; 2020 Joseph M Sierejko</p>
+         <p>&copy; 2021 Joseph M Sierejko</p>
          <p><i>Website Designed and Developed by Me</i></p>
       </footer>
    </html>
