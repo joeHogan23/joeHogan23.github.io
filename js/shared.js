@@ -3,6 +3,8 @@ var loadbar;
 
 var currentHeight = window.innerHeight;
 
+var copyrightDate = "2022"; 
+
 initialize();
 console.log();
 
@@ -14,6 +16,7 @@ $(document).ready(function(){
 //               .addClass('col-xs-12');
 //          });
 //    }
+    
     if(!loadbar){
 	  loadbar = $('#load-bar').cprogress({
 	       percent: 0, // starting position
@@ -91,8 +94,11 @@ window.onload = function(){
 //    }, 2000);
 }
 
-function onPreloaderComplete(){
+function onPreloaderComplete()
+{
 
+    document.getElementById("copyright-date").innerHTML = copyrightDate;
+    
     if($('.background')[0]){
         $('html, body').animate({ scrollTop:0  }, 1);
         bindWindowEvents(1400);
@@ -562,3 +568,4 @@ $.ns.cprogress.defaultOptions = {
 	};
 
 })( jQuery );
+
