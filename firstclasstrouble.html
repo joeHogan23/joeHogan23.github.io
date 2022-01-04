@@ -103,7 +103,7 @@
                                <tr>
                                   <td><b>software</b></td>
                                   <td> Unreal Engine 4 &bull; Adobe Photoshop &bull; 
-                                     Visual Studio 2019 &bull; Perforce &bull; JIRA &bull; Sentry
+                                     Visual Studio 2019 &bull; Perforce &bull; JIRA
                                   </td>
                                </tr>
                                <tr class = "header-content">
@@ -138,7 +138,39 @@
                          <div class="accordion" id="project-accordion">
                          
                              
+                                                         <!-- PROFILE AND ACCOUNT SERVICES BUTTON -->
 
+                             <button class="collapse-button" id="profile-button" type="button" data-toggle="collapse" data-target="#profile"
+            aria-expanded="true" aria-controls="profile">
+                                 <div class ="collapse-button-content">Account Services and Moderation<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                             </button>
+                             <!-- //PROFILE AND ACCOUNT SERVICES BUTTON -->         
+                             
+                             <!-- PROFILE AND ACCOUNT SERVICES CONTENT -->
+                             
+                             <div class="collapse collapse-content" id="profile">
+                                 <div class="content pad top-5">
+                                 Outside of Customization, my primary and ongoing responsibility is maintaining and optimizing our Account Services. This includes all Social Features and Platform-Specific utility functions with different Plugins. As we worked on Steam Early Access release, I started with the Steamworks SDK, and soon migrated over to the platform-agnostic plugin, OnlineSubsystem. Currently we are now using AccelByte, due to it's cross-platform functionality.
+                                 </div>
+                                 <div class="content pad top-5">I still setup OnlineSubSystem to login the user, and get an auth token, which would then be passed into the AccelByte Login request to authenticate with the services. I have had success making all of the Account related features through their Endpoints.</div>
+                                 <div class="content pad top-10">
+
+                                        <ul>
+                                            <li>Cloud Records for Individual users and global files for the game<ul><li>With Cloud Records, I was able to store the Player Profile, Platform Info, and Customization Info</li></ul></li>
+                                            <li>Lobby and Social Features
+                                            <ul><li>Cross-platform Friendslists</li>
+                                                <li>Party Lobbies</li>
+                                                </ul></li>
+                                            <li>Matchmaking</li>
+                                            <li>Analytics, by creating events and sending metadata</li>
+                                        </ul>
+                                 <div>In addition to our provider, I also wrote several HTTP requests to communicate with our internal moderation platform. One crucial purpose was that it allowed us to dynamically display ban messages when a player attempts to find a match. During early access, we had some real issues with feedback, and properly informing users that they have been banned. I developed the UI and added variables we would use to the request. </div>
+                                  <video muted autoplay loop>
+                <source src="videos/FCT_BanMessage.mp4" type="video/mp4"/>
+            </video>
+                                 </div>
+                                 
+                             </div>
                              
                              <!-- CHARACTER CUSTOMIZATION BUTTON -->                             
                              
@@ -176,24 +208,38 @@
                                  <div class="content pad top-10 btm-5">
                                                  <ul>
                                                  <li>Mesh and Materials are assigned to a Skeletal Mesh on the Preview Character, and In-Game Character</li>
-                                                  <li>Codes and level requirement determines whether the item is usable
+                                                  <li>Various types of Codes and level requirement determines whether the item is usable
                                                      <ul>
                                                         <li>Achievement Codes are unlocked when a specific Achievement or Trophy has been Unlocked</li>
                                                         <li>Entitlement Codes are used for DLC redemption, twitch drops, and events. In this case, content won't be visible unless user owns Item</li>
                                                          
                                                      </ul></li>
-                                                     <li>Quality separates items into different Color Categories, under a unique header</li>
+                                                     <li>I am also categorizing the items, to set up identifying traits like Quality, under a unique header</li>
                                              </ul>
                                  </div>
+                                 <div class="content font-36 pad top-5">Replicating Customization In-Game</div>
+                                 <div class="content pad top-10 btm-5">
+                                                 <ul>
+                                                 <li>Using the Cloud Save, along with the Data-Tables setup in the game, users send their data to each other's Clients via Replication</li>
+                                                  <li>Characters remain hidden until all features are setup
+                                                     <li>The same result occurs when players become VRuumbas after dying, replicating the settings to other dead players</li>
+                                             </ul>
+                                 </div>
+                                                                 <div class = "content">
+                                             <video muted autoplay loop>
+                <source src="videos/FCT_CustomizationInGame.mp4" type="video/mp4"/>
+            </video>
+                                 </div>
+
                                  <!--DATA TABLE ROW CODE-->
-                                 <button class=" collapse-button " data-toggle="collapse" href="#enemy-manager-collapse" role="button" aria-expanded="true" aria-controls="enemy-manager-collapse">
+                                 <!--<button class=" collapse-button " data-toggle="collapse" href="#enemy-manager-collapse" role="button" aria-expanded="true" aria-controls="enemy-manager-collapse">
                   <div class="collapse-button-content">
                 Code: Data Table Row <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                     </button>
                                  <div class="collapse collapse-content-inner content pad lft-20" id="enemy-manager-collapse">
                     
                                      <div class="content pad vt-10">
-                                         This is the Data used to construct an ItemCard used to select an Item in the Blueprint Menu
+                                         This is the Data used to construct an ItemCard used to select an Item in the Blueprint Menu.
                                      </div>
 <pre class="content-block prettyprint lang-cc linenums:162 code-snippet ">
 USTRUCT(BlueprintType)
@@ -273,6 +319,7 @@ public:
 	FText Description;
 };
 
+//Body
 USTRUCT(BlueprintType)
 struct FVruumbaSkeletalMeshCustomizationItemTableRow : public FVruumbaCustomizationTableRow
 {
@@ -286,8 +333,10 @@ public:
 	TArray&lt;UMaterialInstance*&gt; Materials;
 };
 
+//
 USTRUCT(BlueprintType)
-struct FVruumbaAnimatedMeshCustomizationItemTableRow : public FVruumbaSkeletalMeshCustomizationItemTableRow {
+struct FVruumbaAnimatedMeshCustomizationItemTableRow : public FVruumbaSkeletalMeshCustomizationItemTableRow 
+{
 	GENERATED_BODY()
 
 public:
@@ -295,8 +344,10 @@ public:
 	TSubclassOf&lt;UObject&gt; AnimationClass;
 };
 
+//Thruster particles
 USTRUCT(BlueprintType)
-struct FVruumbaParticlesCustomizationItemTableRow : public FVruumbaCustomizationTableRow {
+struct FVruumbaParticlesCustomizationItemTableRow : public FVruumbaCustomizationTableRow 
+{
 	GENERATED_BODY()
 
 public:
@@ -321,7 +372,7 @@ public:
 
 
                                                                   <!--DATA TABLE ROW CODE-->
-                                 <button class=" collapse-button " data-toggle="collapse" href="#customization-cloud-save-collapse" role="button" aria-expanded="true" aria-controls="customization-cloud-save-collapse">
+<!--                                 <button class=" collapse-button " data-toggle="collapse" href="#customization-cloud-save-collapse" role="button" aria-expanded="true" aria-controls="customization-cloud-save-collapse">
                   <div class="collapse-button-content">
                 Code: Schema, Implementation, and JSon to Struct Conversion <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                     </button>
@@ -360,7 +411,7 @@ public:
         "particles":string
     }
 }</pre>
-                              <div class="content pad vt-10 font-20">Struct Implementation</div>
+                              <!--<div class="content pad vt-10 font-20">Struct Implementation</div>
                                 <div class="content">
                                     Each gender is saved in separate objects, allowing both genders to be stored and swapped on the fly. Vruumba is also stored here.                             
                                 </div>
@@ -540,42 +591,100 @@ struct FFCTCloudCustomizationPayload
                      <div class="content pad top-10 rgt-5"><img src="images/FCT_Blueprint_GetPlayerCustomizationInMatch.PNG"/></div>
 
                  </div>
-                                 <div class="content pad btm-10"></div>
+                                 <div class="content pad btm-10"></div>-->
                              </div>
                              
-                                                         <!-- PROFILE AND ACCOUNT SERVICES BUTTON -->
 
-                             <button class="collapse-button" id="profile-button" type="button" data-toggle="collapse" data-target="#profile"
-            aria-expanded="true" aria-controls="profile">
-                                 <div class ="collapse-button-content">Player Profile and Account Services<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                             
+                             
+                             <button class="collapse-button" id="http-requests-button" type="button" data-toggle="collapse" data-target="#http-requests" aria-expanded="true" aria-controls="http-requests">
+                                 <div class ="collapse-button-content">UI Design and Implementation with C++ and UMG
+                                     <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
-                             <!-- //PROFILE AND ACCOUNT SERVICES BUTTON -->         
+                             <!-- //PROFILE AND ACCOUNT SERVICES BUTTON BUTTON -->         
                              
-                             <!-- PROFILE AND ACCOUNT SERVICES CONTENT -->
+                             <!-- PROFILE AND ACCOUNT SERVICES BUTTON CONTENT -->
                              
-                             <div class="collapse collapse-content" id="profile">
-                                 <div class="content pad top-5">
-                                 During my Tenure, I worked on Account Services, Social Features, and Platform-Specific utility functions with different Plugins. As we worked on Steam Early Access release, I started with the Steamworks SDK, and soon migrated over to the platform-agnostic plugin, OnlineSubsystem. Currently we are now using AccelByte, due to it's cross-platform functionality.
+                             <div class="collapse collapse-content" id="http-requests">
+                                 <div class="content pad vt-5">
+                                     A bigger contribution I made was when we rebuilt the main menu into a more gamepad-friendly Tab menu. Over the course of a week, I reworked all of the UI from our simple Vertical menu, to the user-friendly tab menu, which also gave me flexibility with features such as starting the matchmaker, and customizing your Avatar in the <i>Cabin</i> tab while searching for a game, which wasn't possible in the previous iteration.
                                  </div>
-                                 <div class="content">I still setup OnlineSubSystem to login the user, and get an auth token, which would then be passed into the AccelByte Login request to authenticate with the services. I have had success making all of the Account related features through their Endpoints</div>
-                                 <div class="content pad top-10">
 
-                                        <ul>
-                                            <li>Cloud Records for Individual users and global files for the game<ul><li>With Cloud Records, I was able to store the Player Profile, Platform Info, and Customization Info</li></ul></li>
-                                            <li>Lobby and Social Features
-                                            <ul><li>Cross-platform Friendslists</li>
-                                                <li>Party Lobbies</li>
-                                                </ul></li>
-                                            <li>Matchmaking</li>
-                                            <li>Analytics, by creating events and sending meta-data</li>
-                                        </ul></div>
+                                 <div class="content">
+                                     <ul>
+                                         <li>
+                                             We developed some automated binding functionality for Gamepad
+                                             <ul><li>For Example, unbinding the Right Face Button in Play Now and Rebind it to Stop Preview in the Cabin</li></ul>
+                                         </li>
+                                         <li>
+                                            I setup tracking selected items in a list to update cosmetic states (Such as the Customization Grid or FriendsList)
+                                         </li>
+                                         <li>
+                                            Submenus with Tab Menus that borrow functionality from the main Tab Menu
+                                         </li>
+                                         <li>
+                                            Base C++ functionality that is inherited in several UserWidgets that make up the tab menu, limiting specific logic for each menu
+                                         </li>
+                                     </ul>
+                                                                     <video muted autoplay loop>
+                                      <source src="videos/FCT_MainMenuOverview.mp4" type="video/mp4"/>
+                                </video>
+                                 </div>
+                                 <button class="collapse-button" id="universal-ui-class-button" type="button" data-toggle="collapse" data-target="#universal-ui-class-button"
+            aria-expanded="true" aria-controls="universal-ui-class-button">
+                                 <div class ="collapse-button-content">Universal Input Feedback Class for Mouse and Gamepad<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                             </button>
+                             <!-- //IN-GAME DLC BUTTON -->         
+                             
+                             <!-- IN-GAME DLC CONTENT -->
+                             
+                             <div class="collapse collapse-content" id="universal-ui-class-button">
+                            <div class="content pad vt-5">
+                                     I wrote a C++ class that updats a button's UI, regardless of mouse or gamepad interaction. This class is inherited by most Button-Based UserWidgets, and allows for clean and flexible implementations
+                                <ul><li>Gamepad feedback events utilized On Focus Added and On Focus Lost events</li>
+                                    <li>Mouse events were bound to the UButton in the Constructor</li>
+                                    <li>Added BlueprintImplementable events in base class, for custom functionality that needed to be implemented in Blueprints.</li>
+                                    <li>EditDefaultOnly FSlateBrush variables to set color, image, and transparency to modify button states in various Blueprints</li>
+                                </ul>
+                                <div class="content pad btm-5">The Oval button is the most used button widget in the game. I developed tools to modify it's size, font, color, interaction type (gamepad button or navigation), and various other options. The purpose was to make it easy-to-use for the designers. </div>
+                                <div class="content">
+                                <video muted autoplay loop>
+                                      <source src="videos/FCT_ClickableSubtitleVideo.mp4" type="video/mp4"/>
+                                </video>
+                                </div>
+                                <div class="content pad top-20 btm-5">
+                                Here is an example of our Find Game Button. It also is utilizing the BlueprintImplementableEvent trigger to start the countdown timer and replicate it to the other users in the party.
+                                </div>
+                                <div class="content">
+                                <video muted autoplay loop>
+                                      <source src="videos/FCT_FindGameButtonFeedbackStates.mp4" type="video/mp4"/>
+                                </video>
+                                </div>
+
+                                <div class="content pad top-20 btm-5">
+                                Late in development, I added a navigation method to allow buttons to be navigable with Gamepad D-Pad and Joystick.
+                                </div>
+                                <div class="content">
+                                <video muted autoplay loop>
+                                      <source src="videos/FCT_QuitGameFeedbackStates.mp4" type="video/mp4"/>
+                                </video>
+                                </div>
+                                <div class="content pad top-20 btm-5">
+                                The Settings menu was the largest project in terms of adding the focused/hovered state. This was due to encapsulating the functionality that previously existed into a new set of widgets.</div>
+                                <video muted autoplay loop>
+                                      <source src="videos/FCT_SettingsFeedbackStates.mp4" type="video/mp4"/>
+                                </video>
+                                 </div>
+                                 
+                            </div>
+                             <!-- PROFILE AND ACCOUNT SERVICES BUTTON -->
                              </div>
                              
                              <!-- //PROFILE AND ACCOUNT SERVICES CONTENT -->
                                  <!-- FRIENDS AND PARTY BUTTON -->
                              <button class="collapse-button" id="friends-button" type="button" data-toggle="collapse" data-target="#friends"
             aria-expanded="true" aria-controls="friends">
-                                 <div class ="collapse-button-content">Cross-Platform Friendslists<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                                 <div class ="collapse-button-content">Cross-Platform Friends and Parties<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
                              <!-- //FRIENDS AND PARTY BUTTON -->         
                              
@@ -590,9 +699,14 @@ struct FFCTCloudCustomizationPayload
      <li>Uses Presence to get online/offline status, and a URL-encoded method to store Platform Info<ul><li>If No Presence data is available, Cloud Saves are used to get Plaform Info</li></ul></li></ul>
                                                                               <video muted autoplay loop>
                 <source src="videos/FCT_Friendslist.mp4" type="video/mp4"/>
+            </video><div class="content pad top-5">
+                                 The Party system is a companion to Friendslist, and as you recieve friend requests through an in-game popup, you are teleported to their lobby, and using notifiers on the invitee, and an accept response on all members in the party, the UI is updated, and the party members are now linked when searching for a game. There is a bunch of Characters in the Main Menu that are enabled, and assigned Customization loadout via Cloud Saves. The Party List is also updated. Aside from the Playstation Specific logic for system-level parties, I had complete ownership over the design and implementation.
+                                                                              <video muted autoplay loop>
+                <source src="videos/FCT_PartyInMenu.mp4" type="video/mp4"/>
             </video>
-                                 </div>
-                                                                  <button class=" collapse-button " data-toggle="collapse" href="#friend-code-collapse" role="button" aria-expanded="true" aria-controls="friend-code-collapse">
+     
+     </div></div>
+                                                                  <!--<button class=" collapse-button " data-toggle="collapse" href="#friend-code-collapse" role="button" aria-expanded="true" aria-controls="friend-code-collapse">
                   <div class="collapse-button-content">
                 Code: Async Class and Optimizing through Request Batching<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                     </button>
@@ -791,27 +905,32 @@ public:
                                  
                                  I have a series of Notifiers and Responses in blueprint to update the Friendslist in Real-time. </div>                      <div class="content pad top-10 rgt-5"><img src="images/FCT_Blueprint_FriendsUpdateNotifs.PNG"/></div>
  <div class="content pad top-10"> 
-                                 </div>
+                                 </div>-->
                              </div>
                              <!-- //FRIENDS AND PARTY CONTENT -->
 
                                                               <!-- FRIENDS AND PARTY BUTTON -->
+<!--
                              <button class="collapse-button" id="party-button" type="button" data-toggle="collapse" data-target="#party"
             aria-expanded="true" aria-controls="party">
                                  <div class ="collapse-button-content">Grouping Up With Party Lobbies<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
+-->
                              <!-- //FRIENDS AND PARTY BUTTON -->         
                              
                              <!-- FRIENDS AND PARTY CONTENT -->
                              
                              
+<!--
                              <div class="collapse collapse-content" id="party">
  <div class="content pad top-5">
                                  The Party system is a companion to Friendslist, and as you recieve friend requests through an in-game popup, you are teleported to their lobby, and using notifiers on the invitee, and an accept response on all members in the party, the UI is updated, and the party members are now linked when searching for a game. There is a bunch of Characters in the Main Menu that are enabled, and assigned Customization loadout via Cloud Saves. The Party List is also updated. Aside from the Playstation Specific logic for system-level parties, I had complete ownership over the design and implementation.
                                                                               <video muted autoplay loop>
                 <source src="videos/FCT_PartyInMenu.mp4" type="video/mp4"/>
             </video>
-                                 </div>
+-->
+<!--                                 </div>-->
+<!--
                                  <div class="content"> 
                                  
                                  
@@ -819,6 +938,7 @@ public:
                                  I have a series of Notifiers and Responses In blueprint to update the Friendslist in Real-time.</div>                      <div class="content pad top-10 rgt-5"><img src="images/FCT_Blueprint_FriendsUpdateNotifs.PNG"/></div>
  <div class="content pad top-10"> 
                                  </div>
+-->
                              </div>
                              <!-- //FRIENDS AND PARTY CONTENT -->
 
@@ -827,7 +947,7 @@ public:
 
                              <button class="collapse-button" id="dlc-button" type="button" data-toggle="collapse" data-target="#dlc"
             aria-expanded="true" aria-controls="dlc">
-                                 <div class ="collapse-button-content">Updating UI Dynamically with Cloud Records<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                                 <div class ="collapse-button-content">Updating UI Dynamically with Global Cloud Records and HTTP Requests<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
                              <!-- //IN-GAME DLC BUTTON -->         
                              
@@ -863,7 +983,7 @@ public:
                                         <ul><li>lang has a unique <i>FExternalLocalizationData</i> struct that takes Unreal's CurrentLanguage, compares to the 2 character Culture Code, and finds which language to use in-game</li></ul> </li>
                                         <li><i>loadOrder</i> sorts elements on the client by this value</li>
                                         <li>The Id variables are just store AppId's for each platform, determined and assigned by the client</li>
-                                        <li>The Thumbnail Urls are stored on our storage server, and I wrote a conversion function to request an image via URL, convert it from raw image data and into a usable UTexture2D</li>
+                                        <li>The Thumbnail Urls are stored on our storage server, and I wrote a conversion function to make an HTTP request using the URL, and convert it from raw image data and into a usable UTexture2D</li>
                                     </ul>
                                 </div>
                                  <pre class="content-block prettyprint lang-json code-snippet ">{
@@ -900,76 +1020,26 @@ public:
                              </div>
                              
                              <!-- //IN-GAME DLCCONTENT -->
-<button class="collapse-button" id="universal-ui-class-button" type="button" data-toggle="collapse" data-target="#universal-ui-class-button"
-            aria-expanded="true" aria-controls="universal-ui-class-button">
-                                 <div class ="collapse-button-content">Mouse and Gamepad Button State Widgets<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
-                             </button>
-                             <!-- //IN-GAME DLC BUTTON -->         
-                             
-                             <!-- IN-GAME DLC CONTENT -->
-                             
-                             <div class="collapse collapse-content" id="universal-ui-class-button"></div>
-                             <!-- PROFILE AND ACCOUNT SERVICES BUTTON -->
 
-                             <button class="collapse-button" id="http-requests-button" type="button" data-toggle="collapse" data-target="#http-requests" aria-expanded="true" aria-controls="http-requests">
-                                 <div class ="collapse-button-content">Moderation and Custom HTTP Requests
-                                     <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
-                             </button>
-                             <!-- //PROFILE AND ACCOUNT SERVICES BUTTON BUTTON -->         
-                             
-                             <!-- PROFILE AND ACCOUNT SERVICES BUTTON CONTENT -->
-                             
-                             <div class="collapse collapse-content" id="http-requests">
-                                 <div class="content pad vt-5">
-                                     
-                                 </div>
 
-                                 <div class="content">
-                                        With Cloud Saves, we are able to store:
-                                     <ul>
-                                         <li>
-                                            Player Profile Info        
-                                         </li>
-                                         <li>
-                                            Avatar Customization Info
-                                             <ul>
-                                                 <li>
-                                                    Male and Female Outfit, including currently selected Gender
-                                                 </li>
-                                                 <li>
-                                                    Vruumba Configuration ("Ghost Avatar")
-                                                 </li>
-                                             </ul>
-                                         </li>
-                                         <li>
-                                            Current Platform Info
-                                             <ul>
-                                                <li>
-                                                    Last Used Platform
-                                                </li>
-                                                <li>
-                                                    Platform User Id
-                                                </li>
-                                             </ul>
-                                         </li>
-                                     </ul>
-                                 </div>
-                             </div>
+<!--
                              <button class="collapse-button" id="analytics-button" type="button" data-toggle="collapse" data-target="#analytics" aria-expanded="true" aria-controls="analytics">
                                  <div class ="collapse-button-content">Posting Telemetry Data for Analytics
                                      <img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
                              </button>
+-->
                              <!-- //PROFILE AND ACCOUNT SERVICES BUTTON BUTTON -->         
                              
                              <!-- PROFILE AND ACCOUNT SERVICES BUTTON CONTENT -->
                              
+<!--
                              <div class="collapse collapse-content" id="analytics">
                                  <div class="content pad vt-5">
                                      
                                  </div>
 
                                  <div class="content">
-                                        With Cloud Saves, we are able to store:
+                                        Analytics is setup like most Telemetry gathering implementations, with a string-based CreateEvent
                                      <ul>
                                          <li>
                                             Player Profile Info        
@@ -999,6 +1069,7 @@ public:
                                      </ul>
                                  </div>
                              </div>
+-->
                              
                              <!-- //PROFILE AND ACCOUNT SERVICES BUTTON CONTENT -->
                      </div>
@@ -1006,7 +1077,6 @@ public:
                </div>
             </div>
          </div>
-          </div>
           </div>
           </div>
 <div id="nav-container" style="display:block; transform: translateY(0px);">
