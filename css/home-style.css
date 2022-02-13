@@ -52,7 +52,6 @@ button:focus {
 }
 
 #container {
-    background-color: #041424;
     position: relative;
     transition: all 0.4s;
     overflow-x: hidden;
@@ -150,6 +149,7 @@ button:focus {
 
 
 #project-section-wrapper {
+    background-color: #041424;
     margin-left: auto;
     margin-right: auto;
     display: block;
