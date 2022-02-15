@@ -186,10 +186,75 @@ button:focus {
     position: relative;
     overflow: hidden;
     width: 340px;
-
     transition: all .3 ease-in-out;
 }
 
+.platform-bg{
+/*
+    pointer-events: none;
+	
+    margin-left: 5px;
+    margin-top: 5px;
+*/
+    height:auto;
+    width: auto;
+    margin-right: 5px;
+    float: left;
+    color: white;
+    position: relative;
+    pointer-events: none;
+
+/*
+    border-bottom: 30px solid black;
+	border-left: 0px solid transparent;
+	border-right: 25px solid transparent;
+*/
+}
+
+.platform-container{
+    padding: 7px;
+    pointer-events: none;
+}
+
+.platform-logo
+{
+/*
+    max-width: 125px;
+    width:125px;
+    height: auto; 
+    width:100px; 
+    position: relative; 
+    margin-top: -100px;
+    z-index: 100;
+*/
+    pointer-events: none;
+    border-radius: 5px;
+    height:30px;
+    padding: 5px 7px;
+    float: left;
+    background-color:black;
+    width: auto;
+    
+}
+
+#ps5-logo
+{
+    background-color: white;
+}
+
+#steam-logo {
+    background-color: #1b2838;
+    padding: 3px;
+}
+
+#android-logo{
+    background-color: #00df7f;
+    padding: 4px;
+}
+
+#windows-logo{
+    padding: 0px;
+}
 .project-item-cover {
     border: 1.5px solid;
     border-color: #2a3e87;
