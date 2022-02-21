@@ -5,6 +5,8 @@ var currentHeight = window.innerHeight;
 
 var copyrightDate = "2022"; 
 
+var preloaderTitle = "GAME DEVELOPER | PROGRAMMER | UI DESIGNER";
+
 initialize();
 console.log();
 
@@ -33,6 +35,8 @@ $(document).ready(function(){
 	  });
      }
     
+    document.getElementsByClassName("preloader-title")[0].innerHTML = preloaderTitle;
+
     $("#nav-container").fadeOut(100);
     $(".footer").fadeOut(100);
 
@@ -59,7 +63,16 @@ $(document).ready(function(){
   }).mouseleave(function(){
       $(this).stop().animate({borderColor: '#2a3e87'},300);
   })
- 
+    
+        $(".nav-item").hover(function()
+        {
+            $(this).find('.nav-item-icon').animate({color: "#eac67a"}, 200);
+        });
+//                                 , function()
+//        {
+//            $(this).find('.nav-item-icon').animate({color: "white"}, 200);
+//        });  
+                          
    $(".project-item-cover").click(function(){
        if(!scaledObject){
            scaledObject = true;
@@ -74,6 +87,8 @@ window.onload = function(){
     if(window.location.pathname == "Sierejko-Resume.pdf"){
         console.log(window.location.pathname);
     }
+    
+    
     
     loadbar.options({speed: parseInt($('.preloader-wrapper').data("target-speed"))});
     
@@ -323,10 +338,10 @@ function onLoadUrlScroll(){
 
 function initialize(){
     setTimeout(function(){  closeNav()}, 100);
-    setTimeout(function(){  jQuery('.collapse-button').trigger('click');}, 0);
-    setTimeout(function(){  jQuery('.collapse-button-inner').trigger('click');}, 700);
+    setTimeout(function(){  jQuery('.collapse-button').trigger('click');}, 100);
+    setTimeout(function(){  jQuery('.collapse-button-inner').trigger('click');}, 500);
     setTimeout(function(){  jQuery('.collapse-button-inner').trigger('click');}, 1200);
-    setTimeout(function(){  jQuery('.collapse-button').trigger('click');}, 2000);
+    setTimeout(function(){  jQuery('.collapse-button').trigger('click');}, 1200);
 }
 
 function openNav() {
