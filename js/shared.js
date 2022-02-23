@@ -119,6 +119,8 @@ function onPreloaderComplete()
         bindWindowEvents(1400);
     }
 
+    if($(''))
+    
     $('.preloader-wrapper').fadeOut(1200);
        
     setTimeout(function(){
@@ -359,6 +361,18 @@ function closeNav() {
 function openResume(){
     window.open("Sierejko-Resume.pdf", 'blank');
 }
+
+function translateAnimation(modified, value){
+    var stringify = JSON.parse(JSON.stringify(v)).reverse();
+    
+    $(value[0]).animate(value[1], {
+       duration: 250,
+        step: function(inValue)
+        {
+            $modified.css("transform", `translateY(${inValue}px)`);
+        }
+    });
+};
 
 (function ( $ ) {
  	if (!$.ns) {

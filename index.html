@@ -72,13 +72,15 @@
             <div class="video-wall-wrapper fade transition-up">
                 <div class="video-wall-inner-wrap">
                 <div class ="video-wall-content">
-                <video loop autoplay muted style="position:absolute; z-index: -1; top:50%; height: auto; width: 1000px; min-height: 500px; margin: auto;">
-                    <source src="videos/FCT_MainMenuOverview.mp4" type="video/mp4">
+                <video loop autoplay muted playsinline style="position:absolute; z-index: -1; top:50%; height: auto; margin: auto;">
+                    <source src="videos/intro-trailer.mp4" type="video/mp4">
                 </video>
-                    <span></span>
                     </div>
+                    
+            </div>             
+
             </div>
-            </div>
+            
 
             <div class="fade transition-up">
                                 <div style="background-color: #30415d; height: auto; z-index: -2;">
@@ -99,13 +101,13 @@
                                 <img id="about-profile-img" src="images/about-me-profile.png"/>
                                 </div>
                             <p id="about-text">Hey you made it! Hi, my name is Joe, Game Programmer and Designer, currently working in Unreal Engine over at Invisible Walls. I graduated from New England Institute of Technology, with Honors, with a Bachelor's in <i>Game Development and Simulation Programming</i>. We released First Class Trouble on Steam and PlayStation platforms on November 2nd 2021, where it was one of the headliners on PlayStation Plus for the month. Right now, I'm working on maintaining some services, making backlog fixes, and adding some new features to First Class Trouble. I'm also leading the charge on implementing Epic Online Services functionality into our early-in-development project, Just Perfect.
-                            <p id="about-text">While in school, I knabbed an exciting internship working at Attollo LLC, a government affiliated company with a focus on the RQ-21 Umanned Aircraft Simulators for Operator Training, built mostly in WPF and using an MVVM design pattern. Here, I was able to build a pipeline to importing models and assets for Training Vignettes <i>(or Scenarios).</i> I also had the pleasure of getting a contract to build an <i>AR app for Dewetron</i>, (the a-fore-mentioned mobile app), Dewetron AR... <i class="content funny-text"> Available on Apple Store and as .APK</i>. </p>
+                            <p id="about-text">While in school, I knabbed an exciting internship working at Attollo LLC, a government affiliated company with a focus on the RQ-21 Umanned Aircraft Simulators for Operator Training, built mostly in WPF and built with an MVVM framework. Here, I was able to build a pipeline to importing models and assets for Training Vignettes <i>(or Scenarios).</i> I also had the pleasure of getting a contract to build an <i>AR app for Dewetron</i>, (the a-fore-mentioned mobile app), Dewetron AR... <i class="content funny-text"> Available on Apple Store and as .APK</i>. </p>
                             <p id="about-text">In another life, I also worked as a Graphic Designer and Video Editor for five years, all while practicing in Unreal Engine's blueprints and first learning C++ using Unreal's API.</p>
                             <p id="about-text">
-                                Check out the projects below for more context. <!--Currently, Attollo is locked for review, just due to the nature of the job. -->And please consider this website as part of my body of work. If you'd like to contact me, please feel free via email or preferrably, my LinkedIn. I'll try to respond by end of day!
+                                Check out the projects below for more context. <!--Currently, Attollo is locked for review, just due to the nature of the job. -->And consider this website as part of my body of work. If you'd like to contact me, please feel free via email or preferrably, my LinkedIn. I'll try to respond by end of day!
                             </p>
-                            <div style="padding-top:10px; margin-bottom: 0;">Best,</div>
-                            <div style="padding-bottom:-10px;">-Joe</div>
+                            <div style="padding-top:10px; padding-left: 10px;  margin-bottom: -2px;">Best,</div>
+                            <div style="padding-bottom:-20px; padding-left: 10px;">-Joe</div>
                         </div>
                             </div>
                         <!--
@@ -180,10 +182,10 @@
                             <div class="fade transition-up">
                         <div class = "project-roles-wrapper">                        
                             <div class = "role" id = "cplusplus">c++</div>
-                            
+                                                        <div class = "role" id = "blueprint">umg</div>
+
                             <div class = "role" id = "json">json</div>
                             
-                            <div class = "role" id = "blueprint">umg</div>
                             <div class = "role" id = "unreal">ue4</div>
                             <div class = "role" id = "photoshop">photoshop</div>
                             
@@ -236,8 +238,8 @@
                         <a href="aberrant.html">
                             <div class = "project-item">
                                 <div id ="aberrant-button" class = "project-item-cover" >
-                                    <img src="images/aberrant-cover.PNG" data-margin-end ='-30%' data-margin-start ='-25%' data-height-end='110%'/>
-                                    <div class = "project-item-title light">
+                                    <img src="images/aberrant-cover-2022.PNG" data-margin-end ='-80%' data-margin-start ='-70%' data-height-end='110%'/>
+                                    <div class = "project-item-title dark">
                                         <a>Aberrant</a>
                                     </div>                                                            
                                 </div>
@@ -367,9 +369,9 @@
                         </div>
                                 <div id ="attollo-button" class = "project-item-cover" >
                                     
-                                    <img src="images/attollo-cover.png" data-margin-end ='-5%' data-margin-start ='0%' data-height-end='110%'/>
+                                    <img src="images/attollo-cover-2022.png" data-margin-end ='-67%' data-margin-start ='-57%' data-height-end='110%'/>
                                     
-                                    <div class = "project-item-title light">
+                                    <div class = "project-item-title dark">
                                         <a>Attollo LLC</a>
                                     </div>                                                            
                                 </div>
@@ -381,31 +383,42 @@
 
                             <div class = "project-roles-wrapper">                        
                             
-                            <div class = "role" id = "cplusplus">c++</div>
                                 <div class = "role" id = "csharp">c#</div>
-                            <div class = "role" id = "xaml">xaml</div>
+                            <div class = "role" id = "xaml">wpf</div>
+                                                            <div class = "role" id = "cplusplus">c++</div>
+
                         </div>
+                            </div>
+                            <div class ="project-desc-genre">Intern Programmer (Paid)</div>
 
-                            <div class ="project-desc-genre">Paid Internship</div>
-                                <div class="fade transition-up transition-speed-01">
+  <div class="fade transition-up transition-speed-01">
 
-                        <div class = "project-desc-bullet" >
+                        <div class = "project-desc-bullet" >                          
+                                <img src = "images/gear_bullet_png.png"/>
+                                <p class="multi-line">Worked with extremely large and complex </p><p class ="new-line">codebase to improve desktop application</p><p class ="new-line"> and development pipeline</p> 
+                        </div>
+                                    </div>
+                              <div class="fade transition-up transition-speed-01">
+
+                                                        <div class = "project-desc-bullet" >
+                                <img src = "images/gear_bullet_png.png"/>
+                                                            <p class="multi-line">Developed a Fast Pipeline for Importing</p> <p class ="new-line">Assets into Training Vignettes using C# / WPF</p> 
+                                  </div></div>
+                              <div class="fade transition-up transition-speed-01">
+
+                                                                                    <div class = "project-desc-bullet" >
+
                         <img src = "images/gear_bullet_png.png"/>
                             <p>Government Work with NAWC-AD</p>
-                        </div>
-                                </div><div class="fade transition-up transition-speed-01">
+                                  </div></div>
+                                <div class="fade transition-up transition-speed-01">
 
                                                     <div class = "project-desc-bullet" >
                         <img src = "images/gear_bullet_png.png"/>
-                            <p>Simulator Bug Fixing</p>
+                            <p>Fixed Bugs Reported through JIRA</p>
                         </div>
-                                </div><div class="fade transition-up transition-speed-01">
-
-                            <div class = "project-desc-bullet" >
-                                <img src = "images/gear_bullet_png.png"/>
-                                <p class="multi-line">Developed a Fast Pipeline for Importing <p class ="new-line">Assets to Training Vignettes using C# and </p><p class ="new-line">XAML</p> 
-                        </div>
-                                </div><div class="fade transition-up transition-speed-01">
+                                </div>
+                                    <div class="fade transition-up transition-speed-01">
 
                             <div class = "project-desc-bullet" >
                                 <img src = "images/gear_bullet_png.png"/>
@@ -413,9 +426,8 @@
                         </div>  
                                 </div>
                         </div>
-                        </div>
                     </div>
-                </div>
+                        </div>
                 <div class="project-badge col-sm-6 col-md-6 col-lg-4">
                     <div class ="project-item-wrapper" id = "redrock-farmer-project">
                         <div class="fade transition-up">
@@ -438,6 +450,8 @@
                             <div class="fade transition-up">
                             <div class = "project-roles-wrapper">                        
                             <div class = "role" id = "csharp">c#</div>
+                                <div class = "role" id = "xaml">wpf</div>
+
                             <div class = "role" id = "unity">unity</div>
                             <div class = "role" id = "xna">xna / monogame</div>
                             <div class = "role" id = "photoshop">photoshop</div></div>
@@ -453,13 +467,13 @@
 
                                 <div class = "project-desc-bullet" >
                             <img src = "images/gear_bullet_png.png"/>
-                            <p>2D Graphic Design</p>
+                            <p>Designed all 2D Sprites and Environment Art</p>
                         </div>
                                 </div><div class="fade transition-up transition-speed-01">
 
                             <div class = "project-desc-bullet" >
                                 <img src = "images/gear_bullet_png.png"/>
-                                <p>Programmer</p>
+                                <p>Programmed in C# and WPF/XAML</p>
                         </div>
                                 </div><div class="fade transition-up transition-speed-01">
 
@@ -471,7 +485,7 @@
 
                             <div class = "project-desc-bullet" >
                                 <img src = "images/gear_bullet_png.png"/>
-                            <p>Custom 2D Engine built in Monogame</p>
+                                <p class="multi-line">Custom 2D Tile Engine built with WPF and</p><p class ="new-line">Monogame</p>
                                 </div>
                                 </div>
                         </div>
