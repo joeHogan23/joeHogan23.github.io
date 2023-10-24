@@ -98,7 +98,7 @@
                             <tbody>
                                <tr class = "header-content">
                                   <td><b>roles</b></td>
-                                  <td>Programmer &bull; UI/UX Designer &bull; Account Services Management</td>
+                                  <td>UI and Backend Programmer &bull; UI/UX Designer &bull; Account Services Management</td>
                                </tr>
                                <tr>
                                   <td><b>software</b></td>
@@ -108,7 +108,7 @@
                                </tr>
                                <tr class = "header-content">
                                   <td><b>languages</b></td>
-                                  <td> C++ &bull; C# &bull; JSON &bull; XML &bull; UE4 Blueprints</td>
+                                  <td> C++ &bull; WPF &bull; C# &bull; JSON &bull; XML &bull; UE4 Blueprints</td>
                                </tr>
                                <tr class = "header-content">
                                   <td><b>team size</b></td>
@@ -116,7 +116,7 @@
                                </tr>
                                 <tr class = "header-content">
                                   <td><b>platforms</b></td>
-                                  <td>PlayStation&trade; 5 &bull; PlayStation&trade; 4 &bull; Steam</td>
+                                  <td>PlayStation&trade; 5 &bull; PlayStation&trade; 4 &bull; Steam &bull; Epic Games Store</td>
                                </tr>
                                 <tr class = "header-content">
                                   <td><b>developer</b></td>
@@ -1018,7 +1018,79 @@ public:
 }</pre>                                </div>
 <div class="content pad btm-10"></div>
                              </div>
+                             <button class="collapse-button" id="dlc-button" type="button" data-toggle="collapse" data-target="#dlc"
+            aria-expanded="true" aria-controls="dlc">
+                                 <div class ="collapse-button-content">Updating UI Dynamically with Global Cloud Records and HTTP Requests<img class = "dropdown-icon" src="images/content_dropdown_triangle.png"/></div>
+                             </button>
+                             <!-- //IN-GAME DLC BUTTON -->         
                              
+                             <!-- IN-GAME DLC CONTENT -->
+                             
+                             <div class="collapse collapse-content" id="dlc">
+                                 <div class="content font-36 pad top-5">Server-Driven UI, Without a Patch</div>
+                                 <div class="content">
+                                    One of my favorite Features that I got to implement was using Cloud Files to instantly Update UI. This allowed us to add/remove leaderboards, prep DLC for release, and have dynamic service Messages, all without disrupting users and requiring them to update the game.
+                        <ul><li>
+                            Structures are put in a JSon format and reformatted into structs that will control how UI is displayed
+                        </li>
+                        <li>
+                            A Language object is in the JSon to provide a way to localize text.
+                        </li></ul>
+
+<div class="content pad vt-10 font-24">Downloadable Content Implementation</div>
+                                                                     <div class="content pad btm-10">
+                                                                         The DLC UI is my favorite use-case for Server-Driven UI. It is also the most useful. It allows us to prepare for a newly released Pack, and just enable as needed.</div>
+                                                                                  <video muted autoplay loop>
+                <source src="videos/FCT_DLC_DynamicUI.mp4" type="video/mp4"/>
+            </video>
+<div class="content pad top-10 font-20">Global JSon Schema</div>
+
+<div class="content">
+                                    <ul class="content pad vt-10">
+                                    <li>
+                                        <i>bDoubleSpan</i> allows us to determine width in grid
+                                        </li>
+                                        <li><i>discount</i> is straightforward, input the percent off the item is, and a UI will popup with discount value</li>
+                                        <li><i>enabled</i> is to hide item until ready for release</li>
+                                        <li><i>lang</i> is for localization, and is used in a very server-driven UI schemas.
+                                        <ul><li>lang has a unique <i>FExternalLocalizationData</i> struct that takes Unreal's CurrentLanguage, compares to the 2 character Culture Code, and finds which language to use in-game</li></ul> </li>
+                                        <li><i>loadOrder</i> sorts elements on the client by this value</li>
+                                        <li>The Id variables are just store AppId's for each platform, determined and assigned by the client</li>
+                                        <li>The Thumbnail Urls are stored on our storage server, and I wrote a conversion function to make an HTTP request using the URL, and convert it from raw image data and into a usable UTexture2D</li>
+                                    </ul>
+                                </div>
+                                 <pre class="content-block prettyprint lang-json code-snippet ">{
+    "packs": [
+        {
+            "bDoubleSpan": boolean,
+            "description": string,
+            "discount": float,
+            "enabled": boolean,
+            "lang": {
+                "ar": string,
+                "de": string,
+                "en": string,
+                "es": string,
+                "fr": string,
+                "ja": string,
+                "ko": string,
+                "pt": string,
+                "ru": string,
+                "th": string,
+                "yi": string,
+                "zh": string
+            },
+            "loadOrder": integer,
+            "ps4Id": string,
+            "ps5Id": string,
+            "steamId": string,
+            "thumbnailUrlDoubleSpan": string,
+            "thumbnailUrlSingleSpan": string
+        }
+    ]
+}</pre>                                </div>
+<div class="content pad btm-10"></div>
+                             </div>
                              <!-- //IN-GAME DLCCONTENT -->
 
 

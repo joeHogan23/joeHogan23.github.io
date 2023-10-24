@@ -65,10 +65,27 @@
     background-image: url(/images/attollo-wallpaper.jpg);
 }
 
+#witcher-background{
+    background-image: url(/images/WitcherGameBP.jpg);
+}
+
 #fct-background{
     background-image: url(/images/FirstClassTroubleBG.JPG);
 }
 
+
+twitterwidget::shadow .EmbeddedTweet {
+    width: 700px;
+    max-width: 700px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f0f9ff+0,cbebff+47,a1dbff+100;Blue+3D+%2313 */
+  background: #f0f9ff; /* Old browsers */
+background: -webkit-linear-gradient(#f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+background: -moz-linear-gradient(#f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+background: -o-linear-gradient(#f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+background: linear-gradient(#f0f9ff 0%, #cbebff 47%, #a1dbff 100%); /* FF3.6-15 */ /* Chrome10-25,Safari5.1-6 */ /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff',GradientType=0 ); /* IE6-9 */
+
+}
 
 #container{
     position: relative;

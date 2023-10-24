@@ -246,7 +246,6 @@ button:focus {
     float: left;
     background-color:black;
     width: auto;
-    
 }
 
 #ps5-logo
@@ -254,7 +253,8 @@ button:focus {
     background-color: white;
 }
 
-#steam-logo {
+#steam-logo 
+{
     background-color: #1b2838;
     padding: 3px;
 }
@@ -305,6 +305,9 @@ button:focus {
     margin-left: -55%;
 }
 
+#sirius-button img{
+    margin-left: -10%;
+}
 
 .project-item-title{
     width: 100%;
@@ -468,7 +471,7 @@ button:focus {
     width:100%;
     height: 100%;
     padding-top: 0;
-    padding-bottom: 30px;
+    padding-bottom: 150px;
 }
 
 #about-content {
@@ -479,12 +482,12 @@ button:focus {
 }
 
 #about-profile-pic img{
-    height: 220px;
+    height: 300px;
 }
 
 #about-profile-pic{
-    margin-right:20px; 
-    margin-top: 7px; 
+    margin-right:50px; 
+    margin-bottom: 30px;
     float: left;
 }
 
@@ -510,7 +513,7 @@ button:focus {
     }
     
     #about-text {
-        font-size: 16px;
+        font-size: 14px;
     }
     
     .funny-text{
@@ -573,12 +576,44 @@ button:focus {
     #contact-text{
         margin: 0 20% 0 20%;
     }
+        #about-text 
+    {
+        font-size: 20px;
+    }
+    
+    #about-profile-pic img{
+        height: 350px;
+    }
 }
 
 
 @media screen and (min-width: 1600px){
     #contact-text{
         margin: 0 30% 0 30%;
+    }
+    
+    #about-text 
+    {
+        font-size: 22px;
+    }
+    
+    #about-profile-pic img{
+        height: 400px;
+    }
+}
+
+@media screen and (min-width: 1800px){
+    #contact-text{
+        margin: 0 30% 0 30%;
+    }
+    
+    #about-text 
+    {
+        font-size: 24px;
+    }
+    
+    #about-profile-pic img{
+        height: 400px;
     }
 }
 
