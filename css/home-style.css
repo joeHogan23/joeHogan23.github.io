@@ -394,6 +394,10 @@ button:focus {
     background-color: #144064;
 }
 
+#slate{
+    background-color: #222222;
+}
+
 #unreal{
     color: white;
     background-color: #dc143c;
